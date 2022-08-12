@@ -1,4 +1,10 @@
-.card{
+.serverCard{
 	-fx-fill: #3E3E3E;
-	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 20, 0, 11, 8);
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 20, 0, 11, 8);
+}
+
+.gestionButton{
+	-fx-fill: #0066FF;
+	-fx-arc-height: 15;
+	-fx-arc-width: 15;
 }

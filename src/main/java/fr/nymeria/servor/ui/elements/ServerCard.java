@@ -15,11 +15,21 @@ public class ServerCard {
 		card.setTranslateY(y);
 		card.setWidth(309);
 		card.setHeight(170);
-		card.setArcHeight(12);
-		card.setArcWidth(12);
-		card.getStyleClass().add("card");
+		card.setArcHeight(15);
+		card.setArcWidth(15);
+		card.getStyleClass().add("serverCard");
 		
-		App.addItem(card);
+		
+		Rectangle button = new Rectangle();
+		
+		button.setTranslateX(x);
+		button.setTranslateY(y + 131);
+		button.setWidth(309);
+		button.setHeight(39);
+		button.getStyleClass().add("gestionButton");
+		
+		
+		App.addItem(card, button);
 	}
 	
 }

@@ -36,7 +36,12 @@ public class App extends Application {
     
     private void initialize(Stage stage) {
     	new AddServerButton(stage);
-    	new ServerCard(100, 100);
+    	new ServerCard(178, 56);
+    	new ServerCard(594, 56);
+    	new ServerCard(178, 286);
+    	new ServerCard(594, 286);
+    	new ServerCard(178, 520);
+    	new ServerCard(594, 520);
     	new TopBar(stage);
     }
     
