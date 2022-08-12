@@ -13,13 +13,13 @@ public class AddServerButton {
 	public AddServerButton(Stage stage) {
 		
 		Circle rect = new Circle(25);
-		rect.setFill(Color.BLUE);
+		rect.setStyle("-fx-fill: #0066FF;");
 		rect.setTranslateX(1020);
 		rect.setTranslateY(650);
 		
-		Text button = GlyphsDude.createIcon(FontAwesomeIcon.PLUS, "50px");
-		button.setTranslateX(1001);
-		button.setTranslateY(670.25);
+		Text button = GlyphsDude.createIcon(FontAwesomeIcon.PLUS, "35px");
+		button.setTranslateX(1007);
+		button.setTranslateY(664.25);
 		button.setFill(Color.WHITE);
 		
 		
