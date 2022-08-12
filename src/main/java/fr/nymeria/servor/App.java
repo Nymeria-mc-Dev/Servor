@@ -25,7 +25,7 @@ public class App extends Application {
         
         addStyleSheets();
         
-        initialize(stage);
+        showPageOne(stage);
         
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
@@ -34,11 +34,18 @@ public class App extends Application {
         stage.show();
     }
     
-    private void initialize(Stage stage) {
+    private void showPageOne(Stage stage) {
     	new AddServerButton(stage);
     	new ServerCard(100, 100);
     	new TopBar(stage);
     }
+    
+    private void showPageTwo(Stage stage) {
+    	new AddServerButton(stage);
+    	new TopBar(stage);
+    }
+    
+    private void clearePage(Stage stage) {}
     
     private void addStyleSheets() {
     	pane.getStylesheets().add(App.class.getResource("/css/ServerCard.css").toExternalForm());
