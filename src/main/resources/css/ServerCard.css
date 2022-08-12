@@ -1,0 +1,4 @@
+.card{
+	-fx-fill: #3E3E3E;
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 20, 0, 11, 8);
+}

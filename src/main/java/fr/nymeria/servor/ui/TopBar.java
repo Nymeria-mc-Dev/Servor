@@ -3,6 +3,7 @@ package fr.nymeria.servor.ui;
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import fr.nymeria.servor.App;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -18,6 +19,8 @@ public class TopBar {
 		
 		bar.setWidth(1080);
 		bar.setHeight(35);
+		bar.setTranslateX(0);
+		bar.setTranslateY(0);
 		bar.setStyle("-fx-fill: #3E3E3E;");
 		
 		bar.setOnMousePressed(event -> {
@@ -32,6 +35,8 @@ public class TopBar {
 		
 		Text close = GlyphsDude.createIcon(FontAwesomeIcon.CLOSE, "25px");
 		close.setTranslateX(1040);
+		close.setTranslateY(25);
+		close.setFill(Color.WHITE);
 		
 		close.setOnMouseClicked(event -> {
 			stage.close();
@@ -39,7 +44,8 @@ public class TopBar {
 		
 		Text reduce = GlyphsDude.createIcon(FontAwesomeIcon.MINUS, "25px");
 		reduce.setTranslateX(1000);
-		reduce.setTranslateY(2);
+		reduce.setTranslateY(27);
+		reduce.setFill(Color.WHITE);
 		
 		reduce.setOnMouseClicked(event -> {
 			stage.setIconified(true);

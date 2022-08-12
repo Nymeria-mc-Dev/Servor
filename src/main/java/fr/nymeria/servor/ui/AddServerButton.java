@@ -18,8 +18,8 @@ public class AddServerButton {
 		rect.setTranslateY(650);
 		
 		Text button = GlyphsDude.createIcon(FontAwesomeIcon.PLUS, "50px");
-		button.setTranslateX(1026);
-		button.setTranslateY(653.25);
+		button.setTranslateX(1001);
+		button.setTranslateY(670.25);
 		button.setFill(Color.WHITE);
 		
 		
