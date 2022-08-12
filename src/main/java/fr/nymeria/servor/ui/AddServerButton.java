@@ -6,9 +6,9 @@ import fr.nymeria.servor.App;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class AddServerButtun {
+public class AddServerButton {
 
-	public AddServerButtun(Stage stage) {
+	public AddServerButton(Stage stage) {
 		
 		Text button = GlyphsDude.createIcon(FontAwesomeIcon.PLUS);
 		

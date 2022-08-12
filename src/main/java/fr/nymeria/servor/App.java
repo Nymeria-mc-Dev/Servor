@@ -4,7 +4,7 @@ import java.io.IOException;
 
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import fr.nymeria.servor.ui.AddServerButtun;
+import fr.nymeria.servor.ui.AddServerButton;
 import fr.nymeria.servor.ui.TopBar;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -38,7 +38,7 @@ public class App extends Application {
     
     private void initialize(Stage stage) {
     	new TopBar(stage);
-    	new AddServerButtun(stage);
+    	new AddServerButton(stage);
     }
     
     public static void addItem(Node... node) {
