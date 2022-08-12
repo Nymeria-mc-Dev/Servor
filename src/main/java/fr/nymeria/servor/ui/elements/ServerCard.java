@@ -1,7 +1,9 @@
 package fr.nymeria.servor.ui.elements;
 
 import fr.nymeria.servor.App;
+import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Text;
 
 public class ServerCard {
 
@@ -28,8 +30,13 @@ public class ServerCard {
 		button.setHeight(39);
 		button.getStyleClass().add("gestionButton");
 		
+		Text gestion = new Text("Gestion");
+		gestion.setTranslateX(x);
+		gestion.setTranslateY(y + 157);
+		gestion.setStyle("-fx-font-size: 24px; -fx-font-familly: regular;");
+		gestion.setFill(Color.WHITE);
 		
-		App.addItem(card, button);
+		App.addItem(card, button, gestion);
 	}
 	
 }

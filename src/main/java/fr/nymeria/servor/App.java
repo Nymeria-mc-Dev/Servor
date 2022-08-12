@@ -8,6 +8,7 @@ import fr.nymeria.servor.ui.elements.ServerCard;
 import javafx.application.Application;
 import javafx.scene.Node;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
@@ -27,9 +28,10 @@ public class App extends Application {
         
         showPageOne(stage);
         
+        stage.getIcons().add(new Image(this.getClass().getResource("/icons/logo.png").toExternalForm())); //logo provisoir (faire un logo)
         stage.initStyle(StageStyle.UNDECORATED);
         stage.setResizable(false);
-        stage.setTitle("Eclipse > Intellij");
+        stage.setTitle("Servor");
         stage.setScene(scene);
         stage.show();
     }
