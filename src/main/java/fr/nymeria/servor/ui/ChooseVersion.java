@@ -1,6 +1,8 @@
 package fr.nymeria.servor.ui;
 
 
+import fr.nymeria.servor.App;
+import fr.nymeria.servor.scenes.MainScene;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -19,7 +21,7 @@ public class ChooseVersion {
 		Pane server = new Pane();
 		
 		server.setPrefSize(206, 720);
-		server.getStyleClass().add("server");
+		server.getStyleClass().add("menu");
 		
 		HBox switcher = new HBox();
 		
@@ -35,6 +37,60 @@ public class ChooseVersion {
 		blueBar.getStyleClass().add("blueBar");
 		
 		switcher.getChildren().add(blueBar);
+		
+		Pane choiseBar = new Pane();
+		
+		choiseBar.setPrefSize(874, 44);
+		choiseBar.setTranslateX(206);
+		choiseBar.setTranslateY(676);
+		choiseBar.getStyleClass().add("menu");
+		
+		HBox nextButton = new HBox();
+		
+		nextButton.setPrefSize(109, 28);
+		nextButton.setTranslateX(740);
+		nextButton.setTranslateY(8);
+		nextButton.setAlignment(Pos.CENTER);
+		nextButton.getStyleClass().add("nextButton");
+		
+		Text nextText = new Text("Next");
+	
+		nextText.setStyle("-fx-font-size: 20; -fx-font-family: regular;");
+		nextText.setFill(Color.WHITE);
+		
+		nextButton.getChildren().add(nextText);
+		
+		HBox cancelButton = new HBox();
+		
+		cancelButton.setPrefSize(109, 28);
+		cancelButton.setTranslateX(620);
+		cancelButton.setTranslateY(8);
+		cancelButton.setAlignment(Pos.CENTER);
+		cancelButton.getStyleClass().add("cancelButton");
+		
+		Text cancelText = new Text("Cancel");
+		
+		cancelText.setStyle("-fx-font-size: 20; -fx-font-family: regular;");
+		cancelText.setFill(Color.WHITE);
+		
+		cancelButton.getChildren().add(cancelText);
+		
+		HBox customButton = new HBox();
+		
+		customButton.setPrefSize(109, 28);
+		customButton.setTranslateX(468);
+		customButton.setTranslateY(8);
+		customButton.setAlignment(Pos.CENTER);
+		customButton.getStyleClass().add("customButton");
+		
+		Text customText = new Text("Custom");
+		
+		customText.setStyle("-fx-font-size: 20; -fx-font-family: regular;");
+		customText.setFill(Color.WHITE);
+		
+		customButton.getChildren().add(customText);
+		
+		choiseBar.getChildren().addAll(nextButton, cancelButton, customButton);
 		
 		
 		HBox all = addButton("All", 35);
@@ -65,9 +121,13 @@ public class ChooseVersion {
 		
 		magma.setOnMouseClicked(event -> {moveSwitcher(switcher, 431);});
 		
+		
+		cancelButton.setOnMouseClicked(event -> {App.setScene(MainScene.get());});
+		
+		
 		server.getChildren().addAll(switcher, all, paper, spigot, bukkit, mohist, forge, magma);
 		
-		pane.getChildren().add(server);
+		pane.getChildren().addAll(server, choiseBar);
 	}
 	
 	

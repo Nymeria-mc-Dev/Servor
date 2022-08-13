@@ -1,4 +1,4 @@
-.server {
+.menu {
 	-fx-background-color: #363636;
 }
 
@@ -8,4 +8,19 @@
 
 .blueBar {
 	-fx-fill: #0066FF;
+}
+
+.nextButton {
+	-fx-background-color: #0066FF;
+	-fx-background-radius: 13px;
+}
+
+.cancelButton {
+	-fx-background-color: #7A0000;
+	-fx-background-radius: 13px;
+}
+
+.customButton {
+	-fx-background-color: #0057DA;
+	-fx-background-radius: 13px;
 }

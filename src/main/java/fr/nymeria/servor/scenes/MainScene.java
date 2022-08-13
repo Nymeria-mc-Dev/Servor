@@ -12,18 +12,23 @@ public class MainScene {
 
 	private static Stage stage;
 	private static Pane pane = new Pane();
+	private static Scene scene = new Scene(pane, 1080, 720);
+	
+	private static boolean loaded = false;
 	
 	public static Scene get() {
 		
 		stage = App.getStage();
-		
-		Scene scene = new Scene(pane, 1080, 720);
         
         pane.setStyle("-fx-background-color: #272727;");
         
-        addElements();
+        if(!loaded) {
+        	addElements();
+        	addStyleSheets();
+        }
         
-        addStyleSheets();
+        loaded = true;
+        
 		return scene;
 	}
 	
