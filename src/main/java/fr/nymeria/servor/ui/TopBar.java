@@ -5,6 +5,8 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import fr.nymeria.servor.App;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
+import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
@@ -51,7 +53,18 @@ public class TopBar {
 			stage.setIconified(true);
 		});
 		
-		App.addItem(bar, close, reduce);
+		Text name = new Text("Servor [ BETA ]");
+		name.setFill(Color.WHITE);
+		name.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
+		name.setTranslateX(1080 / 2 - (name.getLayoutBounds().getWidth() / 2));
+		name.setTranslateY(25);
+		
+		Text icon = GlyphsDude.createIcon(FontAwesomeIcon.ADN, "25px");
+		icon.setFill(Color.WHITE);
+		icon.setTranslateY(25);
+		icon.setTranslateX(5);
+		
+		App.addItem(bar, close, reduce, name, icon);
 	}
 	
 }
