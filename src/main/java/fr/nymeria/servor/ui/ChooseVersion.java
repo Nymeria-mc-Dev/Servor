@@ -3,23 +3,22 @@ package fr.nymeria.servor.ui;
 
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 
 public class ChooseVersion {
 
 	public ChooseVersion(Pane pane) {
 		
-		VBox server = new VBox();
+		Pane server = new Pane();
 		
 		server.setPrefSize(206, 720);
 		server.getStyleClass().add("server");
 		
-		HBox allButton = new HBox();
+		HBox switcher = new HBox();
 		
-		allButton.setPrefSize(206, 66);
-		allButton.setTranslateY(35);
-		allButton.getStyleClass().add("all");
+		switcher.setPrefSize(206, 66);
+		switcher.setTranslateY(35);
+		switcher.getStyleClass().add("all");
 		
 		Rectangle blueBar = new Rectangle();
 		
@@ -28,9 +27,9 @@ public class ChooseVersion {
 		blueBar.setTranslateX(203);
 		blueBar.getStyleClass().add("blueBar");
 		
-		allButton.getChildren().add(blueBar);
+		switcher.getChildren().add(blueBar);
 		
-		server.getChildren().addAll(allButton);
+		server.getChildren().addAll(switcher);
 		
 		pane.getChildren().add(server);
 	}
