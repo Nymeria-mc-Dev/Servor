@@ -5,9 +5,11 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.scenes.ChooseVersionScene;
 import javafx.animation.RotateTransition;
+import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
@@ -15,24 +17,21 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 public class AddServerButton {
-
+	
 	public AddServerButton(Pane pane, Stage stage) {
 		
 		BackgroundFill backgroundFill = new BackgroundFill(Color.valueOf("#0066FF"), new CornerRadii(100), null);
 		Background background = new Background(backgroundFill);
 		
-		Pane p = new Pane();
-		p.setMinWidth(40);
-		p.setMinHeight(40);
-		p.setMaxWidth(40);
-		p.setMaxHeight(40);
+		HBox p = new HBox();
+		p.setPrefSize(50, 50);
 		p.setTranslateX(1017);
 		p.setTranslateY(644.25);
+		p.setAlignment(Pos.CENTER);
 		p.setBackground(background);
 		
-		Text button = GlyphsDude.createIcon(FontAwesomeIcon.PLUS, "35px");
-		button.setTranslateX(6.5);
-		button.setTranslateY(34.5);
+		Text button = GlyphsDude.createIcon(FontAwesomeIcon.PLUS, "40px");
+		
 		button.setFill(Color.WHITE);
 		
 		p.getChildren().add(button);
@@ -41,11 +40,11 @@ public class AddServerButton {
 			App.setScene(ChooseVersionScene.get());
 		});
 		
-		p.setOnMouseEntered(event -> {
-			RotateTransition rt = new RotateTransition(Duration.millis(3000), button);
+		RotateTransition rt = new RotateTransition(Duration.millis(500), button);
+		
+		p.hoverProperty().addListener(event -> {
 			rt.setByAngle(360);
-			rt.setCycleCount(2);
-		    rt.setAutoReverse(true);
+			rt.setCycleCount(1);
 		 
 		    rt.play();
 		});
