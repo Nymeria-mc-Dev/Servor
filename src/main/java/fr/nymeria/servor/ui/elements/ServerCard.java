@@ -1,8 +1,8 @@
 package fr.nymeria.servor.ui.elements;
 
-import fr.nymeria.servor.App;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 
 public class ServerCard {
 
-	public ServerCard(double x, double y) {
+	public ServerCard(Pane pane, double x, double y) {
 		
 		if(y < 40) y = 40;
 		
@@ -44,7 +44,7 @@ public class ServerCard {
 		
 		box.getChildren().add(gestion);
 		
-		App.addItem(card, button, box);
+		pane.getChildren().addAll(card, button, box);
 	}
 
 }

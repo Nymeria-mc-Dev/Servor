@@ -2,7 +2,7 @@ package fr.nymeria.servor.ui;
 
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import fr.nymeria.servor.App;
+import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -15,7 +15,7 @@ public class TopBar {
 	double y = 0;
 	double x = 0;
 	
-	public TopBar(Stage stage) {
+	public TopBar(Pane pane, Stage stage) {
 		
 		Rectangle bar = new Rectangle();
 		
@@ -23,7 +23,7 @@ public class TopBar {
 		bar.setHeight(35);
 		bar.setTranslateX(0);
 		bar.setTranslateY(0);
-		bar.setStyle("-fx-fill: #3E3E3E;");
+		bar.setStyle("-fx-fill: #363636;");
 		
 		bar.setOnMousePressed(event -> {
 			y = event.getSceneY();
@@ -64,7 +64,7 @@ public class TopBar {
 		icon.setTranslateY(25);
 		icon.setTranslateX(5);
 		
-		App.addItem(bar, close, reduce, name, icon);
+		pane.getChildren().addAll(bar, close, reduce, name, icon);
 	}
 	
 }
