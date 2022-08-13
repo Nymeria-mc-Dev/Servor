@@ -35,64 +35,34 @@ public class ChooseVersion {
 		switcher.getChildren().add(blueBar);
 		
 		
-		HBox all = new HBox();
+		HBox all = addButton("All", 35);
 		
-		all.setPrefSize(206, 66);
-		all.setTranslateY(35);
-		all.setAlignment(Pos.CENTER);
+		HBox paper = addButton("Paper", 101);
 		
-		Text allText = new Text("All");
+		HBox spigot = addButton("Spigot", 167);
 		
-		allText.setFont(Font.font("regular", FontWeight.BOLD, 32));
-		allText.setFill(Color.WHITE);
-		
-		all.getChildren().add(allText);
-		
-		
-		HBox paper = new HBox();
-		
-		paper.setPrefSize(206, 66);
-		paper.setTranslateY(101);
-		paper.setAlignment(Pos.CENTER);
-		
-		Text paperText = new Text("Paper");
-		
-		paperText.setFont(Font.font("regular", FontWeight.BOLD, 32));
-		paperText.setFill(Color.WHITE);
-		
-		paper.getChildren().add(paperText);
-		
-		
-		HBox spigot = new HBox();
-		
-		spigot.setPrefSize(206, 66);
-		spigot.setTranslateY(167);
-		spigot.setAlignment(Pos.CENTER);
-		
-		Text spigotText = new Text("Spigot");
-		
-		spigotText.setFont(Font.font("regular", FontWeight.BOLD, 32));
-		spigotText.setFill(Color.WHITE);
-		
-		spigot.getChildren().add(spigotText);
-		
-		
-		HBox bukkit = new HBox();
-		
-		bukkit.setPrefSize(206, 66);
-		bukkit.setTranslateY(233);
-		bukkit.setAlignment(Pos.CENTER);
-		
-		Text bukkitText = new Text("Bukkit");
-		
-		bukkitText.setFont(Font.font("regular", FontWeight.BOLD, 32));
-		bukkitText.setFill(Color.WHITE);
-		
-		bukkit.getChildren().add(bukkitText);
+		HBox bukkit = addButton("Bukkit", 233);
 		
 		server.getChildren().addAll(switcher, all, paper, spigot, bukkit);
 		
 		pane.getChildren().add(server);
+	}
+	
+	
+	private static HBox addButton(String buttonName, double posY) {
+		HBox button = new HBox();
+		
+		button.setPrefSize(206, 66);
+		button.setTranslateY(posY);
+		button.setAlignment(Pos.CENTER);
+		
+		Text text = new Text(buttonName);
+		
+		text.setFont(Font.font("regular", FontWeight.BOLD, 32));
+		text.setFill(Color.WHITE);
+		
+		button.getChildren().add(text);
+		return button;
 	}
 	
 }
