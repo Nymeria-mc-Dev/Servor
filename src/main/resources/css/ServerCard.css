@@ -1,6 +1,6 @@
 .serverCard{
 	-fx-fill: #3E3E3E;
-	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 20, 0, 11, 8);
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 20, 0, 11, 8);
 	-fx-arc-height: 30px;
 	-fx-arc-width: 30px;
 }

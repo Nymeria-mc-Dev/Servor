@@ -1,6 +1,8 @@
 package fr.nymeria.servor.ui.elements;
 
 import fr.nymeria.servor.App;
+import javafx.geometry.Pos;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Region;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -23,26 +25,26 @@ public class ServerCard {
 		card.getStyleClass().add("serverCard");
 
 		Region button = new Region();
+		
 		button.setPrefSize(309, 39);
 		button.setTranslateX(x);
 		button.setTranslateY(y + 131);
 		button.getStyleClass().add("gestionButton");
+
+		HBox box = new HBox();
 		
-		/*Rectangle button = new Rectangle();
-
-		button.setTranslateX(x);
-		button.setTranslateY(10);
-		button.setWidth(309);
-		button.setHeight(39);
-		button.getStyleClass().add("gestionButton");*/
-
+		box.setPrefSize(309, 39);
+		box.setTranslateX(x);
+		box.setTranslateY(y + 131);
+		box.setAlignment(Pos.BASELINE_CENTER);
+		
 		Text gestion = new Text("Gestion");
-		gestion.setTranslateX(x + 110.25);
-		gestion.setTranslateY(y + 157);
 		gestion.setStyle("-fx-font-size: 24px; -fx-font-familly: regular;");
 		gestion.setFill(Color.WHITE);
 		
-		App.addItem(card, button, gestion);
+		box.getChildren().add(gestion);
+		
+		App.addItem(card, button, box);
 	}
 
 }

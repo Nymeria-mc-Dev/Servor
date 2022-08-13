@@ -14,12 +14,12 @@ public class AddServerButton {
 		
 		Circle rect = new Circle(25);
 		rect.setStyle("-fx-fill: #0066FF;");
-		rect.setTranslateX(1020);
-		rect.setTranslateY(650);
+		rect.setTranslateX(1030);
+		rect.setTranslateY(680);
 		
 		Text button = GlyphsDude.createIcon(FontAwesomeIcon.PLUS, "35px");
-		button.setTranslateX(1007);
-		button.setTranslateY(664.25);
+		button.setTranslateX(1017);
+		button.setTranslateY(694.25);
 		button.setFill(Color.WHITE);
 		
 		
