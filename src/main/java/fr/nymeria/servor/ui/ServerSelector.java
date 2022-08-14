@@ -119,7 +119,7 @@ public class ServerSelector {
 		
 		setAllInvisible();
 		
-		//paper.setVisible(true);
+		paper.setVisible(true);
 		
 		pane.getChildren().addAll(paper, spigot, bukkit, mohist, forge, magma);
 	}
