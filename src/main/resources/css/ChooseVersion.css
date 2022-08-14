@@ -24,3 +24,10 @@
 	-fx-background-color: #0057DA;
 	-fx-background-radius: 13px;
 }
+
+.serverCard{
+	-fx-fill: #3E3E3E;
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 20, 0, 11, 8);
+	-fx-arc-height: 30px;
+	-fx-arc-width: 30px;
+}

@@ -13,6 +13,7 @@ public class ServerCard {
 	public ServerCard(Pane pane, double x, double y) {
 		
 		if(y < 40) y = 40;
+		if(x < 40) x = 40;
 		
 		Rectangle card = new Rectangle();
 

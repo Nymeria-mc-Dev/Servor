@@ -3,6 +3,7 @@ package fr.nymeria.servor.scenes;
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.ui.ChooseVersion;
 import fr.nymeria.servor.ui.TopBar;
+import fr.nymeria.servor.ui.elements.VersionCard;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -38,6 +39,7 @@ public class ChooseVersionScene {
 	private static void addElements() {
 		new ChooseVersion(pane);
 		new TopBar(pane, stage);
+		new VersionCard(pane, 276, 85, "1.19.1");
 	}
 
 }
