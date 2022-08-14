@@ -93,39 +93,35 @@ public class ChooseVersion {
 		choiseBar.getChildren().addAll(nextButton, cancelButton, customButton);
 		
 		
-		HBox all = addButton("All", 35);
+		HBox paper = addButton("Paper", 35);
 		
-		HBox paper = addButton("Paper", 101);
+		HBox spigot = addButton("Spigot", 101);
 		
-		HBox spigot = addButton("Spigot", 167);
+		HBox bukkit = addButton("Bukkit", 167);
 		
-		HBox bukkit = addButton("Bukkit", 233);
+		HBox mohist = addButton("Mohist", 233);
 		
-		HBox mohist = addButton("Mohist", 299);
+		HBox forge = addButton("Forge", 299);
 		
-		HBox forge = addButton("Forge", 365);
+		HBox magma = addButton("Magma", 365);
 		
-		HBox magma = addButton("Magma", 431);
+		paper.setOnMouseClicked(event -> {moveSwitcher(switcher, 35);});
 		
-		all.setOnMouseClicked(event -> {moveSwitcher(switcher, 35);});
+		spigot.setOnMouseClicked(event -> {moveSwitcher(switcher, 101);});
 		
-		paper.setOnMouseClicked(event -> {moveSwitcher(switcher, 101);});
+		bukkit.setOnMouseClicked(event -> {moveSwitcher(switcher, 167);});
 		
-		spigot.setOnMouseClicked(event -> {moveSwitcher(switcher, 167);});
+		mohist.setOnMouseClicked(event -> {moveSwitcher(switcher, 233);});
 		
-		bukkit.setOnMouseClicked(event -> {moveSwitcher(switcher, 233);});
+		forge.setOnMouseClicked(event -> {moveSwitcher(switcher, 299);});
 		
-		mohist.setOnMouseClicked(event -> {moveSwitcher(switcher, 299);});
-		
-		forge.setOnMouseClicked(event -> {moveSwitcher(switcher, 365);});
-		
-		magma.setOnMouseClicked(event -> {moveSwitcher(switcher, 431);});
+		magma.setOnMouseClicked(event -> {moveSwitcher(switcher, 365);});
 		
 		
 		cancelButton.setOnMouseClicked(event -> {App.setScene(MainScene.get());});
 		
 		
-		server.getChildren().addAll(switcher, all, paper, spigot, bukkit, mohist, forge, magma);
+		server.getChildren().addAll(switcher, paper, spigot, bukkit, mohist, forge, magma);
 		
 		pane.getChildren().addAll(server, choiseBar);
 	}

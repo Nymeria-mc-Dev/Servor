@@ -43,7 +43,6 @@ public class TopBar {
 		close.setFill(Color.WHITE);
 		
 		close.setOnMouseClicked(event -> {
-			/* ChooseVersionScene.t.stop(); */
 			stage.close();
 		});
 		

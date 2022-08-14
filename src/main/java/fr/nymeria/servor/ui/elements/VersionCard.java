@@ -1,10 +1,13 @@
 package fr.nymeria.servor.ui.elements;
 
+import fr.nymeria.servor.App;
 import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 public class VersionCard {
@@ -14,35 +17,40 @@ public class VersionCard {
 	
 	public Boolean clicked;
 
-	public VersionCard(Pane pane, double x, double y, String str) {
+	public VersionCard(Pane pane, double x, double y, String str, String imagePath) {
 
 		VERSION = str;
 		clicked = false;
 
-		Rectangle card = new Rectangle();
+		ImageView logo = new ImageView(new Image(App.class.getResource(imagePath).toExternalForm(), 51, 51, false, false));
+		
+		logo.setLayoutX(29);
+		logo.setLayoutY(16);
+		
+		
+		Pane box = new Pane();
 
-		card.setTranslateX(x);
-		card.setTranslateY(y);
-		card.setWidth(318);
-		card.setHeight(83);
-		card.setArcHeight(15);
-		card.setArcWidth(15);
-		card.getStyleClass().add("serverCard");
-
-		HBox box = new HBox();
-
-		box.setPrefSize(328, 93);
-		box.setTranslateX(x - 5);
-		box.setTranslateY(y - 5);
-		box.setAlignment(Pos.CENTER);
+		box.setPrefSize(318, 83);
+		box.setTranslateX(x);
+		box.setTranslateY(y);
+		//box.setAlignment(Pos.BASELINE_CENTER);
+		box.getStyleClass().add("versionCard");
 
 		Text version = new Text(str);
-		version.setStyle("-fx-font-size: 24px; -fx-font-familly: regular;");
+		//version.setLayoutX(145);
+		//version.setLayoutY(46);
+		version.setStyle("-fx-font-size: 32px; -fx-font-familly: regular;");
 		version.setFill(Color.WHITE);
 
-		box.getChildren().add(version);
+		VBox textBox = new VBox();
+		
+		textBox.setPrefSize(318, 83);
+		textBox.getChildren().add(version);
+		textBox.setAlignment(Pos.CENTER);
+		
+		box.getChildren().addAll(logo, textBox);
 
-		pane.getChildren().addAll(card, box);
+		pane.getChildren().addAll(box);
 	}
 
 	public String getVersionValue() {
@@ -66,7 +74,7 @@ public class VersionCard {
 		box.setStyle("");
 	}
 
-	public HBox getHBox() {
+	public Pane getPane() {
 		return box;
 	}
 	
