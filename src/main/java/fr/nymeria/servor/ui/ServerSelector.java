@@ -117,14 +117,49 @@ public class ServerSelector {
 		magma_1_16_5 = new VersionCard(magma, 689, 50, "1.16.5", "/icons/servers/magma.png");
 		magma_1_12_2 = new VersionCard(magma, 276, 182, "1.12.2", "/icons/servers/magma.png");
 		
+		setAllInvisible();
+		
+		//paper.setVisible(true);
+		
+		pane.getChildren().addAll(paper, spigot, bukkit, mohist, forge, magma);
+	}
+	
+	public static void setPaperVisible(boolean value) {
+		setAllInvisible();
+		paper.setVisible(value);
+	}
+	
+	public static void setSpigotVisible(boolean value) {
+		setAllInvisible();
+		spigot.setVisible(value);
+	}
+	
+	public static void setBukkitVisible(boolean value) {
+		setAllInvisible();
+		bukkit.setVisible(value);
+	}
+	
+	public static void setMohistVisible(boolean value) {
+		setAllInvisible();
+		mohist.setVisible(value);
+	}
+	
+	public static void setForgeVisible(boolean value) {
+		setAllInvisible();
+		forge.setVisible(value);
+	}
+	
+	public static void setMagmaVisible(boolean value) {
+		setAllInvisible();
+		magma.setVisible(value);
+	}
+	
+	private static void setAllInvisible() {
 		paper.setVisible(false);
 		spigot.setVisible(false);
 		bukkit.setVisible(false);
 		mohist.setVisible(false);
 		forge.setVisible(false);
 		magma.setVisible(false);
-		
-		pane.getChildren().addAll(paper, spigot, bukkit, mohist, forge, magma);
 	}
-	
 }
