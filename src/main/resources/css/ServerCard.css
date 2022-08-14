@@ -9,3 +9,11 @@
 	-fx-background-color: #0066FF;
 	-fx-background-radius: 0 0 15px 15px;
 }
+
+.serverCardSelected{
+	-fx-fill: #3E3E3E;
+	-fx-effect: dropshadow(three-pass-box, #06F5, 20, 0, 11, 8);
+	-fx-border: 4px solid #06F;
+	-fx-arc-height: 30px;
+	-fx-arc-width: 30px;
+}
