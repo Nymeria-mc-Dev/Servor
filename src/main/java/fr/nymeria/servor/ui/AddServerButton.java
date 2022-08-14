@@ -6,8 +6,6 @@ import fr.nymeria.servor.App;
 import fr.nymeria.servor.scenes.ChooseVersionScene;
 import javafx.animation.RotateTransition;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
-import javafx.scene.image.Image;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
