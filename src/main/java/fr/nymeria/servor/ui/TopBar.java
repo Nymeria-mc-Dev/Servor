@@ -2,6 +2,9 @@ package fr.nymeria.servor.ui;
 
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
+import fr.nymeria.servor.App;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -59,9 +62,8 @@ public class TopBar {
 		name.setTranslateX(1080 / 2 - (name.getLayoutBounds().getWidth() / 2));
 		name.setTranslateY(25);
 		
-		Text icon = GlyphsDude.createIcon(FontAwesomeIcon.ADN, "25px");
-		icon.setFill(Color.WHITE);
-		icon.setTranslateY(25);
+		ImageView icon = new ImageView(new Image(App.class.getResource("/icons/logo.png").toExternalForm(), 25, 25, false, false));
+		icon.setTranslateY(5);
 		icon.setTranslateX(5);
 		
 		pane.getChildren().addAll(bar, close, reduce, name, icon);
