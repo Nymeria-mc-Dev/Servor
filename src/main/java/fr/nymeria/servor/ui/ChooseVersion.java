@@ -89,6 +89,27 @@ public class ChooseVersion {
 		customText.setFill(Color.WHITE);
 
 		customButton.getChildren().add(customText);
+		
+		Pane customPane = new Pane();
+		customPane.setPrefSize(227, 261);
+		customPane.getStyleClass().add("customCard");
+		customPane.setTranslateX(615);
+		customPane.setTranslateY(400);
+		
+		Text customJarText = new Text("Custom JAR : ");
+		customJarText.setFill(Color.WHITE);
+		customJarText.setTranslateY(34);
+		
+		HBox customJarButton = new HBox();
+		
+		Text customJarButtonText = new Text("Choose");
+		customJarButtonText.setFill(Color.WHITE);
+		customJarButtonText.setTranslateX(154);
+		customJarButtonText.setTranslateY(34);
+		
+		customJarButton.getChildren().add(customJarButtonText);
+		
+		customPane.getChildren().addAll(customJarText, customJarButton);
 
 		choiseBar.getChildren().addAll(nextButton, cancelButton, customButton);
 
@@ -141,7 +162,7 @@ public class ChooseVersion {
 
 		server.getChildren().addAll(switcher, paper, spigot, bukkit, mohist, forge, magma);
 
-		pane.getChildren().addAll(server, choiseBar);
+		pane.getChildren().addAll(server, choiseBar, customPane);
 	}
 
 

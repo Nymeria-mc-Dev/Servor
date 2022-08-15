@@ -2,7 +2,6 @@ package fr.nymeria.servor.ui;
 
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
-import fr.nymeria.servor.scenes.ChooseVersionScene;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
@@ -16,7 +15,6 @@ public class TopBar {
 	double y = 0;
 	double x = 0;
 	
-	@SuppressWarnings("deprecation")
 	public TopBar(Pane pane, Stage stage) {
 		
 		Rectangle bar = new Rectangle();
