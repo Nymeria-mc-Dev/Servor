@@ -7,6 +7,7 @@ import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
@@ -96,20 +97,76 @@ public class ChooseVersion {
 		customPane.setTranslateX(615);
 		customPane.setTranslateY(400);
 		
-		Text customJarText = new Text("Custom JAR : ");
-		customJarText.setFill(Color.WHITE);
-		customJarText.setTranslateY(34);
+		VBox customJarBox = new VBox();
+		customJarBox.setAlignment(Pos.CENTER);
 		
 		HBox customJarButton = new HBox();
+		customJarButton.setPrefSize(226, 40);
+		customJarBox.setAlignment(Pos.BASELINE_CENTER);
+		
+		Text customJarText = new Text("Custom JAR : ");
+		customJarText.setFill(Color.WHITE);
 		
 		Text customJarButtonText = new Text("Choose");
 		customJarButtonText.setFill(Color.WHITE);
-		customJarButtonText.setTranslateX(154);
-		customJarButtonText.setTranslateY(34);
 		
-		customJarButton.getChildren().add(customJarButtonText);
+		customJarButton.getChildren().addAll(customJarText, customJarButtonText);
 		
-		customPane.getChildren().addAll(customJarText, customJarButton);
+		// JDK 17
+		
+		VBox jdk17Box = new VBox();
+		jdk17Box.setPrefSize(226, 40);
+		
+		Text jdk17 = new Text("JDK 17");
+		jdk17.setFill(Color.WHITE);
+		
+		jdk17Box.getChildren().add(jdk17Box);
+		
+		// JDK 16
+		
+		VBox jdk16Box = new VBox();
+		jdk16Box.setPrefSize(226, 40);
+		
+		Text jdk16 = new Text("JDK 16");
+		jdk16.setFill(Color.WHITE);
+		
+		jdk16Box.getChildren().add(jdk16Box);
+		
+		// JDK 11
+		
+		VBox jdk11Box = new VBox();
+		jdk11Box.setPrefSize(226, 40);
+		
+		Text jdk11 = new Text("JDK 11");
+		jdk11.setFill(Color.WHITE);
+		
+		jdk11Box.getChildren().add(jdk11Box);
+		
+		// JDK 8
+		
+		VBox jdk8Box = new VBox();
+		jdk8Box.setPrefSize(226, 40);
+		
+		Text jdk8 = new Text("JDK 8");
+		jdk8.setFill(Color.WHITE);
+		
+		jdk8Box.getChildren().add(jdk8Box);
+		
+		// JDK 7
+		
+		VBox jdk7Box = new VBox();
+		jdk7Box.setPrefSize(226, 40);
+		
+		Text jdk7 = new Text("JDK 7");
+		jdk7.setFill(Color.WHITE);
+		
+		jdk7Box.getChildren().add(jdk7Box);
+		
+		// Adding all to custom bar
+		
+		customJarBox.getChildren().addAll(customJarButtonText, jdk17Box, jdk16Box, jdk11Box, jdk8Box, jdk7Box);
+		
+		customPane.getChildren().addAll(customJarText, customJarBox);
 
 		choiseBar.getChildren().addAll(nextButton, cancelButton, customButton);
 
