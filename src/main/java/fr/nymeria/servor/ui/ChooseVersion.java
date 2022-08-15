@@ -16,6 +16,8 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class ChooseVersion {
+	
+	private Boolean customClicked = false;
 
 	public ChooseVersion(Pane pane) {
 
@@ -92,6 +94,7 @@ public class ChooseVersion {
 		customButton.getChildren().add(customText);
 		
 		Pane customPane = new Pane();
+		customPane.setVisible(false);
 		customPane.setPrefSize(227, 261);
 		customPane.getStyleClass().add("customCard");
 		customPane.setTranslateX(615);
@@ -110,12 +113,18 @@ public class ChooseVersion {
 		Text customJarButtonText = new Text("Choose");
 		customJarButtonText.setFill(Color.WHITE);
 		
-		customJarButton.getChildren().addAll(customJarText, customJarButtonText);
+		Rectangle rect = new Rectangle();
+		rect.setFill(Color.GRAY);
+		rect.setWidth(226);
+		rect.setHeight(20);
+		
+		customJarButton.getChildren().addAll(customJarText, customJarButtonText, rect);
 		
 		// JDK 17
 		
 		VBox jdk17Box = new VBox();
 		jdk17Box.setPrefSize(226, 40);
+		jdk17Box.setAlignment(Pos.CENTER);
 		
 		Text jdk17 = new Text("JDK 17");
 		jdk17.setFill(Color.WHITE);
@@ -126,6 +135,7 @@ public class ChooseVersion {
 		
 		VBox jdk16Box = new VBox();
 		jdk16Box.setPrefSize(226, 40);
+		jdk16Box.setAlignment(Pos.CENTER);
 		
 		Text jdk16 = new Text("JDK 16");
 		jdk16.setFill(Color.WHITE);
@@ -136,6 +146,7 @@ public class ChooseVersion {
 		
 		VBox jdk11Box = new VBox();
 		jdk11Box.setPrefSize(226, 40);
+		jdk11Box.setAlignment(Pos.CENTER);
 		
 		Text jdk11 = new Text("JDK 11");
 		jdk11.setFill(Color.WHITE);
@@ -146,6 +157,7 @@ public class ChooseVersion {
 		
 		VBox jdk8Box = new VBox();
 		jdk8Box.setPrefSize(226, 40);
+		jdk8Box.setAlignment(Pos.CENTER);
 		
 		Text jdk8 = new Text("JDK 8");
 		jdk8.setFill(Color.WHITE);
@@ -156,6 +168,7 @@ public class ChooseVersion {
 		
 		VBox jdk7Box = new VBox();
 		jdk7Box.setPrefSize(226, 40);
+		jdk7Box.setAlignment(Pos.CENTER);
 		
 		Text jdk7 = new Text("JDK 7");
 		jdk7.setFill(Color.WHITE);
@@ -211,6 +224,16 @@ public class ChooseVersion {
 		magma.setOnMouseClicked(event -> {
 			moveSwitcher(switcher, 365);
 			ServerSelector.setMagmaVisible(true);
+		});
+		
+		customButton.setOnMouseClicked(e -> {
+			if (customClicked) { 
+				customPane.setVisible(false);
+				customClicked = true;
+			} else {
+				customPane.setVisible(true);
+				customClicked = false;
+			}				
 		});
 
 
