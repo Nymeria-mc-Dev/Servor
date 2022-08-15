@@ -120,7 +120,7 @@ public class ChooseVersion {
 		Text jdk17 = new Text("JDK 17");
 		jdk17.setFill(Color.WHITE);
 		
-		jdk17Box.getChildren().add(jdk17Box);
+		jdk17Box.getChildren().add(jdk17);
 		
 		// JDK 16
 		
@@ -130,7 +130,7 @@ public class ChooseVersion {
 		Text jdk16 = new Text("JDK 16");
 		jdk16.setFill(Color.WHITE);
 		
-		jdk16Box.getChildren().add(jdk16Box);
+		jdk16Box.getChildren().add(jdk16);
 		
 		// JDK 11
 		
@@ -140,7 +140,7 @@ public class ChooseVersion {
 		Text jdk11 = new Text("JDK 11");
 		jdk11.setFill(Color.WHITE);
 		
-		jdk11Box.getChildren().add(jdk11Box);
+		jdk11Box.getChildren().add(jdk11);
 		
 		// JDK 8
 		
@@ -150,7 +150,7 @@ public class ChooseVersion {
 		Text jdk8 = new Text("JDK 8");
 		jdk8.setFill(Color.WHITE);
 		
-		jdk8Box.getChildren().add(jdk8Box);
+		jdk8Box.getChildren().add(jdk8);
 		
 		// JDK 7
 		
@@ -160,7 +160,7 @@ public class ChooseVersion {
 		Text jdk7 = new Text("JDK 7");
 		jdk7.setFill(Color.WHITE);
 		
-		jdk7Box.getChildren().add(jdk7Box);
+		jdk7Box.getChildren().add(jdk7);
 		
 		// Adding all to custom bar
 		
