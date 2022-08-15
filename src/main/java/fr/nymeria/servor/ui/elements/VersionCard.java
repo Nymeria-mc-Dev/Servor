@@ -1,6 +1,8 @@
 package fr.nymeria.servor.ui.elements;
 
 import fr.nymeria.servor.App;
+import fr.nymeria.servor.enums.ServerExecutor;
+import fr.nymeria.servor.enums.ServerVersion;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -11,21 +13,24 @@ import javafx.scene.text.Text;
 
 public class VersionCard {
 
-	protected static String VERSION;
+	private ServerExecutor serverExecutor;
+	private ServerVersion serverVersion;
+	
 	public Pane box;
 	
 	public Boolean clicked;
 
-	public VersionCard(Pane pane, double x, double y, String str, String imagePath) {
+	public VersionCard(Pane pane, double x, double y, String str, String imagePath, ServerExecutor serverExecutor, ServerVersion serverVersion) {
 
-		VERSION = str;
+		this.serverExecutor = serverExecutor;
+		this.serverVersion = serverVersion;
+		
 		clicked = false;
 
 		ImageView logo = new ImageView(new Image(App.class.getResource(imagePath).toExternalForm(), 51, 51, false, false));
 		
 		logo.setLayoutX(29);
 		logo.setLayoutY(16);
-		
 		
 		box = new Pane();
 
@@ -49,10 +54,14 @@ public class VersionCard {
 		pane.getChildren().addAll(box);
 	}
 
-	public String getVersionValue() {
-		return VERSION;
+	public ServerVersion getServerVersion() {
+		return serverVersion;
 	}
-
+	
+	public ServerExecutor getServerExecutor() {
+		return serverExecutor;
+	}
+	
 	public void setClicked(boolean value) {
 		if(value) {
 			box.getStyleClass().add("versionCardBorder");
@@ -61,16 +70,8 @@ public class VersionCard {
 		}
 	}
 
-	public void removeSelected() {
-		box.setStyle("");
-	}
-
 	public Pane get() {
 		return box;
-	}
-	
-	public Boolean isClicked() {
-		return clicked;
 	}
 
 }

@@ -18,6 +18,8 @@ import javafx.util.Duration;
 public class ChooseVersion {
 	
 	private Boolean customClicked = false;
+	
+	private static Text versionText;
 
 	public ChooseVersion(Pane pane) {
 
@@ -26,6 +28,24 @@ public class ChooseVersion {
 		server.setPrefSize(206, 720);
 		server.getStyleClass().add("menu");
 
+		Text minecraftVersionText = new Text("minecraft version :");
+		
+		minecraftVersionText.setFill(Color.WHITE);
+		minecraftVersionText.setStyle("-fx-font-size: 20px;");
+		
+		versionText = new Text(" Paper 1.19.2");
+		
+		versionText.setFill(Color.WHITE);
+		versionText.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
+		
+		HBox versionTextBox = new HBox();
+		
+		versionTextBox.setTranslateX(42);
+		versionTextBox.setAlignment(Pos.CENTER);
+		versionTextBox.setPrefSize(383, 44);
+		
+		versionTextBox.getChildren().addAll(minecraftVersionText, versionText);
+		
 		HBox switcher = new HBox();
 
 		switcher.setPrefSize(206, 66);
@@ -181,7 +201,7 @@ public class ChooseVersion {
 		
 		customPane.getChildren().addAll(customJarText, customJarBox);
 
-		choiseBar.getChildren().addAll(nextButton, cancelButton, customButton);
+		choiseBar.getChildren().addAll(nextButton, cancelButton, customButton, versionTextBox);
 
 
 		HBox paper = addButton("Paper", 35);
@@ -227,12 +247,12 @@ public class ChooseVersion {
 		});
 		
 		customButton.setOnMouseClicked(e -> {
-			if (customClicked) { 
+			if (customClicked) {
 				customPane.setVisible(false);
-				customClicked = true;
+				customClicked = false;
 			} else {
 				customPane.setVisible(true);
-				customClicked = false;
+				customClicked = true;
 			}				
 		});
 
@@ -245,7 +265,10 @@ public class ChooseVersion {
 		pane.getChildren().addAll(server, choiseBar, customPane);
 	}
 
-
+	public static void setVersionText(String text) {
+		versionText.setText(text);
+	}
+	
 	private static void moveSwitcher(HBox switcher, double posY) {
 		TranslateTransition transition = new TranslateTransition(Duration.millis(500), switcher);
 		transition.setByY(posY - switcher.getTranslateY());
