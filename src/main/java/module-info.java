@@ -4,6 +4,7 @@ module fr.nymeria.servor {
 	requires fontawesomefx;
 	requires javafx.graphics;
 	requires javafx.base;
+	requires java.discord.rpc;
 
     opens fr.nymeria.servor to javafx.fxml;
     exports fr.nymeria.servor;
