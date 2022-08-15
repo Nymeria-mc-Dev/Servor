@@ -5,6 +5,9 @@ import javafx.scene.layout.Pane;
 
 public class ServerSelector {
 
+	private static VersionCard clickedCard;
+	
+	
 	private static Pane paper = new Pane();
 	private static Pane spigot = new Pane();
 	private static Pane bukkit = new Pane();
@@ -12,7 +15,7 @@ public class ServerSelector {
 	private static Pane forge = new Pane();
 	private static Pane magma = new Pane();
 	
-	private static VersionCard	paper_1_19_1;
+	private static VersionCard paper_1_19_1;
 	private static VersionCard paper_1_18_2;
 	private static VersionCard paper_1_17_1;
 	private static VersionCard paper_1_16_5;
@@ -23,7 +26,7 @@ public class ServerSelector {
 	private static VersionCard paper_1_11_2;
 	private static VersionCard paper_1_8_2;
 	
-	private static VersionCard	spigot_1_19_1;
+	private static VersionCard spigot_1_19_1;
 	private static VersionCard spigot_1_18_2;
 	private static VersionCard spigot_1_17_1;
 	private static VersionCard spigot_1_16_5;
@@ -34,7 +37,7 @@ public class ServerSelector {
 	private static VersionCard spigot_1_11_2;
 	private static VersionCard spigot_1_8_2;
 	
-	private static VersionCard	bukkit_1_19_1;
+	private static VersionCard bukkit_1_19_1;
 	private static VersionCard bukkit_1_18_2;
 	private static VersionCard bukkit_1_17_1;
 	private static VersionCard bukkit_1_16_5;
@@ -45,11 +48,11 @@ public class ServerSelector {
 	private static VersionCard bukkit_1_11_2;
 	private static VersionCard bukkit_1_8_2;
 	
-	private static VersionCard	mohist_1_18_2;
+	private static VersionCard mohist_1_18_2;
 	private static VersionCard mohist_1_16_5;
 	private static VersionCard mohist_1_12_2;
 	
-	private static VersionCard	forge_1_19_1;
+	private static VersionCard forge_1_19_1;
 	private static VersionCard forge_1_18_2;
 	private static VersionCard forge_1_17_1;
 	private static VersionCard forge_1_16_5;
@@ -60,7 +63,7 @@ public class ServerSelector {
 	private static VersionCard forge_1_11_2;
 	private static VersionCard forge_1_8_2;
 	
-	private static VersionCard	magma_1_18_2;
+	private static VersionCard magma_1_18_2;
 	private static VersionCard magma_1_16_5;
 	private static VersionCard magma_1_12_2;
 	
@@ -121,7 +124,74 @@ public class ServerSelector {
 		
 		paper.setVisible(true);
 		
+		clickedCard = paper_1_19_1;
+		paper_1_19_1.setClicked(true);
+		
+		deployClickEvent();
+		
 		pane.getChildren().addAll(paper, spigot, bukkit, mohist, forge, magma);
+	}
+	
+	private static void deployClickEvent() {
+		setClickEvent(paper_1_19_1);
+		setClickEvent(paper_1_18_2);
+		setClickEvent(paper_1_17_1);
+		setClickEvent(paper_1_16_5);
+		setClickEvent(paper_1_15_2);
+		setClickEvent(paper_1_14_4);
+		setClickEvent(paper_1_13_2);
+		setClickEvent(paper_1_12_2);
+		setClickEvent(paper_1_11_2);
+		setClickEvent(paper_1_8_2);
+		
+		setClickEvent(spigot_1_19_1);
+		setClickEvent(spigot_1_18_2);
+		setClickEvent(spigot_1_17_1);
+		setClickEvent(spigot_1_16_5);
+		setClickEvent(spigot_1_15_2);
+		setClickEvent(spigot_1_14_4);
+		setClickEvent(spigot_1_13_2);
+		setClickEvent(spigot_1_12_2);
+		setClickEvent(spigot_1_11_2);
+		setClickEvent(spigot_1_8_2);
+		
+		setClickEvent(bukkit_1_19_1);
+		setClickEvent(bukkit_1_18_2);
+		setClickEvent(bukkit_1_17_1);
+		setClickEvent(bukkit_1_16_5);
+		setClickEvent(bukkit_1_15_2);
+		setClickEvent(bukkit_1_14_4);
+		setClickEvent(bukkit_1_13_2);
+		setClickEvent(bukkit_1_12_2);
+		setClickEvent(bukkit_1_11_2);
+		setClickEvent(bukkit_1_8_2);
+		
+		setClickEvent(mohist_1_18_2);
+		setClickEvent(mohist_1_16_5);
+		setClickEvent(mohist_1_12_2);
+		
+		setClickEvent(forge_1_19_1);
+		setClickEvent(forge_1_18_2);
+		setClickEvent(forge_1_17_1);
+		setClickEvent(forge_1_16_5);
+		setClickEvent(forge_1_15_2);
+		setClickEvent(forge_1_14_4);
+		setClickEvent(forge_1_13_2);
+		setClickEvent(forge_1_12_2);
+		setClickEvent(forge_1_11_2);
+		setClickEvent(forge_1_8_2);
+
+		setClickEvent(magma_1_18_2);
+		setClickEvent(magma_1_16_5);
+		setClickEvent(magma_1_12_2);
+	}
+	
+	private static void setClickEvent(VersionCard card) {
+		card.get().setOnMouseClicked(event -> {
+			clickedCard.setClicked(false);
+			card.setClicked(true);
+			clickedCard = card;
+		});
 	}
 	
 	public static void setPaperVisible(boolean value) {

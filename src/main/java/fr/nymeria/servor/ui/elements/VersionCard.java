@@ -4,7 +4,6 @@ import fr.nymeria.servor.App;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -13,7 +12,7 @@ import javafx.scene.text.Text;
 public class VersionCard {
 
 	protected static String VERSION;
-	public HBox box;
+	public Pane box;
 	
 	public Boolean clicked;
 
@@ -28,17 +27,14 @@ public class VersionCard {
 		logo.setLayoutY(16);
 		
 		
-		Pane box = new Pane();
+		box = new Pane();
 
 		box.setPrefSize(318, 83);
 		box.setTranslateX(x);
 		box.setTranslateY(y);
-		//box.setAlignment(Pos.BASELINE_CENTER);
 		box.getStyleClass().add("versionCard");
 
 		Text version = new Text(str);
-		//version.setLayoutX(145);
-		//version.setLayoutY(46);
 		version.setStyle("-fx-font-size: 32px; -fx-font-familly: regular;");
 		version.setFill(Color.WHITE);
 
@@ -57,16 +53,11 @@ public class VersionCard {
 		return VERSION;
 	}
 
-	public void setHBoxStyle() {
-		Boolean clicked = false;
-		if (clicked) {
-			box.setStyle("");
-			clicked = false;
-		} else {
-			box.setStyle("-fx-border-style: solid inside;" + "-fx-padding: 10;"
-					+ "-fx-border-width: 4;" + "-fx-border-insets: 5;"
-					+ "-fx-border-radius: 15;" + "-fx-border-color: #0066FF;");
-			clicked = true;
+	public void setClicked(boolean value) {
+		if(value) {
+			box.getStyleClass().add("versionCardBorder");
+		}else {
+			box.getStyleClass().remove("versionCardBorder");
 		}
 	}
 
@@ -74,7 +65,7 @@ public class VersionCard {
 		box.setStyle("");
 	}
 
-	public Pane getPane() {
+	public Pane get() {
 		return box;
 	}
 	
