@@ -158,8 +158,9 @@ public class ChooseVersion {
 		jdk17Box.setPrefSize(226, 40);
 		jdk17Box.setAlignment(Pos.CENTER);
 		
-		Text jdk17 = new Text("JDK 17");
+		Text jdk17 = new Text("jdk 17");
 		jdk17.setFill(Color.WHITE);
+		jdk17.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
 		
 		jdk17Box.getChildren().add(jdk17);
 		
@@ -169,8 +170,9 @@ public class ChooseVersion {
 		jdk16Box.setPrefSize(226, 40);
 		jdk16Box.setAlignment(Pos.CENTER);
 		
-		Text jdk16 = new Text("JDK 16");
+		Text jdk16 = new Text("jdk 16");
 		jdk16.setFill(Color.WHITE);
+		jdk16.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
 		
 		jdk16Box.getChildren().add(jdk16);
 		
@@ -180,8 +182,9 @@ public class ChooseVersion {
 		jdk11Box.setPrefSize(226, 40);
 		jdk11Box.setAlignment(Pos.CENTER);
 		
-		Text jdk11 = new Text("JDK 11");
+		Text jdk11 = new Text("jdk 11");
 		jdk11.setFill(Color.WHITE);
+		jdk11.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
 		
 		jdk11Box.getChildren().add(jdk11);
 		
@@ -191,8 +194,9 @@ public class ChooseVersion {
 		jdk8Box.setPrefSize(226, 40);
 		jdk8Box.setAlignment(Pos.CENTER);
 		
-		Text jdk8 = new Text("JDK 8");
+		Text jdk8 = new Text("jdk 8");
 		jdk8.setFill(Color.WHITE);
+		jdk8.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
 		
 		jdk8Box.getChildren().add(jdk8);
 		
@@ -202,8 +206,9 @@ public class ChooseVersion {
 		jdk7Box.setPrefSize(226, 40);
 		jdk7Box.setAlignment(Pos.CENTER);
 		
-		Text jdk7 = new Text("JDK 7");
+		Text jdk7 = new Text("jdk 7");
 		jdk7.setFill(Color.WHITE);
+		jdk7.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
 		
 		jdk7Box.getChildren().add(jdk7);
 		
