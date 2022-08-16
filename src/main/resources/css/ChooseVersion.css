@@ -25,6 +25,11 @@
 	-fx-background-radius: 13px;
 }
 
+.customChooseButton {
+	-fx-background-color: #0057DA;
+	-fx-background-radius: 4px;
+}
+
 .versionCard{
 	-fx-background-color: #3E3E3E;
 	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 20, 0, 11, 8);

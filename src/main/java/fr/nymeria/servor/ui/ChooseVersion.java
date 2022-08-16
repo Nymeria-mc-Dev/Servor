@@ -122,23 +122,35 @@ public class ChooseVersion {
 		
 		VBox customJarBox = new VBox();
 		customJarBox.setAlignment(Pos.CENTER);
+		customJarBox.setTranslateY(62);
 		
 		HBox customJarButton = new HBox();
-		customJarButton.setPrefSize(226, 40);
-		customJarBox.setAlignment(Pos.BASELINE_CENTER);
+		customJarButton.setPrefSize(116, 32);
+		customJarButton.setTranslateX(103);
+		customJarButton.setTranslateY(13);
+		customJarButton.setAlignment(Pos.BASELINE_CENTER);
+		customJarButton.getStyleClass().add("customChooseButton");
+		
+		HBox customJarTextBox = new HBox();
+		customJarTextBox.setPrefSize(103, 32);
+		customJarTextBox.setTranslateY(13);
+		customJarTextBox.setAlignment(Pos.CENTER);
 		
 		Text customJarText = new Text("Custom JAR : ");
 		customJarText.setFill(Color.WHITE);
+		customJarText.setStyle("-fx-font-size: 16px; -fx-font-family: regular;");
 		
 		Text customJarButtonText = new Text("Choose");
 		customJarButtonText.setFill(Color.WHITE);
+		customJarButtonText.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
 		
-		Rectangle rect = new Rectangle();
-		rect.setFill(Color.GRAY);
-		rect.setWidth(226);
-		rect.setHeight(20);
+		Rectangle customJarSeparator = new Rectangle(227, 3);
+		customJarSeparator.setTranslateY(59);
+		customJarSeparator.setStyle("-fx-fill: rgba(50, 50, 50, 75);");
 		
-		customJarButton.getChildren().addAll(customJarText, customJarButtonText, rect);
+		customJarButton.getChildren().add(customJarButtonText);
+		
+		customJarTextBox.getChildren().add(customJarText);
 		
 		// JDK 17
 		
@@ -197,9 +209,9 @@ public class ChooseVersion {
 		
 		// Adding all to custom bar
 		
-		customJarBox.getChildren().addAll(customJarButtonText, jdk17Box, jdk16Box, jdk11Box, jdk8Box, jdk7Box);
+		customJarBox.getChildren().addAll(jdk17Box, jdk16Box, jdk11Box, jdk8Box, jdk7Box);
 		
-		customPane.getChildren().addAll(customJarText, customJarBox);
+		customPane.getChildren().addAll(customJarTextBox, customJarButton, customJarSeparator, customJarBox);
 
 		choiseBar.getChildren().addAll(nextButton, cancelButton, customButton, versionTextBox);
 
