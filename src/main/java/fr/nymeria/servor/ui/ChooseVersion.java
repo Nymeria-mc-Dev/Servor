@@ -28,7 +28,7 @@ public class ChooseVersion {
 		server.setPrefSize(206, 720);
 		server.getStyleClass().add("menu");
 
-		Text minecraftVersionText = new Text("minecraft version :");
+		Text minecraftVersionText = new Text("Minecraft Version :");
 		
 		minecraftVersionText.setFill(Color.WHITE);
 		minecraftVersionText.setStyle("-fx-font-size: 20px;");
