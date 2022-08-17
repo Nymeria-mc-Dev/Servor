@@ -3,6 +3,7 @@ package fr.nymeria.servor.ui;
 
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.scenes.MainScene;
+import fr.nymeria.servor.ui.elements.CustomJarBox;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -113,110 +114,7 @@ public class ChooseVersion {
 
 		customButton.getChildren().add(customText);
 		
-		Pane customPane = new Pane();
-		customPane.setVisible(false);
-		customPane.setPrefSize(227, 261);
-		customPane.getStyleClass().add("customCard");
-		customPane.setTranslateX(615);
-		customPane.setTranslateY(400);
-		
-		VBox customJarBox = new VBox();
-		customJarBox.setAlignment(Pos.CENTER);
-		customJarBox.setTranslateY(62);
-		
-		HBox customJarButton = new HBox();
-		customJarButton.setPrefSize(116, 32);
-		customJarButton.setTranslateX(103);
-		customJarButton.setTranslateY(13);
-		customJarButton.setAlignment(Pos.BASELINE_CENTER);
-		customJarButton.getStyleClass().add("customChooseButton");
-		
-		HBox customJarTextBox = new HBox();
-		customJarTextBox.setPrefSize(103, 32);
-		customJarTextBox.setTranslateY(13);
-		customJarTextBox.setAlignment(Pos.CENTER);
-		
-		Text customJarText = new Text("Custom JAR : ");
-		customJarText.setFill(Color.WHITE);
-		customJarText.setStyle("-fx-font-size: 16px; -fx-font-family: regular;");
-		
-		Text customJarButtonText = new Text("Choose");
-		customJarButtonText.setFill(Color.WHITE);
-		customJarButtonText.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
-		
-		Rectangle customJarSeparator = new Rectangle(227, 3);
-		customJarSeparator.setTranslateY(59);
-		customJarSeparator.setStyle("-fx-fill: rgba(50, 50, 50, 75);");
-		
-		customJarButton.getChildren().add(customJarButtonText);
-		
-		customJarTextBox.getChildren().add(customJarText);
-		
-		// JDK 17
-		
-		VBox jdk17Box = new VBox();
-		jdk17Box.setPrefSize(226, 40);
-		jdk17Box.setAlignment(Pos.CENTER);
-		
-		Text jdk17 = new Text("jdk 17");
-		jdk17.setFill(Color.WHITE);
-		jdk17.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
-		
-		jdk17Box.getChildren().add(jdk17);
-		
-		// JDK 16
-		
-		VBox jdk16Box = new VBox();
-		jdk16Box.setPrefSize(226, 40);
-		jdk16Box.setAlignment(Pos.CENTER);
-		
-		Text jdk16 = new Text("jdk 16");
-		jdk16.setFill(Color.WHITE);
-		jdk16.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
-		
-		jdk16Box.getChildren().add(jdk16);
-		
-		// JDK 11
-		
-		VBox jdk11Box = new VBox();
-		jdk11Box.setPrefSize(226, 40);
-		jdk11Box.setAlignment(Pos.CENTER);
-		
-		Text jdk11 = new Text("jdk 11");
-		jdk11.setFill(Color.WHITE);
-		jdk11.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
-		
-		jdk11Box.getChildren().add(jdk11);
-		
-		// JDK 8
-		
-		VBox jdk8Box = new VBox();
-		jdk8Box.setPrefSize(226, 40);
-		jdk8Box.setAlignment(Pos.CENTER);
-		
-		Text jdk8 = new Text("jdk 8");
-		jdk8.setFill(Color.WHITE);
-		jdk8.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
-		
-		jdk8Box.getChildren().add(jdk8);
-		
-		// JDK 7
-		
-		VBox jdk7Box = new VBox();
-		jdk7Box.setPrefSize(226, 40);
-		jdk7Box.setAlignment(Pos.CENTER);
-		
-		Text jdk7 = new Text("jdk 7");
-		jdk7.setFill(Color.WHITE);
-		jdk7.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
-		
-		jdk7Box.getChildren().add(jdk7);
-		
-		// Adding all to custom bar
-		
-		customJarBox.getChildren().addAll(jdk17Box, jdk16Box, jdk11Box, jdk8Box, jdk7Box);
-		
-		customPane.getChildren().addAll(customJarTextBox, customJarButton, customJarSeparator, customJarBox);
+		CustomJarBox customPane = new CustomJarBox();
 
 		choiseBar.getChildren().addAll(nextButton, cancelButton, customButton, versionTextBox);
 
@@ -279,7 +177,7 @@ public class ChooseVersion {
 
 		server.getChildren().addAll(switcher, paper, spigot, bukkit, mohist, forge, magma);
 
-		pane.getChildren().addAll(server, choiseBar, customPane);
+		pane.getChildren().addAll(server, choiseBar, customPane.get());
 	}
 
 	public static void setVersionText(String text) {

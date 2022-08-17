@@ -230,6 +230,10 @@ public class ServerSelector {
 		magma.setVisible(value);
 	}
 
+	public static VersionCard getClickedCard() {
+		return clickedCard;
+	}
+	
 	private static void setAllInvisible() {
 		paper.setVisible(false);
 		spigot.setVisible(false);
