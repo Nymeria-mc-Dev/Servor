@@ -1,5 +1,7 @@
 package fr.nymeria.servor.ui.elements;
 
+import fr.nymeria.servor.enums.ServerExecutor;
+import fr.nymeria.servor.enums.ServerVersion;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -9,13 +11,14 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
 public class CustomJarBox {
-
+	
 	Pane customPane;
 	
+	@SuppressWarnings("unused")
 	public CustomJarBox() {
 		customPane = new Pane();
 		customPane.setVisible(false);
-		customPane.setPrefSize(227, 261);
+		customPane.setPrefSize(227, 270);
 		customPane.getStyleClass().add("customCard");
 		customPane.setTranslateX(615);
 		customPane.setTranslateY(400);
@@ -54,48 +57,33 @@ public class CustomJarBox {
 
 		// JDK 17
 
-		VBox jdk17 = createJDK("jdk 17");
+		JDKButton jdk17 = new JDKButton(customJarBox, "jdk 17", ServerExecutor.CUSTOM, ServerVersion.JDK17);
 
 		// JDK 16
 
-		VBox jdk16 = createJDK("jdk 16");
+		JDKButton jdk16 = new JDKButton(customJarBox, "jdk 16", ServerExecutor.CUSTOM, ServerVersion.JDK16);
 
 		// JDK 11
 
-		VBox jdk11 = createJDK("jdk 11");
+		JDKButton jdk11 = new JDKButton(customJarBox, "jdk 11", ServerExecutor.CUSTOM, ServerVersion.JDK11);
 
 		// JDK 8
 
-		VBox jdk8 = createJDK("jdk 8");
+		JDKButton jdk8 = new JDKButton(customJarBox, "jdk 8", ServerExecutor.CUSTOM, ServerVersion.JDK8);
 
 		// JDK 7
 
-		VBox jdk7 = createJDK("jdk 7");
+		JDKButton jdk7 = new JDKButton(customJarBox, "jdk 7", ServerExecutor.CUSTOM, ServerVersion.JDK7);
 
 		// Adding all to custom bar
-
-		customJarBox.getChildren().addAll(jdk17, jdk16, jdk11, jdk8, jdk7);
 
 		customPane.getChildren().addAll(customJarTextBox, customJarButton, customJarSeparator, customJarBox);	
 	}
 
-	private VBox createJDK(String name) {
-		VBox jdkBox = new VBox();
-		jdkBox.setPrefSize(226, 40);
-		jdkBox.setAlignment(Pos.CENTER);
-
-		Text jdk = new Text(name);
-		jdk.setFill(Color.WHITE);
-		jdk.setStyle("-fx-font-size: 20px; -fx-font-family: regular;");
-
-		jdkBox.getChildren().add(jdk);
-		return jdkBox;
-	}
-	
 	public void setVisible(boolean value) {
 		customPane.setVisible(value);
 	}
-
+	
 	public Pane get() {
 		return customPane;
 	}

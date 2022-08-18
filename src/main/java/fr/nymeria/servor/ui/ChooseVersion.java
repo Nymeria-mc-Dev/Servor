@@ -1,6 +1,5 @@
 package fr.nymeria.servor.ui;
 
-
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.scenes.MainScene;
 import fr.nymeria.servor.ui.elements.CustomJarBox;
@@ -8,7 +7,6 @@ import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;

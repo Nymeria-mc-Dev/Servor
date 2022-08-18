@@ -2,13 +2,14 @@ package fr.nymeria.servor.ui;
 
 import fr.nymeria.servor.enums.ServerExecutor;
 import fr.nymeria.servor.enums.ServerVersion;
+import fr.nymeria.servor.ui.elements.JDKButton;
 import fr.nymeria.servor.ui.elements.VersionCard;
 import javafx.scene.layout.Pane;
 
 public class ServerSelector {
 
 	private static VersionCard clickedCard;
-
+	private static JDKButton clickedJDK;
 
 	private static Pane paper = new Pane();
 	private static Pane spigot = new Pane();
@@ -191,7 +192,14 @@ public class ServerSelector {
 
 	private static void setClickEvent(VersionCard card) {
 		card.get().setOnMouseClicked(event -> {
-			clickedCard.setClicked(false);
+			
+			if(clickedCard != null) {
+				clickedCard.setClicked(false);
+			}else if (clickedJDK != null) {
+				clickedJDK.setClicked(false);
+				clickedJDK = null;
+			}
+			
 			card.setClicked(true);
 			clickedCard = card;
 			String executor = card.getServerExecutor().toString();
@@ -232,6 +240,18 @@ public class ServerSelector {
 
 	public static VersionCard getClickedCard() {
 		return clickedCard;
+	}
+	
+	public static void setClickedCard(VersionCard card) {
+		clickedCard = card;
+	}
+	
+	public static void setClickedJDK(JDKButton jdkButton) {
+		clickedJDK = jdkButton;
+	}
+	
+	public static JDKButton getClickedJDK() {
+		return clickedJDK;
 	}
 	
 	private static void setAllInvisible() {

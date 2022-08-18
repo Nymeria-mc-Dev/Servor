@@ -46,3 +46,9 @@
 	-fx-background-color: rgba(5, 5, 5, 0.50);
 	-fx-background-radius: 16px;
 }
+
+.clickedJDK {
+	-fx-border-color: #0066FF;
+	-fx-border-radius: 16px;
+	-fx-border-width: 3px;
+}

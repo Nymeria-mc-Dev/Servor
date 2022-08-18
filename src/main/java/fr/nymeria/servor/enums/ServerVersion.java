@@ -12,6 +12,10 @@ public enum ServerVersion {
 	VERSION_1_12_2,
 	VERSION_1_11_2,
 	VERSION_1_8_9,
-	
+	JDK17,
+	JDK16,
+	JDK11,
+	JDK8,
+	JDK7
 	
 }

@@ -7,6 +7,7 @@ public enum ServerExecutor {
 	BUKKIT,
 	MOHIST,
 	FORGE,
-	MAGMA
+	MAGMA,
+	CUSTOM
 	
 }
