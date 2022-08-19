@@ -89,7 +89,7 @@ public class CustomJarBox {
 			File file = fileChooser.showOpenDialog(new Stage());
 			
 			if (file != null) {
-				if (getExtension(file) == ".jar") {
+				if (isJar(file)) {
 					System.out.println("Good jar file");
 				} else {
 					System.out.println("le fichier selectionner n'est pas un fichier .jar");
@@ -112,14 +112,16 @@ public class CustomJarBox {
 		return customPane;
 	}
 	
-	public static String getExtension(File f) {
-        String ext = null;
-        String s = f.getName();
-        int i = s.lastIndexOf('.');
-
-        if (i > 0 &&  i < s.length() - 1) {
-            ext = s.substring(i+1).toLowerCase();
-        }
-        return ext;
+	public static Boolean isJar(File f) {
+		System.out.println(f.getName());
+		String[] list = f.getName().split("\\.");
+        String fileExtention = list[list.length - 1];
+        System.out.println(fileExtention);
+        
+        if(fileExtention.equalsIgnoreCase("jar")) {
+        	return true;
+        }else {
+        	return false;
+		}
     }
 }
