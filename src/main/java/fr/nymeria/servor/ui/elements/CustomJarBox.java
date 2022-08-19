@@ -1,5 +1,7 @@
 package fr.nymeria.servor.ui.elements;
 
+import java.io.File;
+
 import fr.nymeria.servor.enums.ServerExecutor;
 import fr.nymeria.servor.enums.ServerVersion;
 import javafx.geometry.Pos;
@@ -9,6 +11,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 public class CustomJarBox {
 	
@@ -74,6 +78,26 @@ public class CustomJarBox {
 		// JDK 7
 
 		JDKButton jdk7 = new JDKButton(customJarBox, "jdk 7", ServerExecutor.CUSTOM, ServerVersion.JDK7);
+		
+		
+		customJarButton.setOnMouseClicked(e -> {
+			FileChooser fileChooser = new FileChooser();
+			
+			fileChooser.setTitle("Choose custom .jar");
+			fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("JAR", "*.jar"));
+			
+			File file = fileChooser.showOpenDialog(new Stage());
+			
+			if (file != null) {
+				if (getExtension(file) == ".jar") {
+					System.out.println("Good jar file");
+				} else {
+					System.out.println("le fichier selectionner n'est pas un fichier .jar");
+				}
+			} else {
+				System.out.println("Aucun fichier selectionner");
+			}
+		});
 
 		// Adding all to custom bar
 
@@ -87,4 +111,15 @@ public class CustomJarBox {
 	public Pane get() {
 		return customPane;
 	}
+	
+	public static String getExtension(File f) {
+        String ext = null;
+        String s = f.getName();
+        int i = s.lastIndexOf('.');
+
+        if (i > 0 &&  i < s.length() - 1) {
+            ext = s.substring(i+1).toLowerCase();
+        }
+        return ext;
+    }
 }
