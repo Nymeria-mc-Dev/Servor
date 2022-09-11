@@ -175,7 +175,7 @@ public class ChooseVersion {
 
 		server.getChildren().addAll(switcher, paper, spigot, bukkit, mohist, forge, magma);
 
-		pane.getChildren().addAll(server, choiseBar, customPane.get());
+		pane.getChildren().addAll(server, customPane.get(), choiseBar);
 	}
 
 	public static void setVersionText(String text) {

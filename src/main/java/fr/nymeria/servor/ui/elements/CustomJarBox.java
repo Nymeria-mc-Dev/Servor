@@ -4,6 +4,7 @@ import java.io.File;
 
 import fr.nymeria.servor.enums.ServerExecutor;
 import fr.nymeria.servor.enums.ServerVersion;
+import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -13,6 +14,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class CustomJarBox {
 	
@@ -21,11 +23,10 @@ public class CustomJarBox {
 	@SuppressWarnings("unused")
 	public CustomJarBox() {
 		customPane = new Pane();
-		customPane.setVisible(false);
 		customPane.setPrefSize(227, 270);
 		customPane.getStyleClass().add("customCard");
 		customPane.setTranslateX(615);
-		customPane.setTranslateY(400);
+		customPane.setTranslateY(700);
 
 		VBox customJarBox = new VBox();
 		customJarBox.setAlignment(Pos.CENTER);
@@ -105,7 +106,15 @@ public class CustomJarBox {
 	}
 
 	public void setVisible(boolean value) {
-		customPane.setVisible(value);
+		
+		TranslateTransition transition = new TranslateTransition(Duration.millis(500), customPane);
+		
+		if(value) {
+			transition.setByY(-300);
+		}else {
+			transition.setByY(300);
+		}
+		transition.play();
 	}
 	
 	public Pane get() {
