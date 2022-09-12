@@ -104,15 +104,15 @@ public class CustomJarBox {
 
 		customPane.getChildren().addAll(customJarTextBox, customJarButton, customJarSeparator, customJarBox);	
 	}
-
+	
 	public void setVisible(boolean value) {
-		
+	
 		TranslateTransition transition = new TranslateTransition(Duration.millis(500), customPane);
 		
 		if(value) {
-			transition.setByY(-300);
+			transition.setToY(400);
 		}else {
-			transition.setByY(300);
+			transition.setToY(700);
 		}
 		transition.play();
 	}
