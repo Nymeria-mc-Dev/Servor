@@ -1,6 +1,7 @@
 package fr.nymeria.servor.scenes;
 
 import fr.nymeria.servor.App;
+import fr.nymeria.servor.helpers.Discord;
 import fr.nymeria.servor.ui.AddServerButton;
 import fr.nymeria.servor.ui.TopBar;
 import fr.nymeria.servor.ui.elements.ServerCard;
@@ -26,6 +27,10 @@ public class MainScene {
         	addElements();
         	addStyleSheets();
         }
+        
+        Discord.setDetail("Tout est calme pour le moment");
+        Discord.setState("Home");
+        Discord.setSmallImage("home");
         
         loaded = true;
         

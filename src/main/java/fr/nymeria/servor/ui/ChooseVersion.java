@@ -2,7 +2,9 @@ package fr.nymeria.servor.ui;
 
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.scenes.MainScene;
+import fr.nymeria.servor.scenes.ParametreScene;
 import fr.nymeria.servor.ui.elements.CustomJarBox;
+import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -15,6 +17,8 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class ChooseVersion {
+	
+	public static HBox nextButton;
 	
 	private Boolean customClicked = false;
 	
@@ -67,7 +71,7 @@ public class ChooseVersion {
 		choiseBar.setTranslateY(676);
 		choiseBar.getStyleClass().add("menu");
 
-		HBox nextButton = new HBox();
+		nextButton = new HBox();
 
 		nextButton.setPrefSize(109, 28);
 		nextButton.setTranslateX(740);
@@ -130,32 +134,32 @@ public class ChooseVersion {
 		HBox magma = addButton("Magma", 365);
 
 		paper.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, 35);
+			moveSwitcher(switcher, blueBar, 35);
 			ServerSelector.setPaperVisible(true);
 		});
 
 		spigot.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, 101);
+			moveSwitcher(switcher, blueBar, 101);
 			ServerSelector.setSpigotVisible(true);
 		});
 
 		bukkit.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, 167);
+			moveSwitcher(switcher, blueBar, 167);
 			ServerSelector.setBukkitVisible(true);
 		});
 
 		mohist.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, 233);
+			moveSwitcher(switcher, blueBar, 233);
 			ServerSelector.setMohistVisible(true);
 		});
 
 		forge.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, 299);
+			moveSwitcher(switcher, blueBar, 299);
 			ServerSelector.setForgeVisible(true);
 		});
 
 		magma.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, 365);
+			moveSwitcher(switcher, blueBar, 365);
 			ServerSelector.setMagmaVisible(true);
 		});
 		
@@ -167,6 +171,9 @@ public class ChooseVersion {
 				customPane.setVisible(true);
 				customClicked = true;
 			}				
+		});
+		nextButton.setOnMouseClicked(e -> {
+			App.setScene(ParametreScene.get());				
 		});
 
 
@@ -182,11 +189,26 @@ public class ChooseVersion {
 		versionText.setText(text);
 	}
 	
-	private static void moveSwitcher(HBox switcher, double posY) {
+	private static void moveSwitcher(HBox switcher, Rectangle blueBar, double posY) {
+		
+		ScaleTransition st = new ScaleTransition(Duration.millis(200), blueBar);
+		st.setFromX(0);
+		st.setToX(1);
+		
 		TranslateTransition transition = new TranslateTransition(Duration.millis(500), switcher);
-		transition.setByY(posY - switcher.getTranslateY());
-
-		transition.play();
+		transition.setToY(posY/* - switcher.getTranslateY()*/);
+		transition.setOnFinished(e -> {
+			st.play();
+		});
+		
+		ScaleTransition blueBarT = new ScaleTransition(Duration.millis(200), blueBar);
+		blueBarT.setFromX(1);
+		blueBarT.setToX(0);
+		blueBarT.setOnFinished(e -> {
+			transition.play();
+		});
+		
+		blueBarT.play();
 	}
 
 

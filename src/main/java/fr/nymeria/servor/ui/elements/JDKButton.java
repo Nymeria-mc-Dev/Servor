@@ -50,6 +50,10 @@ public class JDKButton {
 				ServerSelector.getClickedJDK().setClicked(false);
 			}
 			
+			if(CustomJarBox.jarFile == null) {
+				ChooseVersion.nextButton.setDisable(true);
+			}
+			
 			String executor = getServerExecutor().toString();
 			executor = " " + executor.subSequence(0, 1).toString() + executor.substring(1).toLowerCase();
 			ChooseVersion.setVersionText(executor + getServerVersion().toString().replace("JDK", " jdk ").replace("_", "."));

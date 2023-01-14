@@ -1,0 +1,54 @@
+.menu {
+	-fx-background-color: #363636;
+}
+
+.all {
+	-fx-background-color: #4F4F4F;
+}
+
+.blueBar {
+	-fx-fill: #0066FF;
+}
+
+.nextButton {
+	-fx-background-color: #0066FF;
+	-fx-background-radius: 13px;
+}
+
+.cancelButton {
+	-fx-background-color: #7A0000;
+	-fx-background-radius: 13px;
+}
+
+.returnButton {
+	-fx-background-color: #0057DA;
+	-fx-background-radius: 13px;
+}
+
+.customChooseButton {
+	-fx-background-color: #0057DA;
+	-fx-background-radius: 4px;
+}
+
+.versionCard{
+	-fx-background-color: #3E3E3E;
+	-fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.5), 20, 0, 11, 8);
+	-fx-background-radius: 16px;
+}
+
+.versionCardBorder {
+	-fx-border-color: #0066FF;
+	-fx-border-radius: 16px;
+	-fx-border-width: 4px;
+}
+
+.customCard {
+	-fx-background-color: rgba(5, 5, 5, 0.50);
+	-fx-background-radius: 16px;
+}
+
+.clickedJDK {
+	-fx-border-color: #0066FF;
+	-fx-border-radius: 16px;
+	-fx-border-width: 3px;
+}

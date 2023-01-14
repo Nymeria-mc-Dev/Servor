@@ -20,8 +20,10 @@ public class VersionCard {
 	
 	public Boolean clicked;
 
-	public VersionCard(Pane pane, double x, double y, String str, String imagePath, ServerExecutor serverExecutor, ServerVersion serverVersion) {
+	public VersionCard(Pane pane, String imagePath, ServerExecutor serverExecutor, ServerVersion serverVersion) {
 
+		String versionText = serverVersion.toString().replace("VERSION_", "").replace("_", ".");
+		
 		this.serverExecutor = serverExecutor;
 		this.serverVersion = serverVersion;
 		
@@ -35,11 +37,9 @@ public class VersionCard {
 		box = new Pane();
 
 		box.setPrefSize(318, 83);
-		box.setTranslateX(x);
-		box.setTranslateY(y);
 		box.getStyleClass().add("versionCard");
 
-		Text version = new Text(str);
+		Text version = new Text(versionText);
 		version.setStyle("-fx-font-size: 32px; -fx-font-familly: regular;");
 		version.setFill(Color.WHITE);
 
@@ -52,6 +52,11 @@ public class VersionCard {
 		box.getChildren().addAll(logo, textBox);
 
 		pane.getChildren().addAll(box);
+	}
+	
+	public void setPosition(int x, int y) {
+		box.setTranslateX(x);
+		box.setTranslateY(y);
 	}
 
 	public ServerVersion getServerVersion() {

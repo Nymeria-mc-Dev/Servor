@@ -3,11 +3,11 @@ package fr.nymeria.servor.ui;
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import fr.nymeria.servor.App;
+import fr.nymeria.servor.helpers.Discord;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -20,13 +20,12 @@ public class TopBar {
 	
 	public TopBar(Pane pane, Stage stage) {
 		
-		Rectangle bar = new Rectangle();
+		Pane bar = new Pane();
 		
-		bar.setWidth(1080);
-		bar.setHeight(35);
+		bar.setPrefSize(1080, 35);
 		bar.setTranslateX(0);
 		bar.setTranslateY(0);
-		bar.setStyle("-fx-fill: #363636;");
+		bar.setStyle("-fx-background-color: #363636;");
 		
 		bar.setOnMousePressed(event -> {
 			y = event.getSceneY();
@@ -44,6 +43,7 @@ public class TopBar {
 		close.setFill(Color.WHITE);
 		
 		close.setOnMouseClicked(event -> {
+	        Discord.close();
 			stage.close();
 		});
 		
@@ -66,7 +66,9 @@ public class TopBar {
 		icon.setTranslateY(5);
 		icon.setTranslateX(5);
 		
-		pane.getChildren().addAll(bar, close, reduce, name, icon);
+		bar.getChildren().addAll(close, reduce, name, icon);
+		
+		pane.getChildren().addAll(bar);
 	}
 	
 }

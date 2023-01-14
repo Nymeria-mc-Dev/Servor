@@ -4,6 +4,7 @@ import java.io.File;
 
 import fr.nymeria.servor.enums.ServerExecutor;
 import fr.nymeria.servor.enums.ServerVersion;
+import fr.nymeria.servor.ui.ChooseVersion;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -19,6 +20,7 @@ import javafx.util.Duration;
 public class CustomJarBox {
 	
 	Pane customPane;
+	public static File jarFile = null;
 	
 	@SuppressWarnings("unused")
 	public CustomJarBox() {
@@ -92,6 +94,8 @@ public class CustomJarBox {
 			if (file != null) {
 				if (isJar(file)) {
 					System.out.println("Good jar file");
+					jarFile = file;
+					ChooseVersion.nextButton.setDisable(false);
 				} else {
 					System.out.println("le fichier selectionner n'est pas un fichier .jar");
 				}
@@ -107,13 +111,14 @@ public class CustomJarBox {
 	
 	public void setVisible(boolean value) {
 	
-		TranslateTransition transition = new TranslateTransition(Duration.millis(500), customPane);
+		TranslateTransition transition = new TranslateTransition(Duration.millis(200), customPane);
 		
 		if(value) {
 			transition.setToY(400);
 		}else {
 			transition.setToY(700);
 		}
+		
 		transition.play();
 	}
 	

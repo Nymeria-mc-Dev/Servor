@@ -5,7 +5,8 @@ module fr.nymeria.servor {
 	requires javafx.graphics;
 	requires javafx.base;
 	requires java.desktop;
+	requires java.discord.rpc;
 
-    opens fr.nymeria.servor to javafx.fxml;
+	opens fr.nymeria.servor to javafx.fxml;
     exports fr.nymeria.servor;
 }

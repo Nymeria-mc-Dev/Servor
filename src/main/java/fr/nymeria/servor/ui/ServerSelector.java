@@ -1,5 +1,10 @@
 package fr.nymeria.servor.ui;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import fr.nymeria.servor.enums.ServerExecutor;
 import fr.nymeria.servor.enums.ServerVersion;
 import fr.nymeria.servor.ui.elements.JDKButton;
@@ -11,6 +16,8 @@ public class ServerSelector {
 	private static VersionCard clickedCard;
 	private static JDKButton clickedJDK;
 
+	private static Map<String, List<VersionCard>> versionCards = new HashMap<>();
+	
 	private static Pane paper = new Pane();
 	private static Pane spigot = new Pane();
 	private static Pane bukkit = new Pane();
@@ -18,176 +25,110 @@ public class ServerSelector {
 	private static Pane forge = new Pane();
 	private static Pane magma = new Pane();
 
-	private static VersionCard paper_1_19_1;
-	private static VersionCard paper_1_18_2;
-	private static VersionCard paper_1_17_1;
-	private static VersionCard paper_1_16_5;
-	private static VersionCard paper_1_15_2;
-	private static VersionCard paper_1_14_4;
-	private static VersionCard paper_1_13_2;
-	private static VersionCard paper_1_12_2;
-	private static VersionCard paper_1_11_2;
-	private static VersionCard paper_1_8_9;
-
-	private static VersionCard spigot_1_19_1;
-	private static VersionCard spigot_1_18_2;
-	private static VersionCard spigot_1_17_1;
-	private static VersionCard spigot_1_16_5;
-	private static VersionCard spigot_1_15_2;
-	private static VersionCard spigot_1_14_4;
-	private static VersionCard spigot_1_13_2;
-	private static VersionCard spigot_1_12_2;
-	private static VersionCard spigot_1_11_2;
-	private static VersionCard spigot_1_8_9;
-
-	private static VersionCard bukkit_1_19_1;
-	private static VersionCard bukkit_1_18_2;
-	private static VersionCard bukkit_1_17_1;
-	private static VersionCard bukkit_1_16_5;
-	private static VersionCard bukkit_1_15_2;
-	private static VersionCard bukkit_1_14_4;
-	private static VersionCard bukkit_1_13_2;
-	private static VersionCard bukkit_1_12_2;
-	private static VersionCard bukkit_1_11_2;
-	private static VersionCard bukkit_1_8_9;
-
-	private static VersionCard mohist_1_18_2;
-	private static VersionCard mohist_1_16_5;
-	private static VersionCard mohist_1_12_2;
-
-	private static VersionCard forge_1_19_1;
-	private static VersionCard forge_1_18_2;
-	private static VersionCard forge_1_17_1;
-	private static VersionCard forge_1_16_5;
-	private static VersionCard forge_1_15_2;
-	private static VersionCard forge_1_14_4;
-	private static VersionCard forge_1_13_2;
-	private static VersionCard forge_1_12_2;
-	private static VersionCard forge_1_11_2;
-	private static VersionCard forge_1_8_9;
-
-	private static VersionCard magma_1_18_2;
-	private static VersionCard magma_1_16_5;
-	private static VersionCard magma_1_12_2;
-
 	public static void init(Pane pane) {
+		
+		List<VersionCard> paperCards = new ArrayList<>();
+		List<VersionCard> spigotCards = new ArrayList<>();
+		List<VersionCard> bukkitCards = new ArrayList<>();
+		List<VersionCard> mohistCards = new ArrayList<>();
+		List<VersionCard> forgeCards = new ArrayList<>();
+		List<VersionCard> magmaCards = new ArrayList<>();
+		
+		String paperRoot = "/icons/servers/paper.png";
+		String spigotRoot = "/icons/servers/spigot.png";
+		String bukkitRoot = "/icons/servers/bukkit.png";
+		String mohistRoot = "/icons/servers/mohist.png";
+		String forgeRoot = "/icons/servers/forge.png";
+		String magmaRoot = "/icons/servers/magma.png";
+		
+		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_19_1));
+		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_18_2));
+		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_17_1));
+		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_16_5));
+		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_15_2));
+		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_14_4));
+		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_13_2));
+		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_12_2));
+		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_11_2));
+		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_8_9));
 
-		paper_1_19_1 = new VersionCard(paper, 276, 50, "1.19.1", "/icons/servers/paper.png", ServerExecutor.PAPER, ServerVersion.VERSION_1_19_1);
-		paper_1_18_2 = new VersionCard(paper, 689, 50, "1.18.2", "/icons/servers/paper.png", ServerExecutor.PAPER, ServerVersion.VERSION_1_18_2);
-		paper_1_17_1 = new VersionCard(paper, 276, 182, "1.17.1", "/icons/servers/paper.png", ServerExecutor.PAPER, ServerVersion.VERSION_1_17_1);
-		paper_1_16_5 = new VersionCard(paper, 689, 182, "1.16.5", "/icons/servers/paper.png", ServerExecutor.PAPER, ServerVersion.VERSION_1_16_5);
-		paper_1_15_2 = new VersionCard(paper, 276, 314, "1.15.2", "/icons/servers/paper.png", ServerExecutor.PAPER, ServerVersion.VERSION_1_15_2);
-		paper_1_14_4 = new VersionCard(paper, 689, 314, "1.14.4", "/icons/servers/paper.png", ServerExecutor.PAPER, ServerVersion.VERSION_1_14_4);
-		paper_1_13_2 = new VersionCard(paper, 276, 446, "1.13.2", "/icons/servers/paper.png", ServerExecutor.PAPER, ServerVersion.VERSION_1_13_2);
-		paper_1_12_2 = new VersionCard(paper, 689, 446, "1.12.2", "/icons/servers/paper.png", ServerExecutor.PAPER, ServerVersion.VERSION_1_12_2);
-		paper_1_11_2 = new VersionCard(paper, 276, 578, "1.11.2", "/icons/servers/paper.png", ServerExecutor.PAPER, ServerVersion.VERSION_1_11_2);
-		paper_1_8_9 = new VersionCard(paper, 689, 578, "1.8.9", "/icons/servers/paper.png", ServerExecutor.PAPER, ServerVersion.VERSION_1_8_9);
+		spigotCards.add(new VersionCard(spigot, spigotRoot, ServerExecutor.SPIGOT, ServerVersion.VERSION_1_19_1));
+		spigotCards.add(new VersionCard(spigot, spigotRoot, ServerExecutor.SPIGOT, ServerVersion.VERSION_1_18_2));
+		spigotCards.add(new VersionCard(spigot, spigotRoot, ServerExecutor.SPIGOT, ServerVersion.VERSION_1_17_1));
+		spigotCards.add(new VersionCard(spigot, spigotRoot, ServerExecutor.SPIGOT, ServerVersion.VERSION_1_16_5));
+		spigotCards.add(new VersionCard(spigot, spigotRoot, ServerExecutor.SPIGOT, ServerVersion.VERSION_1_15_2));
+		spigotCards.add(new VersionCard(spigot, spigotRoot, ServerExecutor.SPIGOT, ServerVersion.VERSION_1_14_4));
+		spigotCards.add(new VersionCard(spigot, spigotRoot, ServerExecutor.SPIGOT, ServerVersion.VERSION_1_13_2));
+		spigotCards.add(new VersionCard(spigot, spigotRoot, ServerExecutor.SPIGOT, ServerVersion.VERSION_1_12_2));
+		spigotCards.add(new VersionCard(spigot, spigotRoot, ServerExecutor.SPIGOT, ServerVersion.VERSION_1_11_2));
+		spigotCards.add(new VersionCard(spigot, spigotRoot, ServerExecutor.SPIGOT, ServerVersion.VERSION_1_8_9));
 
-		spigot_1_19_1 = new VersionCard(spigot, 276, 50, "1.19.1", "/icons/servers/spigot.png", ServerExecutor.SPIGOT, ServerVersion.VERSION_1_19_1);
-		spigot_1_18_2 = new VersionCard(spigot, 689, 50, "1.18.2", "/icons/servers/spigot.png", ServerExecutor.SPIGOT, ServerVersion.VERSION_1_18_2);
-		spigot_1_17_1 = new VersionCard(spigot, 276, 182, "1.17.1", "/icons/servers/spigot.png", ServerExecutor.SPIGOT, ServerVersion.VERSION_1_17_1);
-		spigot_1_16_5 = new VersionCard(spigot, 689, 182, "1.16.5", "/icons/servers/spigot.png", ServerExecutor.SPIGOT, ServerVersion.VERSION_1_16_5);
-		spigot_1_15_2 = new VersionCard(spigot, 276, 314, "1.15.2", "/icons/servers/spigot.png", ServerExecutor.SPIGOT, ServerVersion.VERSION_1_15_2);
-		spigot_1_14_4 = new VersionCard(spigot, 689, 314, "1.14.4", "/icons/servers/spigot.png", ServerExecutor.SPIGOT, ServerVersion.VERSION_1_14_4);
-		spigot_1_13_2 = new VersionCard(spigot, 276, 446, "1.13.2", "/icons/servers/spigot.png", ServerExecutor.SPIGOT, ServerVersion.VERSION_1_13_2);
-		spigot_1_12_2 = new VersionCard(spigot, 689, 446, "1.12.2", "/icons/servers/spigot.png", ServerExecutor.SPIGOT, ServerVersion.VERSION_1_12_2);
-		spigot_1_11_2 = new VersionCard(spigot, 276, 578, "1.11.2", "/icons/servers/spigot.png", ServerExecutor.SPIGOT, ServerVersion.VERSION_1_11_2);
-		spigot_1_8_9 = new VersionCard(spigot, 689, 578, "1.8.9", "/icons/servers/spigot.png", ServerExecutor.SPIGOT, ServerVersion.VERSION_1_8_9);
+		bukkitCards.add(new VersionCard(bukkit, bukkitRoot, ServerExecutor.BUKKIT, ServerVersion.VERSION_1_19_1));
+		bukkitCards.add(new VersionCard(bukkit, bukkitRoot, ServerExecutor.BUKKIT, ServerVersion.VERSION_1_18_2));
+		bukkitCards.add(new VersionCard(bukkit, bukkitRoot, ServerExecutor.BUKKIT, ServerVersion.VERSION_1_17_1));
+		bukkitCards.add(new VersionCard(bukkit, bukkitRoot, ServerExecutor.BUKKIT, ServerVersion.VERSION_1_16_5));
+		bukkitCards.add(new VersionCard(bukkit, bukkitRoot, ServerExecutor.BUKKIT, ServerVersion.VERSION_1_15_2));
+		bukkitCards.add(new VersionCard(bukkit, bukkitRoot, ServerExecutor.BUKKIT, ServerVersion.VERSION_1_14_4));
+		bukkitCards.add(new VersionCard(bukkit, bukkitRoot, ServerExecutor.BUKKIT, ServerVersion.VERSION_1_13_2));
+		bukkitCards.add(new VersionCard(bukkit, bukkitRoot, ServerExecutor.BUKKIT, ServerVersion.VERSION_1_12_2));
+		bukkitCards.add(new VersionCard(bukkit, bukkitRoot, ServerExecutor.BUKKIT, ServerVersion.VERSION_1_11_2));
+		bukkitCards.add(new VersionCard(bukkit, bukkitRoot, ServerExecutor.BUKKIT, ServerVersion.VERSION_1_8_9));
 
-		bukkit_1_19_1 = new VersionCard(bukkit, 276, 50, "1.19.1", "/icons/servers/bukkit.png", ServerExecutor.BUKKIT, ServerVersion.VERSION_1_19_1);
-		bukkit_1_18_2 = new VersionCard(bukkit, 689, 50, "1.18.2", "/icons/servers/bukkit.png", ServerExecutor.BUKKIT, ServerVersion.VERSION_1_18_2);
-		bukkit_1_17_1 = new VersionCard(bukkit, 276, 182, "1.17.1", "/icons/servers/bukkit.png", ServerExecutor.BUKKIT, ServerVersion.VERSION_1_17_1);
-		bukkit_1_16_5 = new VersionCard(bukkit, 689, 182, "1.16.5", "/icons/servers/bukkit.png", ServerExecutor.BUKKIT, ServerVersion.VERSION_1_16_5);
-		bukkit_1_15_2 = new VersionCard(bukkit, 276, 314, "1.15.2", "/icons/servers/bukkit.png", ServerExecutor.BUKKIT, ServerVersion.VERSION_1_15_2);
-		bukkit_1_14_4 = new VersionCard(bukkit, 689, 314, "1.14.4", "/icons/servers/bukkit.png", ServerExecutor.BUKKIT, ServerVersion.VERSION_1_14_4);
-		bukkit_1_13_2 = new VersionCard(bukkit, 276, 446, "1.13.2", "/icons/servers/bukkit.png", ServerExecutor.BUKKIT, ServerVersion.VERSION_1_13_2);
-		bukkit_1_12_2 = new VersionCard(bukkit, 689, 446, "1.12.2", "/icons/servers/bukkit.png", ServerExecutor.BUKKIT, ServerVersion.VERSION_1_12_2);
-		bukkit_1_11_2 = new VersionCard(bukkit, 276, 578, "1.11.2", "/icons/servers/bukkit.png", ServerExecutor.BUKKIT, ServerVersion.VERSION_1_11_2);
-		bukkit_1_8_9 = new VersionCard(bukkit, 689, 578, "1.8.9", "/icons/servers/bukkit.png", ServerExecutor.BUKKIT, ServerVersion.VERSION_1_8_9);
+		mohistCards.add(new VersionCard(mohist, mohistRoot, ServerExecutor.MOHIST, ServerVersion.VERSION_1_18_2));
+		mohistCards.add(new VersionCard(mohist, mohistRoot, ServerExecutor.MOHIST, ServerVersion.VERSION_1_16_5));
+		mohistCards.add(new VersionCard(mohist, mohistRoot, ServerExecutor.MOHIST, ServerVersion.VERSION_1_12_2));
 
-		mohist_1_18_2 = new VersionCard(mohist, 276, 50, "1.18.2", "/icons/servers/mohist.png", ServerExecutor.MOHIST, ServerVersion.VERSION_1_18_2);
-		mohist_1_16_5 = new VersionCard(mohist, 689, 50, "1.16.5", "/icons/servers/mohist.png", ServerExecutor.MOHIST, ServerVersion.VERSION_1_16_5);
-		mohist_1_12_2 = new VersionCard(mohist, 276, 182, "1.12.2", "/icons/servers/mohist.png", ServerExecutor.MOHIST, ServerVersion.VERSION_1_12_2);
+		forgeCards.add(new VersionCard(forge, forgeRoot, ServerExecutor.FORGE, ServerVersion.VERSION_1_19_1));
+		forgeCards.add(new VersionCard(forge, forgeRoot, ServerExecutor.FORGE, ServerVersion.VERSION_1_18_2));
+		forgeCards.add(new VersionCard(forge, forgeRoot, ServerExecutor.FORGE, ServerVersion.VERSION_1_17_1));
+		forgeCards.add(new VersionCard(forge, forgeRoot, ServerExecutor.FORGE, ServerVersion.VERSION_1_16_5));
+		forgeCards.add(new VersionCard(forge, forgeRoot, ServerExecutor.FORGE, ServerVersion.VERSION_1_15_2));
+		forgeCards.add(new VersionCard(forge, forgeRoot, ServerExecutor.FORGE, ServerVersion.VERSION_1_14_4));
+		forgeCards.add(new VersionCard(forge, forgeRoot, ServerExecutor.FORGE, ServerVersion.VERSION_1_13_2));
+		forgeCards.add(new VersionCard(forge, forgeRoot, ServerExecutor.FORGE, ServerVersion.VERSION_1_12_2));
+		forgeCards.add(new VersionCard(forge, forgeRoot, ServerExecutor.FORGE, ServerVersion.VERSION_1_11_2));
+		forgeCards.add(new VersionCard(forge, forgeRoot, ServerExecutor.FORGE, ServerVersion.VERSION_1_8_9));
 
-		forge_1_19_1 = new VersionCard(forge, 276, 50, "1.19.1", "/icons/servers/forge.png", ServerExecutor.FORGE, ServerVersion.VERSION_1_19_1);
-		forge_1_18_2 = new VersionCard(forge, 689, 50, "1.18.2", "/icons/servers/forge.png", ServerExecutor.FORGE, ServerVersion.VERSION_1_18_2);
-		forge_1_17_1 = new VersionCard(forge, 276, 182, "1.17.1", "/icons/servers/forge.png", ServerExecutor.FORGE, ServerVersion.VERSION_1_17_1);
-		forge_1_16_5 = new VersionCard(forge, 689, 182, "1.16.5", "/icons/servers/forge.png", ServerExecutor.FORGE, ServerVersion.VERSION_1_16_5);
-		forge_1_15_2 = new VersionCard(forge, 276, 314, "1.15.2", "/icons/servers/forge.png", ServerExecutor.FORGE, ServerVersion.VERSION_1_15_2);
-		forge_1_14_4 = new VersionCard(forge, 689, 314, "1.14.4", "/icons/servers/forge.png", ServerExecutor.FORGE, ServerVersion.VERSION_1_14_4);
-		forge_1_13_2 = new VersionCard(forge, 276, 446, "1.13.2", "/icons/servers/forge.png", ServerExecutor.FORGE, ServerVersion.VERSION_1_13_2);
-		forge_1_12_2 = new VersionCard(forge, 689, 446, "1.12.2", "/icons/servers/forge.png", ServerExecutor.FORGE, ServerVersion.VERSION_1_12_2);
-		forge_1_11_2 = new VersionCard(forge, 276, 578, "1.11.2", "/icons/servers/forge.png", ServerExecutor.FORGE, ServerVersion.VERSION_1_11_2);
-		forge_1_8_9 = new VersionCard(forge, 689, 578, "1.8.9", "/icons/servers/forge.png", ServerExecutor.FORGE, ServerVersion.VERSION_1_8_9);
+		magmaCards.add(new VersionCard(magma, magmaRoot, ServerExecutor.MAGMA, ServerVersion.VERSION_1_18_2));
+		magmaCards.add(new VersionCard(magma, magmaRoot, ServerExecutor.MAGMA, ServerVersion.VERSION_1_16_5));
+		magmaCards.add(new VersionCard(magma, magmaRoot, ServerExecutor.MAGMA, ServerVersion.VERSION_1_12_2));
 
-		magma_1_18_2 = new VersionCard(magma, 276, 50, "1.18.2", "/icons/servers/magma.png", ServerExecutor.MAGMA, ServerVersion.VERSION_1_18_2);
-		magma_1_16_5 = new VersionCard(magma, 689, 50, "1.16.5", "/icons/servers/magma.png", ServerExecutor.MAGMA, ServerVersion.VERSION_1_16_5);
-		magma_1_12_2 = new VersionCard(magma, 276, 182, "1.12.2", "/icons/servers/magma.png", ServerExecutor.MAGMA, ServerVersion.VERSION_1_12_2);
-
+		versionCards.put("paper", paperCards);
+		versionCards.put("spigot", spigotCards);
+		versionCards.put("bukkit", bukkitCards);
+		versionCards.put("mohist", mohistCards);
+		versionCards.put("forge", forgeCards);
+		versionCards.put("magma", magmaCards);
+		
 		setAllInvisible();
 
 		paper.setVisible(true);
 
-		clickedCard = paper_1_19_1;
-		paper_1_19_1.setClicked(true);
+		clickedCard = paperCards.get(0);
+		clickedCard.setClicked(true);
 
-		deployClickEvent();
+		for(List<VersionCard> values : versionCards.values()) {
+			autoLayout(values);
+		}
 
 		pane.getChildren().addAll(paper, spigot, bukkit, mohist, forge, magma);
+		
 	}
-
-	private static void deployClickEvent() {
-		setClickEvent(paper_1_19_1);
-		setClickEvent(paper_1_18_2);
-		setClickEvent(paper_1_17_1);
-		setClickEvent(paper_1_16_5);
-		setClickEvent(paper_1_15_2);
-		setClickEvent(paper_1_14_4);
-		setClickEvent(paper_1_13_2);
-		setClickEvent(paper_1_12_2);
-		setClickEvent(paper_1_11_2);
-		setClickEvent(paper_1_8_9);
-
-		setClickEvent(spigot_1_19_1);
-		setClickEvent(spigot_1_18_2);
-		setClickEvent(spigot_1_17_1);
-		setClickEvent(spigot_1_16_5);
-		setClickEvent(spigot_1_15_2);
-		setClickEvent(spigot_1_14_4);
-		setClickEvent(spigot_1_13_2);
-		setClickEvent(spigot_1_12_2);
-		setClickEvent(spigot_1_11_2);
-		setClickEvent(spigot_1_8_9);
-
-		setClickEvent(bukkit_1_19_1);
-		setClickEvent(bukkit_1_18_2);
-		setClickEvent(bukkit_1_17_1);
-		setClickEvent(bukkit_1_16_5);
-		setClickEvent(bukkit_1_15_2);
-		setClickEvent(bukkit_1_14_4);
-		setClickEvent(bukkit_1_13_2);
-		setClickEvent(bukkit_1_12_2);
-		setClickEvent(bukkit_1_11_2);
-		setClickEvent(bukkit_1_8_9);
-
-		setClickEvent(mohist_1_18_2);
-		setClickEvent(mohist_1_16_5);
-		setClickEvent(mohist_1_12_2);
-
-		setClickEvent(forge_1_19_1);
-		setClickEvent(forge_1_18_2);
-		setClickEvent(forge_1_17_1);
-		setClickEvent(forge_1_16_5);
-		setClickEvent(forge_1_15_2);
-		setClickEvent(forge_1_14_4);
-		setClickEvent(forge_1_13_2);
-		setClickEvent(forge_1_12_2);
-		setClickEvent(forge_1_11_2);
-		setClickEvent(forge_1_8_9);
-
-		setClickEvent(magma_1_18_2);
-		setClickEvent(magma_1_16_5);
-		setClickEvent(magma_1_12_2);
+	
+	private static void autoLayout(List<VersionCard> list) {
+		
+		int column = 0;
+		int line = 0;
+		
+		for(VersionCard card : list) {
+			if(column > 1) {
+				line += 1;
+				column = 0;
+			}
+			card.setPosition(276 + (413 * column), 50 + (132 * line));
+			setClickEvent(card);
+			column += 1;
+		}
 	}
 
 	private static void setClickEvent(VersionCard card) {
@@ -199,6 +140,8 @@ public class ServerSelector {
 				clickedJDK.setClicked(false);
 				clickedJDK = null;
 			}
+			
+			ChooseVersion.nextButton.setDisable(false);
 			
 			card.setClicked(true);
 			clickedCard = card;
