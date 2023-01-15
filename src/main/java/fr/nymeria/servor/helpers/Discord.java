@@ -10,6 +10,7 @@ public class Discord {
 	public static DiscordRPC lib;
 	
 	public static void setup() {
+		System.out.println("Loading discord Rpc");
 		lib = DiscordRPC.INSTANCE;
         String applicationId = "1008831734550384730";
         String steamId = "";
@@ -56,6 +57,7 @@ public class Discord {
 	}
 	
 	public static void close() {
+		System.out.println("closing rpc connection");
 		lib.Discord_ClearPresence();
 	}
 	

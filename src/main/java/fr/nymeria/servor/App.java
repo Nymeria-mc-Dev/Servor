@@ -2,7 +2,7 @@ package fr.nymeria.servor;
 
 import java.io.IOException;
 
-import fr.nymeria.servor.helpers.Discord;
+import fr.nymeria.servor.helpers.Servor;
 import fr.nymeria.servor.scenes.MainScene;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -16,10 +16,9 @@ public class App extends Application {
     
     @Override
     public void start(Stage stage) throws IOException {
-    	
-    	Discord.setup();
-    	
     	App.stage = stage;
+    	
+    	Servor.init(stage);
     	
         stage.getIcons().add(new Image(this.getClass().getResource("/icons/logo.png").toExternalForm()));
         stage.initStyle(StageStyle.UNDECORATED);

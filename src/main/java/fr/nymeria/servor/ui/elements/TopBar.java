@@ -1,9 +1,10 @@
-package fr.nymeria.servor.ui;
+package fr.nymeria.servor.ui.elements;
 
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.helpers.Discord;
+import fr.nymeria.servor.helpers.FileHelper;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -43,6 +44,9 @@ public class TopBar {
 		close.setFill(Color.WHITE);
 		
 		close.setOnMouseClicked(event -> {
+			double x = App.getStage().getX();
+			double y = App.getStage().getY();
+			FileHelper.setAppLoc(x, y);
 	        Discord.close();
 			stage.close();
 		});

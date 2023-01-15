@@ -1,18 +1,17 @@
-package fr.nymeria.servor.ui;
+package fr.nymeria.servor.ui.elements;
 
-import de.jensd.fx.glyphs.GlyphsDude;
-import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.scenes.ChooseVersionScene;
 import javafx.animation.RotateTransition;
 import javafx.geometry.Pos;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.Background;
 import javafx.scene.layout.BackgroundFill;
 import javafx.scene.layout.CornerRadii;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
@@ -31,10 +30,7 @@ public class AddServerButton {
 		p.setBackground(background);
 		
 		
-		//Image button = new Image(App.class.getResource("icons/plus.png").toExternalForm());
-		Text button = GlyphsDude.createIcon(FontAwesomeIcon.PLUS, "40px");
-		
-		button.setFill(Color.WHITE);
+		ImageView button = new ImageView(new Image(App.class.getResource("/icons/plus.png").toExternalForm(), 40, 40, false, false));
 		
 		p.getChildren().add(button);
 		
@@ -45,9 +41,9 @@ public class AddServerButton {
 		RotateTransition rt = new RotateTransition(Duration.millis(500), button);
 		
 		p.hoverProperty().addListener(event -> {
-			rt.setByAngle(360);
+			rt.setByAngle(180);
 			rt.setCycleCount(1);
-		 
+			
 		    rt.play();
 		});
 		

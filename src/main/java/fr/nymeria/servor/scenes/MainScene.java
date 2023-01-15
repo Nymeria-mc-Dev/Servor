@@ -2,9 +2,9 @@ package fr.nymeria.servor.scenes;
 
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.helpers.Discord;
-import fr.nymeria.servor.ui.AddServerButton;
-import fr.nymeria.servor.ui.TopBar;
+import fr.nymeria.servor.ui.elements.AddServerButton;
 import fr.nymeria.servor.ui.elements.ServerCard;
+import fr.nymeria.servor.ui.elements.TopBar;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
