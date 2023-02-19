@@ -1,5 +1,6 @@
 package fr.nymeria.servor.helpers;
 
+import fr.nymeria.servor.ui.elements.ServerSelector;
 import javafx.stage.Stage;
 
 public class Servor {
@@ -8,6 +9,8 @@ public class Servor {
 		Discord.setup();
 	
 		FileHelper.init();
+		
+		ServerSelector.init();
 		
 		double[] loc = FileHelper.getAppLoc();
 		if(loc != null) {

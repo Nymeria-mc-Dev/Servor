@@ -3,7 +3,6 @@ package fr.nymeria.servor.ui.elements;
 import fr.nymeria.servor.enums.ServerExecutor;
 import fr.nymeria.servor.enums.ServerVersion;
 import fr.nymeria.servor.ui.ChooseVersion;
-import fr.nymeria.servor.ui.ServerSelector;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;

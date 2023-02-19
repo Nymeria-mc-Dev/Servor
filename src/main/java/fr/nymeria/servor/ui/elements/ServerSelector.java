@@ -1,4 +1,4 @@
-package fr.nymeria.servor.ui;
+package fr.nymeria.servor.ui.elements;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -7,8 +7,7 @@ import java.util.Map;
 
 import fr.nymeria.servor.enums.ServerExecutor;
 import fr.nymeria.servor.enums.ServerVersion;
-import fr.nymeria.servor.ui.elements.JDKButton;
-import fr.nymeria.servor.ui.elements.VersionCard;
+import fr.nymeria.servor.ui.ChooseVersion;
 import javafx.scene.layout.Pane;
 
 public class ServerSelector {
@@ -17,7 +16,7 @@ public class ServerSelector {
 	private static JDKButton clickedJDK;
 
 	private static Map<String, List<VersionCard>> versionCards = new HashMap<>();
-	
+
 	private static Pane paper = new Pane();
 	private static Pane spigot = new Pane();
 	private static Pane bukkit = new Pane();
@@ -25,22 +24,22 @@ public class ServerSelector {
 	private static Pane forge = new Pane();
 	private static Pane magma = new Pane();
 
-	public static void init(Pane pane) {
-		
+	public static void init() {
+
 		List<VersionCard> paperCards = new ArrayList<>();
 		List<VersionCard> spigotCards = new ArrayList<>();
 		List<VersionCard> bukkitCards = new ArrayList<>();
 		List<VersionCard> mohistCards = new ArrayList<>();
 		List<VersionCard> forgeCards = new ArrayList<>();
 		List<VersionCard> magmaCards = new ArrayList<>();
-		
+
 		String paperRoot = "/icons/servers/paper.png";
 		String spigotRoot = "/icons/servers/spigot.png";
 		String bukkitRoot = "/icons/servers/bukkit.png";
 		String mohistRoot = "/icons/servers/mohist.png";
 		String forgeRoot = "/icons/servers/forge.png";
 		String magmaRoot = "/icons/servers/magma.png";
-		
+
 		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_19_1));
 		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_18_2));
 		paperCards.add(new VersionCard(paper, paperRoot, ServerExecutor.PAPER, ServerVersion.VERSION_1_17_1));
@@ -99,7 +98,7 @@ public class ServerSelector {
 		versionCards.put("mohist", mohistCards);
 		versionCards.put("forge", forgeCards);
 		versionCards.put("magma", magmaCards);
-		
+
 		setAllInvisible();
 
 		paper.setVisible(true);
@@ -110,16 +109,17 @@ public class ServerSelector {
 		for(List<VersionCard> values : versionCards.values()) {
 			autoLayout(values);
 		}
+	}
 
+	public static void setPane(Pane pane) {
 		pane.getChildren().addAll(paper, spigot, bukkit, mohist, forge, magma);
-		
 	}
 	
 	private static void autoLayout(List<VersionCard> list) {
-		
+
 		int column = 0;
 		int line = 0;
-		
+
 		for(VersionCard card : list) {
 			if(column > 1) {
 				line += 1;
@@ -133,16 +133,16 @@ public class ServerSelector {
 
 	private static void setClickEvent(VersionCard card) {
 		card.get().setOnMouseClicked(event -> {
-			
+
 			if(clickedCard != null) {
 				clickedCard.setClicked(false);
 			}else if (clickedJDK != null) {
 				clickedJDK.setClicked(false);
 				clickedJDK = null;
 			}
-			
+
 			ChooseVersion.nextButton.setDisable(false);
-			
+
 			card.setClicked(true);
 			clickedCard = card;
 			String executor = card.getServerExecutor().toString();
@@ -184,19 +184,19 @@ public class ServerSelector {
 	public static VersionCard getClickedCard() {
 		return clickedCard;
 	}
-	
+
 	public static void setClickedCard(VersionCard card) {
 		clickedCard = card;
 	}
-	
+
 	public static void setClickedJDK(JDKButton jdkButton) {
 		clickedJDK = jdkButton;
 	}
-	
+
 	public static JDKButton getClickedJDK() {
 		return clickedJDK;
 	}
-	
+
 	private static void setAllInvisible() {
 		paper.setVisible(false);
 		spigot.setVisible(false);

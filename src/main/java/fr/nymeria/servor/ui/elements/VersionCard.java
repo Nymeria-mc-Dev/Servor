@@ -15,25 +15,25 @@ public class VersionCard {
 
 	private ServerExecutor serverExecutor;
 	private ServerVersion serverVersion;
-	
+
 	public Pane box;
-	
+
 	public Boolean clicked;
 
 	public VersionCard(Pane pane, String imagePath, ServerExecutor serverExecutor, ServerVersion serverVersion) {
 
 		String versionText = serverVersion.toString().replace("VERSION_", "").replace("_", ".");
-		
+
 		this.serverExecutor = serverExecutor;
 		this.serverVersion = serverVersion;
-		
+
 		clicked = false;
 
 		ImageView logo = new ImageView(new Image(App.class.getResource(imagePath).toExternalForm(), 51, 51, false, false));
-		
+
 		logo.setLayoutX(29);
 		logo.setLayoutY(16);
-		
+
 		box = new Pane();
 
 		box.setPrefSize(318, 83);
@@ -44,16 +44,16 @@ public class VersionCard {
 		version.setFill(Color.WHITE);
 
 		VBox textBox = new VBox();
-		
+
 		textBox.setPrefSize(318, 83);
 		textBox.getChildren().add(version);
 		textBox.setAlignment(Pos.CENTER);
-		
+
 		box.getChildren().addAll(logo, textBox);
 
 		pane.getChildren().addAll(box);
 	}
-	
+
 	public void setPosition(int x, int y) {
 		box.setTranslateX(x);
 		box.setTranslateY(y);
@@ -62,11 +62,11 @@ public class VersionCard {
 	public ServerVersion getServerVersion() {
 		return serverVersion;
 	}
-	
+
 	public ServerExecutor getServerExecutor() {
 		return serverExecutor;
 	}
-	
+
 	public void setClicked(boolean value) {
 		if(value) {
 			box.getStyleClass().add("versionCardBorder");

@@ -5,6 +5,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Comparator;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -15,6 +17,8 @@ public class FileHelper {
 	private static File servorFolder;
 	private static File serversFolder;
 	private static File starterFile;
+	private static File serversConfig;
+	private static File servers;
 
 	public static void init() {
 		servorFolder = new File(System.getenv("APPDATA") + "\\.Servor");
@@ -35,6 +39,61 @@ public class FileHelper {
 				e.printStackTrace();
 			}
 		}
+		serversConfig = new File(serversFolder + "\\Configs");
+		if(!serversConfig.exists()) {
+			serversConfig.mkdir();
+		}
+		servers = new File(serversFolder + "\\Servers");
+		if(!servers.exists()) {
+			servers.mkdir();
+		}
+
+		File[] files = serversFolder.listFiles();
+
+		Arrays.sort(files, new Comparator<File>() {
+			@Override
+			public int compare(File f1, File f2) {
+				return Long.compare(f2.lastModified(), f1.lastModified());
+			}
+		});
+
+		for (File file : files) {
+			System.out.println(file.getName() + " : " + file.lastModified());
+		}
+	}
+
+	public static File getServersConfigFolder() {
+		return serversConfig;
+	}
+
+	public static File getServersFolder() {
+		return servers;
+	}
+
+	public static void write(File FileToWrite, JSONObject object) {
+		try (FileWriter file = new FileWriter(FileToWrite)) {
+			file.write(object.toJSONString());
+			file.flush();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+	public static JSONObject read(File FileToRead) {
+		JSONParser jsonParser = new JSONParser();
+
+		try (FileReader reader = new FileReader(starterFile)){
+			JSONObject obj = (JSONObject) jsonParser.parse(reader);
+
+			return obj;
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -71,10 +130,5 @@ public class FileHelper {
 		return null;
 	}
 
-	
-	
-	public static File getServersFolder() {
-		return serversFolder;
-	}
 
 }

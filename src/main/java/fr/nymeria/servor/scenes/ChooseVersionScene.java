@@ -3,7 +3,7 @@ package fr.nymeria.servor.scenes;
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.helpers.Discord;
 import fr.nymeria.servor.ui.ChooseVersion;
-import fr.nymeria.servor.ui.ServerSelector;
+import fr.nymeria.servor.ui.elements.ServerSelector;
 import fr.nymeria.servor.ui.elements.TopBar;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -42,7 +42,7 @@ public class ChooseVersionScene {
 	}
 
 	private static void addElements() {
-		ServerSelector.init(pane);
+		ServerSelector.setPane(pane);
 		new ChooseVersion(pane);
 		new TopBar(pane, stage);
 	}

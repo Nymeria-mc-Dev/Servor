@@ -4,6 +4,7 @@ import fr.nymeria.servor.App;
 import fr.nymeria.servor.scenes.MainScene;
 import fr.nymeria.servor.scenes.ParametreScene;
 import fr.nymeria.servor.ui.elements.CustomJarBox;
+import fr.nymeria.servor.ui.elements.ServerSelector;
 import javafx.animation.ScaleTransition;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
