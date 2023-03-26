@@ -5,8 +5,6 @@ import fr.nymeria.servor.helpers.Discord;
 import fr.nymeria.servor.ui.elements.AddServerButton;
 import fr.nymeria.servor.ui.elements.ServerCard;
 import fr.nymeria.servor.ui.elements.TopBar;
-import fr.nymeria.servor.ui.elements.progressbar.ProgressBar;
-import fr.nymeria.servor.ui.elements.progressbar.ProgressType;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -36,22 +34,18 @@ public class MainScene {
         
         loaded = true;
     
-        ProgressBar progressBar = new ProgressBar(ProgressType.PROGRESS);
-        progressBar.setBackgroundColor("#F333");
-        progressBar.setWidth(100);
-        progressBar.setHeight(25);
-        progressBar.setColor("rgb(0, 255, 0)");
-        progressBar.setProgress(35);
-        progressBar.setBackgroundBorderRadius(10);
-        progressBar.setBorderRadius(10);
+        /*ProgressBar bar = new ProgressBar();
+        bar.setPrefSize(1080, 2);
+        bar.setProgress(0.62);
         
-        pane.getChildren().add(progressBar.get());
+        pane.getChildren().add(bar);*/
         
 		return scene;
 	}
 	
 	private static void addStyleSheets() {
     	pane.getStylesheets().add(App.class.getResource("/css/ServerCard.css").toExternalForm());
+    	pane.getStylesheets().add(App.class.getResource("/css/test.css").toExternalForm());
     }
     
     private static void addElements() {
