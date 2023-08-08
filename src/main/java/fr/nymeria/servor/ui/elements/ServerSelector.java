@@ -151,36 +151,79 @@ public class ServerSelector {
 		});
 	}
 
+	public static Pane getVisibleServer() {
+		if(paper.isVisible()) {
+			return paper;
+		}else if(spigot.isVisible()) {
+			return spigot;
+		}else if(bukkit.isVisible()) {
+			return bukkit;
+		}else if(mohist.isVisible()) {
+			return mohist;
+		}else if(forge.isVisible()) {
+			return forge;
+		}else if(magma.isVisible()) {
+			return magma;
+		}else {
+			paper.setVisible(true);
+			return paper;
+		}
+	}
+	
 	public static void setPaperVisible(boolean value) {
-		setAllInvisible();
+		//setAllInvisible();
 		paper.setVisible(value);
 	}
 
 	public static void setSpigotVisible(boolean value) {
-		setAllInvisible();
+		//setAllInvisible();
 		spigot.setVisible(value);
 	}
 
 	public static void setBukkitVisible(boolean value) {
-		setAllInvisible();
+		//setAllInvisible();
 		bukkit.setVisible(value);
 	}
 
 	public static void setMohistVisible(boolean value) {
-		setAllInvisible();
+		//setAllInvisible();
 		mohist.setVisible(value);
 	}
 
 	public static void setForgeVisible(boolean value) {
-		setAllInvisible();
+		//setAllInvisible();
 		forge.setVisible(value);
 	}
 
 	public static void setMagmaVisible(boolean value) {
-		setAllInvisible();
+		//setAllInvisible();
 		magma.setVisible(value);
 	}
+	
+	public static Pane getPaper() {
+		return paper;
+	}
+	
+	public static Pane getSpigot() {
+		return spigot;
+	}
+	
+	public static Pane getBukkit() {
+		return bukkit;
+	}
 
+	public static Pane getMohist() {
+		return mohist;
+	}
+	
+	public static Pane getForge() {
+		return forge;
+	}
+	
+	public static Pane getMagma() {
+		return magma;
+	}
+	
 	public static VersionCard getClickedCard() {
 		return clickedCard;
 	}

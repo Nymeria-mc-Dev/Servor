@@ -135,33 +135,33 @@ public class ChooseVersion {
 		HBox magma = addButton("Magma", 365);
 
 		paper.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, blueBar, 35);
 			ServerSelector.setPaperVisible(true);
+			changeServer(switcher, blueBar, 35, ServerSelector.getPaper());
 		});
 
 		spigot.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, blueBar, 101);
 			ServerSelector.setSpigotVisible(true);
+			changeServer(switcher, blueBar, 101, ServerSelector.getSpigot());
 		});
 
 		bukkit.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, blueBar, 167);
 			ServerSelector.setBukkitVisible(true);
+			changeServer(switcher, blueBar, 167, ServerSelector.getBukkit());
 		});
 
 		mohist.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, blueBar, 233);
 			ServerSelector.setMohistVisible(true);
+			changeServer(switcher, blueBar, 233, ServerSelector.getMohist());
 		});
 
 		forge.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, blueBar, 299);
 			ServerSelector.setForgeVisible(true);
+			changeServer(switcher, blueBar, 299, ServerSelector.getForge());
 		});
 
 		magma.setOnMouseClicked(event -> {
-			moveSwitcher(switcher, blueBar, 365);
 			ServerSelector.setMagmaVisible(true);
+			changeServer(switcher, blueBar, 365, ServerSelector.getMagma());
 		});
 		
 		customButton.setOnMouseClicked(e -> {
@@ -190,7 +190,27 @@ public class ChooseVersion {
 		versionText.setText(text);
 	}
 	
-	private static void moveSwitcher(HBox switcher, Rectangle blueBar, double posY) {
+	private static void changeServer(HBox switcher, Rectangle blueBar, double posY, Pane newServer) {
+		
+		double initialY = switcher.getTranslateY();
+		
+		Pane holdServer = ServerSelector.getVisibleServer();
+		
+		TranslateTransition translationHold = new TranslateTransition(Duration.millis(1000), holdServer);
+		TranslateTransition translationNew = new TranslateTransition(Duration.millis(1000), newServer);
+		
+		if(initialY - posY > 0) { //le switcher monte
+			newServer.setTranslateX(- newServer.getWidth() * 3);
+			translationHold.setByX(holdServer.getWidth() * 3);
+			translationNew.setByX(newServer.getWidth() * 3);
+		}else if(initialY - posY < 0) { //le switcher dessend
+			newServer.setTranslateX(newServer.getWidth() * 3);
+			translationHold.setByX(- holdServer.getWidth() * 3);
+			translationNew.setByX(- newServer.getWidth() * 3);
+		}
+		
+		translationHold.play();
+		translationNew.play();
 		
 		ScaleTransition st = new ScaleTransition(Duration.millis(200), blueBar);
 		st.setFromX(0);

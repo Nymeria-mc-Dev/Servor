@@ -22,13 +22,13 @@ public class App extends Application {
 
 		Servor.init(stage);
 
-		Stage loading = new Stage();
+		/*Stage loading = new Stage();
 		loading.getIcons().add(new Image(this.getClass().getResource("/icons/logo.png").toExternalForm()));
 		loading.initStyle(StageStyle.UNDECORATED);
 		loading.setResizable(false);
 		loading.setTitle("Servor");
 		loading.setScene(ChooseVersionScene.get());
-		loading.show();
+		loading.show();*/
 
 		stage.getIcons().add(new Image(this.getClass().getResource("/icons/logo.png").toExternalForm()));
 		stage.initStyle(StageStyle.UNDECORATED);

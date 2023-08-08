@@ -4,6 +4,7 @@ import fr.nymeria.servor.App;
 import fr.nymeria.servor.helpers.Discord;
 import fr.nymeria.servor.ui.elements.AddServerButton;
 import fr.nymeria.servor.ui.elements.ServerCard;
+import fr.nymeria.servor.ui.elements.SettingsButton;
 import fr.nymeria.servor.ui.elements.TopBar;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -49,6 +50,7 @@ public class MainScene {
     }
     
     private static void addElements() {
+    	new SettingsButton(pane, stage);
     	new AddServerButton(pane, stage);
     	new ServerCard(pane, 178, 56);
     	new ServerCard(pane, 594, 56);
