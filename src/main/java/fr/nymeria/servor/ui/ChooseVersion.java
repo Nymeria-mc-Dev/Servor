@@ -18,11 +18,11 @@ import javafx.scene.text.Text;
 import javafx.util.Duration;
 
 public class ChooseVersion {
-	
+
 	public static HBox nextButton;
-	
+
 	private Boolean customClicked = false;
-	
+
 	private static Text versionText;
 
 	public ChooseVersion(Pane pane) {
@@ -33,23 +33,23 @@ public class ChooseVersion {
 		server.getStyleClass().add("menu");
 
 		Text minecraftVersionText = new Text("Minecraft Version :");
-		
+
 		minecraftVersionText.setFill(Color.WHITE);
 		minecraftVersionText.setStyle("-fx-font-size: 20px;");
-		
+
 		versionText = new Text(" Paper 1.19.2");
-		
+
 		versionText.setFill(Color.WHITE);
 		versionText.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
-		
+
 		HBox versionTextBox = new HBox();
-		
+
 		versionTextBox.setTranslateX(42);
 		versionTextBox.setAlignment(Pos.CENTER);
 		versionTextBox.setPrefSize(383, 44);
-		
+
 		versionTextBox.getChildren().addAll(minecraftVersionText, versionText);
-		
+
 		HBox switcher = new HBox();
 
 		switcher.setPrefSize(206, 66);
@@ -116,7 +116,7 @@ public class ChooseVersion {
 		customText.setFill(Color.WHITE);
 
 		customButton.getChildren().add(customText);
-		
+
 		CustomJarBox customPane = new CustomJarBox();
 
 		choiseBar.getChildren().addAll(nextButton, cancelButton, customButton, versionTextBox);
@@ -135,35 +135,29 @@ public class ChooseVersion {
 		HBox magma = addButton("Magma", 365);
 
 		paper.setOnMouseClicked(event -> {
-			ServerSelector.setPaperVisible(true);
 			changeServer(switcher, blueBar, 35, ServerSelector.getPaper());
 		});
 
 		spigot.setOnMouseClicked(event -> {
-			ServerSelector.setSpigotVisible(true);
 			changeServer(switcher, blueBar, 101, ServerSelector.getSpigot());
 		});
 
 		bukkit.setOnMouseClicked(event -> {
-			ServerSelector.setBukkitVisible(true);
 			changeServer(switcher, blueBar, 167, ServerSelector.getBukkit());
 		});
 
 		mohist.setOnMouseClicked(event -> {
-			ServerSelector.setMohistVisible(true);
 			changeServer(switcher, blueBar, 233, ServerSelector.getMohist());
 		});
 
 		forge.setOnMouseClicked(event -> {
-			ServerSelector.setForgeVisible(true);
 			changeServer(switcher, blueBar, 299, ServerSelector.getForge());
 		});
 
 		magma.setOnMouseClicked(event -> {
-			ServerSelector.setMagmaVisible(true);
 			changeServer(switcher, blueBar, 365, ServerSelector.getMagma());
 		});
-		
+
 		customButton.setOnMouseClicked(e -> {
 			if (customClicked) {
 				customPane.setVisible(false);
@@ -189,46 +183,55 @@ public class ChooseVersion {
 	public static void setVersionText(String text) {
 		versionText.setText(text);
 	}
-	
-	private static void changeServer(HBox switcher, Rectangle blueBar, double posY, Pane newServer) {
-		
-		double initialY = switcher.getTranslateY();
-		
+
+	private void changeServer(HBox switcher, Rectangle blueBar, double posY, Pane newServer) {
+
 		Pane holdServer = ServerSelector.getVisibleServer();
+		
+		newServer.setVisible(true);
+		
+		double initialSwitcherY = switcher.getTranslateY();
 		
 		TranslateTransition translationHold = new TranslateTransition(Duration.millis(1000), holdServer);
 		TranslateTransition translationNew = new TranslateTransition(Duration.millis(1000), newServer);
-		
-		if(initialY - posY > 0) { //le switcher monte
-			newServer.setTranslateX(- newServer.getWidth() * 3);
-			translationHold.setByX(holdServer.getWidth() * 3);
-			translationNew.setByX(newServer.getWidth() * 3);
-		}else if(initialY - posY < 0) { //le switcher dessend
-			newServer.setTranslateX(newServer.getWidth() * 3);
-			translationHold.setByX(- holdServer.getWidth() * 3);
-			translationNew.setByX(- newServer.getWidth() * 3);
+
+		if(initialSwitcherY - posY > 0) { //le switcher monte
+			newServer.setTranslateX(-1080);
+			translationHold.setByX(1080);
+			translationNew.setToX(0);
+		}else if(initialSwitcherY - posY < 0) { //le switcher dessend
+			newServer.setTranslateX(1080);
+			translationHold.setByX(-1080);
+			translationNew.setToX(0);
 		}
+
+		translationHold.setOnFinished(event -> {
+            holdServer.setVisible(false);
+        });
+		
+		translationHold.setCycleCount(1);
+		translationNew.setCycleCount(1);
 		
 		translationHold.play();
 		translationNew.play();
-		
+
 		ScaleTransition st = new ScaleTransition(Duration.millis(200), blueBar);
 		st.setFromX(0);
 		st.setToX(1);
-		
+
 		TranslateTransition transition = new TranslateTransition(Duration.millis(500), switcher);
 		transition.setToY(posY/* - switcher.getTranslateY()*/);
 		transition.setOnFinished(e -> {
 			st.play();
 		});
-		
+
 		ScaleTransition blueBarT = new ScaleTransition(Duration.millis(200), blueBar);
 		blueBarT.setFromX(1);
 		blueBarT.setToX(0);
 		blueBarT.setOnFinished(e -> {
 			transition.play();
 		});
-		
+
 		blueBarT.play();
 	}
 
