@@ -1,10 +1,10 @@
 package fr.nymeria.servor;
 
 import java.io.IOException;
+import java.net.URL;
 
 import fr.nymeria.servor.helpers.Loading;
 import fr.nymeria.servor.helpers.Servor;
-import fr.nymeria.servor.scenes.ChooseVersionScene;
 import fr.nymeria.servor.scenes.MainScene;
 import javafx.application.Application;
 import javafx.scene.Scene;
@@ -15,14 +15,13 @@ import javafx.stage.StageStyle;
 public class App extends Application {
 
 	private static Stage stage;
+	private static final Image appLogo = new Image(getResource("/icons/logo.png").toExternalForm());
 
 	@Override
 	public void start(Stage stage) throws IOException {
 
 		this.stage = stage;
 
-		Image appLogo = new Image(this.getClass().getResource("/icons/logo.png").toExternalForm());
-		
 		Stage loading = new Stage();
 		loading.getIcons().add(appLogo);
 		loading.initStyle(StageStyle.UNDECORATED);
@@ -32,7 +31,7 @@ public class App extends Application {
 		loading.show();
 
 		Servor.init(stage);
-		
+
 		stage.getIcons().add(appLogo);
 		stage.initStyle(StageStyle.UNDECORATED);
 		stage.setResizable(false);
@@ -41,6 +40,12 @@ public class App extends Application {
 		stage.show();
 
 		Loading.close();
+
+
+	}
+
+	public static URL getResource(String ressource) {
+		return App.class.getResource(ressource);
 	}
 
 	public static Stage getStage() {

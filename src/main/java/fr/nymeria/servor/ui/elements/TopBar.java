@@ -68,7 +68,7 @@ public class TopBar {
 		name.setTranslateX(1080 / 2 - (name.getLayoutBounds().getWidth() / 2));
 		name.setTranslateY(25);
 		
-		ImageView icon = new ImageView(new Image(App.class.getResource("/icons/logo.png").toExternalForm(), 25, 25, false, false));
+		ImageView icon = new ImageView(new Image(App.getResource("/icons/logo.png").toExternalForm(), 25, 25, false, false));
 		icon.setTranslateY(5);
 		icon.setTranslateX(5);
 		
