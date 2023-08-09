@@ -23,7 +23,7 @@ public class ChooseVersionScene {
 
 		pane.setStyle("-fx-background-color: #272727;");
 
-		Discord.setDetail("Crée un nouveau serveur");
+		Discord.setDetail("Créer un nouveau serveur");
         Discord.setState("Create serveur");
         Discord.setSmallImage("plus");
 		
