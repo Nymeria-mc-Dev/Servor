@@ -1,9 +1,9 @@
-package fr.nymeria.servor.ui.elements;
+package fr.nymeria.servor.ui.elements.Settings;
 
 import de.jensd.fx.glyphs.GlyphsDude;
 import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import fr.nymeria.servor.App;
-import fr.nymeria.servor.scenes.SettingsScene;
+import fr.nymeria.servor.scenes.MainScene;
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Pos;
 import javafx.scene.layout.Background;
@@ -16,28 +16,27 @@ import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 
-public class SettingsButton {
-	
-	public SettingsButton(Pane pane, Stage stage) {
-		
+public class BackButton {
+
+	public BackButton(Pane pane, Stage stage) {
+
 		BackgroundFill backgroundFill = new BackgroundFill(Color.valueOf("#0066FF"), new CornerRadii(100), null);
 		Background background = new Background(backgroundFill);
-		
+
 		HBox p = new HBox();
 		p.setPrefSize(50, 50);
-		p.setTranslateX(1017);
-		p.setTranslateY(574.25);
+		p.setTranslateX(13);
+		p.setTranslateY(644.25);
 		p.setAlignment(Pos.CENTER);
 		p.setBackground(background);
-		
-		
-		Text button =  GlyphsDude.createIcon(FontAwesomeIcon.GEARS, "25px");
+
+		Text button =  GlyphsDude.createIcon(FontAwesomeIcon.ARROW_LEFT, "25px");
 		button.setFill(Color.WHITE);
-		
+
 		p.getChildren().add(button);
-		
+
 		p.setOnMouseClicked(event -> {
-			App.setScene(SettingsScene.get());
+			App.setScene(MainScene.get());
 		});
 
 		p.hoverProperty().addListener((observable, oldValue, newValue) -> {
@@ -51,7 +50,7 @@ public class SettingsButton {
 			}
 			st.play();
 		});
-		
+
 		pane.getChildren().addAll(p);
 	}
 

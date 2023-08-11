@@ -20,7 +20,7 @@ public class App extends Application {
 	@Override
 	public void start(Stage stage) throws IOException {
 
-		this.stage = stage;
+		App.stage = stage;
 
 		Stage loading = new Stage();
 		loading.getIcons().add(appLogo);

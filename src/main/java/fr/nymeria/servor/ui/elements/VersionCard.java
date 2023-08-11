@@ -3,6 +3,8 @@ package fr.nymeria.servor.ui.elements;
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.enums.ServerExecutor;
 import fr.nymeria.servor.enums.ServerVersion;
+import javafx.animation.RotateTransition;
+import javafx.animation.ScaleTransition;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -10,6 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class VersionCard {
 
@@ -29,7 +32,7 @@ public class VersionCard {
 
 		clicked = false;
 
-		ImageView logo = new ImageView(new Image(App.class.getResource(imagePath).toExternalForm(), 51, 51, false, false));
+		ImageView logo = new ImageView(new Image(App.getResource(imagePath).toExternalForm(), 51, 51, false, true));
 
 		logo.setLayoutX(29);
 		logo.setLayoutY(16);
@@ -50,6 +53,24 @@ public class VersionCard {
 		textBox.setAlignment(Pos.CENTER);
 
 		box.getChildren().addAll(logo, textBox);
+		
+		box.hoverProperty().addListener((observable, oldValue, newValue) -> {
+			
+			ScaleTransition st = new ScaleTransition(Duration.millis(200), box);
+			RotateTransition rt = new RotateTransition(Duration.millis(200), box);
+			
+			if(newValue) {	
+				st.setToX(1.1);
+				st.setToY(1.1);
+				rt.setToAngle(-2.5);
+			}else {
+				st.setToX(1);
+				st.setToY(1);
+				rt.setToAngle(0);
+			}
+			st.play();
+			rt.play();
+		});
 
 		pane.getChildren().addAll(box);
 	}

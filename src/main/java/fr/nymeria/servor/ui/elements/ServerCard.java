@@ -45,6 +45,7 @@ public class ServerCard {
 		
 		box.getChildren().add(gestion);
 		
+		
 		pane.getChildren().addAll(card, button, box);
 	}
 

@@ -220,7 +220,7 @@ public class ChooseVersion {
 		st.setToX(1);
 
 		TranslateTransition transition = new TranslateTransition(Duration.millis(500), switcher);
-		transition.setToY(posY/* - switcher.getTranslateY()*/);
+		transition.setToY(posY);
 		transition.setOnFinished(e -> {
 			st.play();
 		});
