@@ -19,10 +19,12 @@ public class ParameterContentPage {
         root.setTranslateY(55.0d);
         root.setTranslateX(355.0d);
 
+        // Server Name Text Field
         TextField serverNameField = createTextField(Settings.ServerVersion, 650.0d, 70.0d, 36);
 
+        // Server Port Text Field
         HBox serverPortBox = new HBox();
-        serverPortBox.setTranslateY(90.0d);
+        serverPortBox.setTranslateY(50.0d);
 
         Text serverPort = new Text("Server Port : ");
         serverPort.setTranslateY(10.0d);
@@ -32,6 +34,8 @@ public class ParameterContentPage {
         TextField serverPortField = createTextField("25565", 170.0d, 40.0d, 24);
 
         serverPortBox.getChildren().addAll(serverPort, serverPortField);
+
+        // Server Max Ram Slider
 
         root.getChildren().addAll(serverNameField, serverPortBox);
 
