@@ -51,6 +51,7 @@ public class TopBar {
 			FileHelper.setAppLoc(x, y);
 	        Discord.close();
 			stage.close();
+			System.exit(0);
 		});
 		
 		Text reduce = GlyphsDude.createIcon(FontAwesomeIcon.MINUS, "25px");
