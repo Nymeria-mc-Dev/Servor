@@ -1,5 +1,6 @@
 package fr.nymeria.servor.ui.elements;
 
+import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
 import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
@@ -8,6 +9,7 @@ import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
+import javafx.util.Duration;
 
 public class ServerCard {
 
@@ -17,7 +19,6 @@ public class ServerCard {
 		if(x < 40) x = 40;
 		
 		Rectangle card = new Rectangle();
-
 		card.setTranslateX(x);
 		card.setTranslateY(y);
 		card.setWidth(309);
@@ -46,14 +47,12 @@ public class ServerCard {
 
 		// Button
 		Region button = new Region();
-		
 		button.setPrefSize(309, 39);
 		button.setTranslateX(x);
 		button.setTranslateY(y + 131);
 		button.getStyleClass().add("gestionButton");
 
 		HBox box = new HBox();
-		
 		box.setPrefSize(309, 39);
 		box.setTranslateX(x);
 		box.setTranslateY(y + 131);
@@ -64,7 +63,21 @@ public class ServerCard {
 		gestion.setFill(Color.WHITE);
 		
 		box.getChildren().add(gestion);
-		
+
+		gestion.hoverProperty().addListener((observable, oldValue, newValue) -> {
+			TranslateTransition buttonTrans = new TranslateTransition(Duration.millis(200), gestion);
+			TranslateTransition boxTrans = new TranslateTransition(Duration.millis(200), box);
+
+			if (newValue) {
+                buttonTrans.setToX(5);
+                buttonTrans.setToY(5);
+			} else {
+				buttonTrans.setToX(0);
+				buttonTrans.setToY(0);
+			}
+
+			buttonTrans.play();
+		});
 		
 		pane.getChildren().addAll(card, cardContent, button, box);
 	}
