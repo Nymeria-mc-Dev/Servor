@@ -2,10 +2,13 @@ package fr.nymeria.servor.ui.elements;
 
 import fr.nymeria.servor.helpers.Settings;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
+import javafx.scene.text.Text;
 
 import javax.swing.*;
 
@@ -16,19 +19,33 @@ public class ParameterContentPage {
         root.setTranslateY(55.0d);
         root.setTranslateX(355.0d);
 
-        TextField serverNameField = new TextField(Settings.ServerVersion);
-        serverNameField.setMinWidth(650.0d);
-        serverNameField.setMinHeight(70.0d);
-        serverNameField.setFont(Font.font("Poppins", FontWeight.NORMAL, 36));
-        serverNameField.setStyle("-fx-background-color: #363636; -fx-background-radius: 9px; -fx-alignment: center; -fx-text-fill: #fff");
+        TextField serverNameField = createTextField(Settings.ServerVersion, 650.0d, 70.0d, 36);
 
-        root.getChildren().addAll(serverNameField);
+        HBox serverPortBox = new HBox();
+        serverPortBox.setTranslateY(90.0d);
+
+        Text serverPort = new Text("Server Port : ");
+        serverPort.setTranslateY(10.0d);
+        serverPort.setFill(Color.WHITE);
+        serverPort.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
+
+        TextField serverPortField = createTextField("25565", 170.0d, 40.0d, 24);
+
+        serverPortBox.getChildren().addAll(serverPort, serverPortField);
+
+        root.getChildren().addAll(serverNameField, serverPortBox);
 
         pane.getChildren().add(root);
 
     }
 
-    private TextField createTextField() {
-        return new TextField("Att julfit");
+    private TextField createTextField(String text, double width, double height, int fontSize) {
+        TextField textField = new TextField(text);
+        textField.setMinWidth(width);
+        textField.setMinHeight(height);
+        textField.setFont(Font.font("Poppins", FontWeight.NORMAL, fontSize));
+        textField.setStyle("-fx-background-color: #363636; -fx-background-radius: 9px; -fx-alignment: center; -fx-text-fill: #fff");
+
+        return textField;
     }
 }

@@ -16,7 +16,6 @@ public class SideParameterPanel {
         sidePanel.setStyle("-fx-background-color: #363636; ");
         sidePanel.setMinWidth(275.0d);
         sidePanel.setMinHeight(pane.getHeight());
-        sidePanel.setEffect(new DropShadow(25, Color.rgb(0, 0, 0, 0.8)));
 
         // Server version
         HBox serverVersionBox = new HBox();
