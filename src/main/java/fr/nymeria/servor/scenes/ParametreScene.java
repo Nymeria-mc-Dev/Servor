@@ -3,6 +3,8 @@ package fr.nymeria.servor.scenes;
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.helpers.Discord;
 import fr.nymeria.servor.ui.Parameter;
+import fr.nymeria.servor.ui.elements.ParameterContentPage;
+import fr.nymeria.servor.ui.elements.SideParameterPanel;
 import fr.nymeria.servor.ui.elements.TopBar;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -42,7 +44,9 @@ public class ParametreScene {
 
 	private static void addElements() {
 		new Parameter(pane);
+		new SideParameterPanel(pane);
 		new TopBar(pane, stage);
+		new ParameterContentPage(pane);
 	}
 
 }

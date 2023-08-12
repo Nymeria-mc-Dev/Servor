@@ -58,7 +58,7 @@ public class ServerCard {
 		box.setTranslateY(y + 131);
 		box.setAlignment(Pos.BASELINE_CENTER);
 		
-		Text gestion = new Text("Gestion");
+		Text gestion = new Text("Manage");
 		gestion.setStyle("-fx-font-size: 24px; -fx-font-familly: regular;");
 		gestion.setFill(Color.WHITE);
 		
@@ -81,5 +81,4 @@ public class ServerCard {
 		
 		pane.getChildren().addAll(card, cardContent, button, box);
 	}
-
 }
