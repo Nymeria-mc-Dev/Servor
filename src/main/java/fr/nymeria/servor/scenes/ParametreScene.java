@@ -10,6 +10,8 @@ import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
 
+import java.util.Objects;
+
 public class ParametreScene {
 
 	private static Stage stage;
@@ -39,14 +41,14 @@ public class ParametreScene {
 	}
 
 	private static void addStyleSheets() {
-		pane.getStylesheets().add(App.class.getResource("/css/Parameters.css").toExternalForm());
+		pane.getStylesheets().add(Objects.requireNonNull(App.class.getResource("/css/Parameters.css")).toExternalForm());
 	}
 
 	private static void addElements() {
 		new Parameter(pane);
-		new SideParameterPanel(pane);
+		SideParameterPanel spp = new SideParameterPanel(pane);
 		new TopBar(pane, stage);
-		new ParameterContentPage(pane);
+		new ParameterContentPage(pane, spp);
 	}
 
 }

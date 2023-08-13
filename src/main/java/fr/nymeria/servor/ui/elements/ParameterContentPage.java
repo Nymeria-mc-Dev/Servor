@@ -1,10 +1,7 @@
 package fr.nymeria.servor.ui.elements;
 
 import fr.nymeria.servor.helpers.Settings;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.scene.control.CheckBox;
-import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -18,7 +15,8 @@ import javafx.scene.text.Text;
 import javax.swing.*;
 
 public class ParameterContentPage {
-    public ParameterContentPage(Pane pane) {
+    private TextField serverJavaArgsField;
+    public ParameterContentPage(Pane pane, SideParameterPanel sideParameterPanel) {
 
         VBox root = new VBox();
         root.setTranslateY(55.0d);
@@ -26,6 +24,7 @@ public class ParameterContentPage {
 
         // Server Name Text Field
         TextField serverNameField = createTextField(Settings.ServerVersion, 650.0d, 70.0d, 36);
+        serverNameField.textProperty().addListener((obs, oldValue, newValue) -> sideParameterPanel.setServerName(serverNameField.getText()));
 
         // Server Port Text Field
         HBox serverPortBox = new HBox();
@@ -37,6 +36,7 @@ public class ParameterContentPage {
         serverPort.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
 
         TextField serverPortField = createTextField("25565", 170.0d, 40.0d, 24);
+        serverPortField.textProperty().addListener((obs, oldv, newv) -> sideParameterPanel.setServerPort(serverPortField.getText()));
 
         serverPortBox.getChildren().addAll(serverPort, serverPortField);
 
@@ -89,6 +89,11 @@ public class ParameterContentPage {
             if (serverMaxRamSlider.getValue() < serverMinRamSlider.getValue()) {
                 serverMinRamSlider.setValue(serverMaxRamSlider.getValue());
             }
+
+            serverJavaArgsField.setText("java -Xmx " + (int) serverMaxRamSlider.getValue() + "Mb -Xms " + (int) serverMinRamSlider.getValue() + "Mb -jar server.jar");
+
+            sideParameterPanel.setServerMaxRamValue(String.valueOf((int) serverMaxRamSlider.getValue()));
+            sideParameterPanel.setServerMinRamValue(String.valueOf((int) serverMinRamSlider.getValue()));
         });
 
         serverMinRamSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -100,7 +105,28 @@ public class ParameterContentPage {
             if (serverMinRamSlider.getValue() > serverMaxRamSlider.getValue()) {
                 serverMaxRamSlider.setValue(serverMinRamSlider.getValue());
             }
+
+            serverJavaArgsField.setText("java -Xmx " + (int) serverMaxRamSlider.getValue() + "Mb -Xms " + (int) serverMinRamSlider.getValue() + "Mb -jar server.jar");
+
+            sideParameterPanel.setServerMaxRamValue(String.valueOf((int) serverMaxRamSlider.getValue()));
+            sideParameterPanel.setServerMinRamValue(String.valueOf((int) serverMinRamSlider.getValue()));
         });
+
+        /* serverMaxRamField.textProperty().addListener((obs, oldv, newv) -> {
+            serverMaxRamSlider.setValue(Integer.parseInt(String.valueOf(serverMaxRamField)));
+
+            if (serverMinRamSlider.getValue() > serverMaxRamSlider.getValue()) {
+                serverMaxRamSlider.setValue(serverMinRamSlider.getValue());
+            }
+        });
+
+        serverMinRamField.textProperty().addListener((obs, oldv, newv) -> {
+            serverMinRamSlider.setValue(Integer.parseInt(String.valueOf(serverMinRamField)));
+
+            if (serverMaxRamSlider.getValue() < serverMinRamSlider.getValue()) {
+                serverMinRamSlider.setValue(serverMaxRamSlider.getValue());
+            }
+        }); */
 
         serverMinRamBox.getChildren().addAll(serverMinRam, serverMinRamSlider, serverMinRamField);
 
@@ -114,6 +140,13 @@ public class ParameterContentPage {
 
         CheckBox serverDockedButton = new CheckBox();
         serverDockedButton.setTranslateY(7.0d);
+        serverDockedButton.selectedProperty().addListener((obs, oldv, newv) -> {
+            if (serverDockedButton.isSelected()) {
+                sideParameterPanel.setIsServerDocked("Yes");
+            } else {
+                sideParameterPanel.setIsServerDocked("No");
+            }
+        });
 
         serverDockedBox.getChildren().addAll(serverDocked, serverDockedButton);
 
@@ -125,7 +158,7 @@ public class ParameterContentPage {
         serverJavaArgs.setFill(Color.WHITE);
         serverJavaArgs.setFont(Font.font("Poppins", FontWeight.NORMAL, 24));
 
-        TextField serverJavaArgsField = createTextField("java -Xmx " + (int) serverMaxRamSlider.getValue() + "Mb -Xms " + (int) serverMinRamSlider.getValue() + "Mb -jar server.jar", 625.0d, 60.0d, 20);
+        serverJavaArgsField = createTextField("java -Xmx " + (int) serverMaxRamSlider.getValue() + "Mb -Xms " + (int) serverMinRamSlider.getValue() + "Mb -jar server.jar", 625.0d, 60.0d, 20);
 
         serverJavaArgsBox.getChildren().addAll(serverJavaArgs, serverJavaArgsField);
 

@@ -11,6 +11,11 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class SideParameterPanel {
+    private Text serverNameValue;
+    private Text serverPortValue;
+    private Text serverMaxRamValue;
+    private Text serverMinRamValue;
+    private Text serverDockeValue;
     public SideParameterPanel(Pane pane) {
         VBox sidePanel = new VBox();
         sidePanel.setStyle("-fx-background-color: #363636; ");
@@ -41,7 +46,7 @@ public class SideParameterPanel {
         serverName.setFill(Color.WHITE);
         serverName.setFont(Font.font("Poppins", FontWeight.NORMAL, 18));
 
-        Text serverNameValue = new Text("None");
+        serverNameValue = new Text("None");
         serverNameValue.setFill(Color.WHITE);
         serverNameValue.setFont(Font.font("Poppins", FontWeight.BOLD, 18));
 
@@ -56,7 +61,7 @@ public class SideParameterPanel {
         serverMaxRam.setFill(Color.WHITE);
         serverMaxRam.setFont(Font.font("Poppins", FontWeight.NORMAL, 18));
 
-        Text serverMaxRamValue = new Text("None");
+        serverMaxRamValue = new Text("None");
         serverMaxRamValue.setFill(Color.WHITE);
         serverMaxRamValue.setFont(Font.font("Poppins", FontWeight.BOLD, 18));
 
@@ -71,7 +76,7 @@ public class SideParameterPanel {
         serverMinRam.setFill(Color.WHITE);
         serverMinRam.setFont(Font.font("Poppins", FontWeight.NORMAL, 18));
 
-        Text serverMinRamValue = new Text("None");
+        serverMinRamValue = new Text("None");
         serverMinRamValue.setFill(Color.WHITE);
         serverMinRamValue.setFont(Font.font("Poppins", FontWeight.BOLD, 18));
 
@@ -86,7 +91,7 @@ public class SideParameterPanel {
         serverDoke.setFill(Color.WHITE);
         serverDoke.setFont(Font.font("Poppins", FontWeight.NORMAL, 18));
 
-        Text serverDockeValue = new Text("No");
+        serverDockeValue = new Text("No");
         serverDockeValue.setFill(Color.WHITE);
         serverDockeValue.setFont(Font.font("Poppins", FontWeight.BOLD, 18));
 
@@ -101,7 +106,7 @@ public class SideParameterPanel {
         serverPort.setFill(Color.WHITE);
         serverPort.setFont(Font.font("Poppins", FontWeight.NORMAL, 18));
 
-        Text serverPortValue = new Text("No");
+        serverPortValue = new Text("None");
         serverPortValue.setFill(Color.WHITE);
         serverPortValue.setFont(Font.font("Poppins", FontWeight.BOLD, 18));
 
@@ -110,5 +115,25 @@ public class SideParameterPanel {
         sidePanel.getChildren().addAll(serverVersionBox, serverNameBox, serverMaxRamBox, serverMinRamBox, serverDockeBox, serverPortBox);
 
         pane.getChildren().add(sidePanel);
+    }
+
+    public void setServerName(String name) {
+        serverNameValue.setText(name);
+    }
+
+    public void setServerPort(String port) {
+        serverPortValue.setText(port);
+    }
+
+    public void setServerMaxRamValue(String maxRamValue) {
+        serverMaxRamValue.setText(maxRamValue);
+    }
+
+    public void setServerMinRamValue(String minRamValue) {
+        serverMinRamValue.setText(minRamValue);
+    }
+
+    public void setIsServerDocked(String isDocked) {
+        serverDockeValue.setText(isDocked);
     }
 }
