@@ -12,4 +12,8 @@ public class JsonHelper {
 		return (double) object.get(value);
 	}
 	
+	public static String getStringValue(JSONObject object, String value) {
+		return (String) object.get(value);
+	}
+	
 }
