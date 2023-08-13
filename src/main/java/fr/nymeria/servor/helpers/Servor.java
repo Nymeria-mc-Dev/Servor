@@ -6,9 +6,9 @@ import javafx.stage.Stage;
 public class Servor {
 
 	public static void init(Stage stage) {	
-		Discord.setup();
-	
 		FileHelper.init();
+		
+		Discord.setup();
 		
 		ServerSelector.init();
 		
