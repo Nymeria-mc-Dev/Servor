@@ -4,6 +4,7 @@ import fr.nymeria.servor.App;
 import fr.nymeria.servor.helpers.Discord;
 import fr.nymeria.servor.ui.elements.TopBar;
 import fr.nymeria.servor.ui.elements.Settings.BackButton;
+import fr.nymeria.servor.ui.elements.Settings.DockerPath;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
@@ -43,5 +44,6 @@ public class SettingsScene {
     private static void addElements() {
     	new TopBar(pane, stage);
     	new BackButton(pane, stage);
+    	new DockerPath(pane);
     }
 }

@@ -1,5 +1,9 @@
 package fr.nymeria.servor.ui.elements;
 
+import java.lang.management.ManagementFactory;
+
+import com.sun.management.OperatingSystemMXBean;
+
 import fr.nymeria.servor.helpers.Settings;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
@@ -12,11 +16,10 @@ import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
-import javax.swing.*;
-
 public class ParameterContentPage {
     private TextField serverJavaArgsField;
-    public ParameterContentPage(Pane pane, SideParameterPanel sideParameterPanel) {
+    @SuppressWarnings("deprecation")
+	public ParameterContentPage(Pane pane, SideParameterPanel sideParameterPanel) {
 
         VBox root = new VBox();
         root.setTranslateY(55.0d);
@@ -49,18 +52,20 @@ public class ParameterContentPage {
         serverMaxRam.setFill(Color.WHITE);
         serverMaxRam.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
 
+		long ram = ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024 / 1024;
+        
         Slider serverMaxRamSlider = new Slider();
         serverMaxRamSlider.setTranslateY(20.0d);
         serverMaxRamSlider.setMinWidth(410.0d);
-        serverMaxRamSlider.setMin(1024);
-        serverMaxRamSlider.setMax(10240);
+        serverMaxRamSlider.setMin(255);
+        serverMaxRamSlider.setMax(ram);
         serverMaxRamSlider.getStyleClass().add("slider");
 
-        TextField serverMaxRamField = createTextField("1024 Mb", 122.0d, 60.0d, 20);
+        TextField serverMaxRamField = createTextField("255 Mb", 122.0d, 60.0d, 20);
         serverMaxRamField.setTranslateX(20.0d);
 
         serverMaxRamBox.getChildren().addAll(serverMaxRam, serverMaxRamSlider, serverMaxRamField);
-
+        
         // Server Min Ram Slider
         HBox serverMinRamBox = new HBox();
         serverMinRamBox.setTranslateY(100.0d);
@@ -73,11 +78,11 @@ public class ParameterContentPage {
         Slider serverMinRamSlider = new Slider();
         serverMinRamSlider.setTranslateY(20.0d);
         serverMinRamSlider.setMinWidth(410.0d);
-        serverMinRamSlider.setMin(1024);
-        serverMinRamSlider.setMax(10240);
+        serverMinRamSlider.setMin(0);
+        serverMinRamSlider.setMax(ram);
         serverMinRamSlider.getStyleClass().add("slider");
 
-        TextField serverMinRamField = createTextField("1024 Mb", 122.0d, 60.0d, 20);
+        TextField serverMinRamField = createTextField("0 Mb", 122.0d, 60.0d, 20);
         serverMinRamField.setTranslateX(20.0d);
 
         serverMaxRamSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -90,7 +95,7 @@ public class ParameterContentPage {
                 serverMinRamSlider.setValue(serverMaxRamSlider.getValue());
             }
 
-            serverJavaArgsField.setText("java -Xmx " + (int) serverMaxRamSlider.getValue() + "Mb -Xms " + (int) serverMinRamSlider.getValue() + "Mb -jar server.jar");
+            serverJavaArgsField.setText("java -Xmx " + (int) serverMaxRamSlider.getValue() + "M -Xms " + (int) serverMinRamSlider.getValue() + "M -jar server.jar");
 
             sideParameterPanel.setServerMaxRamValue(String.valueOf((int) serverMaxRamSlider.getValue()));
             sideParameterPanel.setServerMinRamValue(String.valueOf((int) serverMinRamSlider.getValue()));
@@ -106,7 +111,7 @@ public class ParameterContentPage {
                 serverMaxRamSlider.setValue(serverMinRamSlider.getValue());
             }
 
-            serverJavaArgsField.setText("java -Xmx " + (int) serverMaxRamSlider.getValue() + "Mb -Xms " + (int) serverMinRamSlider.getValue() + "Mb -jar server.jar");
+            serverJavaArgsField.setText("java -Xmx " + (int) serverMaxRamSlider.getValue() + "M -Xms " + (int) serverMinRamSlider.getValue() + "M -jar server.jar");
 
             sideParameterPanel.setServerMaxRamValue(String.valueOf((int) serverMaxRamSlider.getValue()));
             sideParameterPanel.setServerMinRamValue(String.valueOf((int) serverMinRamSlider.getValue()));
@@ -158,7 +163,7 @@ public class ParameterContentPage {
         serverJavaArgs.setFill(Color.WHITE);
         serverJavaArgs.setFont(Font.font("Poppins", FontWeight.NORMAL, 24));
 
-        serverJavaArgsField = createTextField("java -Xmx " + (int) serverMaxRamSlider.getValue() + "Mb -Xms " + (int) serverMinRamSlider.getValue() + "Mb -jar server.jar", 625.0d, 60.0d, 20);
+        serverJavaArgsField = createTextField("java -Xmx " + (int) serverMaxRamSlider.getValue() + "M -Xms " + (int) serverMinRamSlider.getValue() + "M -jar server.jar", 625.0d, 60.0d, 20);
 
         serverJavaArgsBox.getChildren().addAll(serverJavaArgs, serverJavaArgsField);
 

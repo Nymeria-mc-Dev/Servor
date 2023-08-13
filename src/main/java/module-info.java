@@ -7,6 +7,7 @@ module fr.nymeria.servor {
 	requires java.desktop;
 	requires java.discord.rpc;
 	requires json.simple;
+	requires jdk.management;
 
 	opens fr.nymeria.servor to javafx.fxml;
     exports fr.nymeria.servor;
