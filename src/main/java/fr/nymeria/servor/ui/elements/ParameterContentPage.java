@@ -3,6 +3,8 @@ package fr.nymeria.servor.ui.elements;
 import fr.nymeria.servor.helpers.Settings;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.scene.control.CheckBox;
+import javafx.scene.control.RadioButton;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -57,17 +59,77 @@ public class ParameterContentPage {
         TextField serverMaxRamField = createTextField("1024 Mb", 122.0d, 60.0d, 20);
         serverMaxRamField.setTranslateX(20.0d);
 
+        serverMaxRamBox.getChildren().addAll(serverMaxRam, serverMaxRamSlider, serverMaxRamField);
+
+        // Server Min Ram Slider
+        HBox serverMinRamBox = new HBox();
+        serverMinRamBox.setTranslateY(100.0d);
+
+        Text serverMinRam = new Text("Min. Ram :  ");
+        serverMinRam.setTranslateY(10.0d);
+        serverMinRam.setFill(Color.WHITE);
+        serverMinRam.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
+
+        Slider serverMinRamSlider = new Slider();
+        serverMinRamSlider.setTranslateY(20.0d);
+        serverMinRamSlider.setMinWidth(410.0d);
+        serverMinRamSlider.setMin(1024);
+        serverMinRamSlider.setMax(10240);
+        serverMinRamSlider.getStyleClass().add("slider");
+
+        TextField serverMinRamField = createTextField("1024 Mb", 122.0d, 60.0d, 20);
+        serverMinRamField.setTranslateX(20.0d);
+
         serverMaxRamSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             serverMaxRamField.setText((int) serverMaxRamSlider.getValue() + " Mb");
 
             int percent = (int) (100 *  (serverMaxRamSlider.getValue() - serverMaxRamSlider.getMin()) / (serverMaxRamSlider.getMax() - serverMaxRamSlider.getMin()));
-            System.out.println(percent);
             serverMaxRamSlider.setStyle("-fx-background-color: linear-gradient(to right, #0066FF " + percent + "%, #363636 " + percent + "%);");
+
+            if (serverMaxRamSlider.getValue() < serverMinRamSlider.getValue()) {
+                serverMinRamSlider.setValue(serverMaxRamSlider.getValue());
+            }
         });
 
-        serverMaxRamBox.getChildren().addAll(serverMaxRam, serverMaxRamSlider, serverMaxRamField);
+        serverMinRamSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
+            serverMinRamField.setText((int) serverMinRamSlider.getValue() + " Mb");
 
-        root.getChildren().addAll(serverNameField, serverPortBox, serverMaxRamBox);
+            int percent = (int) (100 *  (serverMinRamSlider.getValue() - serverMinRamSlider.getMin()) / (serverMinRamSlider.getMax() - serverMinRamSlider.getMin()));
+            serverMinRamSlider.setStyle("-fx-background-color: linear-gradient(to right, #0066FF " + percent + "%, #363636 " + percent + "%);");
+
+            if (serverMinRamSlider.getValue() > serverMaxRamSlider.getValue()) {
+                serverMaxRamSlider.setValue(serverMinRamSlider.getValue());
+            }
+        });
+
+        serverMinRamBox.getChildren().addAll(serverMinRam, serverMinRamSlider, serverMinRamField);
+
+        // Server is docked
+        HBox serverDockedBox = new HBox();
+        serverDockedBox.setTranslateY(120.0d);
+
+        Text serverDocked = new Text("Docked : ");
+        serverDocked.setFill(Color.WHITE);
+        serverDocked.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
+
+        CheckBox serverDockedButton = new CheckBox();
+        serverDockedButton.setTranslateY(7.0d);
+
+        serverDockedBox.getChildren().addAll(serverDocked, serverDockedButton);
+
+        // Server Java Arguments
+        VBox serverJavaArgsBox = new VBox();
+        serverJavaArgsBox.setTranslateY(140);
+
+        Text serverJavaArgs = new Text("Java Arguments : ");
+        serverJavaArgs.setFill(Color.WHITE);
+        serverJavaArgs.setFont(Font.font("Poppins", FontWeight.NORMAL, 24));
+
+        TextField serverJavaArgsField = createTextField("java -Xmx " + (int) serverMaxRamSlider.getValue() + "Mb -Xms " + (int) serverMinRamSlider.getValue() + "Mb -jar server.jar", 625.0d, 60.0d, 20);
+
+        serverJavaArgsBox.getChildren().addAll(serverJavaArgs, serverJavaArgsField);
+
+        root.getChildren().addAll(serverNameField, serverPortBox, serverMaxRamBox, serverMinRamBox, serverDockedBox, serverJavaArgsBox);
 
         pane.getChildren().add(root);
 
