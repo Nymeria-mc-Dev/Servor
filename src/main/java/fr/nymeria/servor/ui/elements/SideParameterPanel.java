@@ -1,7 +1,6 @@
 package fr.nymeria.servor.ui.elements;
 
 import fr.nymeria.servor.helpers.Settings;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;

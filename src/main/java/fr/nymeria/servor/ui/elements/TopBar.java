@@ -5,6 +5,7 @@ import de.jensd.fx.glyphs.fontawesome.FontAwesomeIcon;
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.helpers.Discord;
 import fr.nymeria.servor.helpers.FileHelper;
+import javafx.scene.Cursor;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.Pane;
@@ -43,6 +44,16 @@ public class TopBar {
 		close.setTranslateY(25);
 		close.setFill(Color.WHITE);
 		
+		close.hoverProperty().addListener((observable, oldValue, newValue) -> {
+			if(newValue) {
+				close.setFill(Color.RED);
+				App.setCursor(Cursor.HAND);
+			}else {
+				close.setFill(Color.WHITE);
+				App.setCursor(Cursor.DEFAULT);
+			}
+		});
+		
 		close.setOnMouseClicked(event -> {
 			double x = App.getStage().getX();
 			double y = App.getStage().getY();
@@ -56,6 +67,16 @@ public class TopBar {
 		reduce.setTranslateX(1000);
 		reduce.setTranslateY(27);
 		reduce.setFill(Color.WHITE);
+		
+		reduce.hoverProperty().addListener((observable, oldValue, newValue) -> {
+			if(newValue) {
+				reduce.setFill(Color.GREY);
+				App.setCursor(Cursor.HAND);
+			}else {
+				reduce.setFill(Color.WHITE);
+				App.setCursor(Cursor.DEFAULT);
+			}
+		});
 		
 		reduce.setOnMouseClicked(event -> {
 			stage.setIconified(true);

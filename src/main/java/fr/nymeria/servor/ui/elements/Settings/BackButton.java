@@ -30,7 +30,7 @@ public class BackButton {
 		p.setAlignment(Pos.CENTER);
 		p.setBackground(background);
 
-		Text button =  GlyphsDude.createIcon(FontAwesomeIcon.ARROW_LEFT, "25px");
+		Text button = GlyphsDude.createIcon(FontAwesomeIcon.ARROW_LEFT, "25px");
 		button.setFill(Color.WHITE);
 
 		p.getChildren().add(button);
