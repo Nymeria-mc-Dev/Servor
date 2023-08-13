@@ -13,7 +13,7 @@ public class Servor {
 		ServerSelector.init();
 		
 		double[] loc = FileHelper.getAppLoc();
-		if(loc != null) {
+		if(loc.length != 0) {
 			stage.setX(loc[0]);
 			stage.setY(loc[1]);
 		}

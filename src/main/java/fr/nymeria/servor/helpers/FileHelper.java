@@ -22,6 +22,8 @@ import fr.nymeria.servor.App;
 public class FileHelper {
 
 	private static final double CONFIGVERSION = 0.01;
+	
+	private static boolean startFileExist;
 
 	private static File servorFolder;
 	private static File serversFolder;
@@ -43,11 +45,14 @@ public class FileHelper {
 
 		starterFile = new File(servorFolder + "\\Start.json");
 		if(!starterFile.exists()) {
+			startFileExist = false;
 			try {
 				starterFile.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}else {
+			startFileExist = true;
 		}
 		serversConfig = new File(serversFolder + "\\Configs");
 		if(!serversConfig.exists()) {
@@ -143,21 +148,29 @@ public class FileHelper {
 
 	public static double[] getAppLoc() {
 
-		JSONParser jsonParser = new JSONParser();
+		if(startFileExist) {
+			JSONParser jsonParser = new JSONParser();
 
-		try (FileReader reader = new FileReader(starterFile)){
-			JSONObject obj = (JSONObject) jsonParser.parse(reader);
-			double[] loc = {(double) obj.get("x"), (double) obj.get("y")};
+			try (FileReader reader = new FileReader(starterFile)){
+				
+				if(reader != null) {
+					JSONObject obj = (JSONObject) jsonParser.parse(reader);
+					double[] loc = {(double) obj.get("x"), (double) obj.get("y")};
 
-			return loc;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
+					return loc;
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
-		return null;
+		
+		double[] loc = {};
+		
+		return loc;
 	}
 
 
