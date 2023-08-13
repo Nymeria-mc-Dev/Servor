@@ -52,3 +52,13 @@
 	-fx-border-radius: 16px;
 	-fx-border-width: 3px;
 }
+
+.slider .track {
+    -fx-background-color: #363636;
+}
+
+.slider .thumb {
+    -fx-background-color: #212121;
+}
+
+/* Blue back to thumb is done with a linear gradient with the percentage of the track */
