@@ -27,7 +27,6 @@ public class DockerPath {
 
 	private HBox contener;
 	
-	@SuppressWarnings("unchecked")
 	public DockerPath(Pane pane) {
 		
 		contener = new HBox();
