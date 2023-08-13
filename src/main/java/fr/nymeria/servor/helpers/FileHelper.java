@@ -5,6 +5,11 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.Comparator;
 
@@ -12,13 +17,20 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
+import fr.nymeria.servor.App;
+
 public class FileHelper {
+
+	private static final double CONFIGVERSION = 0.01;
+	
+	private static boolean startFileExist;
 
 	private static File servorFolder;
 	private static File serversFolder;
 	private static File starterFile;
 	private static File serversConfig;
 	private static File servers;
+	private static File config;
 
 	public static void init() {
 		servorFolder = new File(System.getenv("APPDATA") + "\\.Servor");
@@ -33,11 +45,14 @@ public class FileHelper {
 
 		starterFile = new File(servorFolder + "\\Start.json");
 		if(!starterFile.exists()) {
+			startFileExist = false;
 			try {
 				starterFile.createNewFile();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
+		}else {
+			startFileExist = true;
 		}
 		serversConfig = new File(serversFolder + "\\Configs");
 		if(!serversConfig.exists()) {
@@ -46,6 +61,22 @@ public class FileHelper {
 		servers = new File(serversFolder + "\\Servers");
 		if(!servers.exists()) {
 			servers.mkdir();
+		}
+		config = new File(servorFolder + "\\config.json");
+		if(!config.exists() || JsonHelper.getDoubleValue(read(getConfig()), "version") < CONFIGVERSION) {
+			String fileUrl = App.getResource("/json/config.json").toExternalForm();
+
+			try {
+				URL url = new URL(fileUrl);
+				InputStream inputStream = url.openStream();
+
+				String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
+				Path targetPath = Path.of(servorFolder.toString(), fileName);
+
+				Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
 
 		File[] files = serversFolder.listFiles();
@@ -70,6 +101,10 @@ public class FileHelper {
 		return servers;
 	}
 
+	public static File getConfig() {
+		return config;
+	}
+
 	public static void write(File FileToWrite, JSONObject object) {
 		try (FileWriter file = new FileWriter(FileToWrite)) {
 			file.write(object.toJSONString());
@@ -82,7 +117,7 @@ public class FileHelper {
 	public static JSONObject read(File FileToRead) {
 		JSONParser jsonParser = new JSONParser();
 
-		try (FileReader reader = new FileReader(starterFile)){
+		try (FileReader reader = new FileReader(FileToRead)){
 			JSONObject obj = (JSONObject) jsonParser.parse(reader);
 
 			return obj;
@@ -113,21 +148,29 @@ public class FileHelper {
 
 	public static double[] getAppLoc() {
 
-		JSONParser jsonParser = new JSONParser();
+		if(startFileExist) {
+			JSONParser jsonParser = new JSONParser();
 
-		try (FileReader reader = new FileReader(starterFile)){
-			JSONObject obj = (JSONObject) jsonParser.parse(reader);
-			double[] loc = {(double) obj.get("x"), (double) obj.get("y")};
+			try (FileReader reader = new FileReader(starterFile)){
+				
+				if(reader != null) {
+					JSONObject obj = (JSONObject) jsonParser.parse(reader);
+					double[] loc = {(double) obj.get("x"), (double) obj.get("y")};
 
-			return loc;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
+					return loc;
+				}
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			} catch (ParseException e) {
+				e.printStackTrace();
+			}
 		}
-		return null;
+		
+		double[] loc = {};
+		
+		return loc;
 	}
 
 

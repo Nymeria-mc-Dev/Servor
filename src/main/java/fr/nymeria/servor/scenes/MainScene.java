@@ -34,12 +34,6 @@ public class MainScene {
         Discord.setSmallImage("home");
         
         loaded = true;
-    
-        /*ProgressBar bar = new ProgressBar();
-        bar.setPrefSize(1080, 2);
-        bar.setProgress(0.62);
-        
-        pane.getChildren().add(bar);*/
         
 		return scene;
 	}
