@@ -7,6 +7,7 @@ import fr.nymeria.servor.helpers.Loading;
 import fr.nymeria.servor.helpers.Servor;
 import fr.nymeria.servor.scenes.MainScene;
 import javafx.application.Application;
+import javafx.scene.Cursor;
 import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
@@ -44,6 +45,10 @@ public class App extends Application {
 
 	}
 
+	public static void setCursor(Cursor cursor) {
+		stage.getScene().setCursor(cursor);
+	}
+	
 	public static URL getResource(String ressource) {
 		return App.class.getResource(ressource);
 	}
