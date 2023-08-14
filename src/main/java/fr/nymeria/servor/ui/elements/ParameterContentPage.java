@@ -1,5 +1,6 @@
 package fr.nymeria.servor.ui.elements;
 
+import java.io.IOError;
 import java.lang.management.ManagementFactory;
 
 import com.sun.management.OperatingSystemMXBean;
@@ -125,21 +126,29 @@ public class ParameterContentPage {
             sideParameterPanel.setServerMinRamValue(String.valueOf((int) serverMinRamSlider.getValue()));
         });
 
-        /* serverMaxRamField.textProperty().addListener((obs, oldv, newv) -> {
-            serverMaxRamSlider.setValue(Integer.parseInt(String.valueOf(serverMaxRamField)));
+        serverMaxRamField.textProperty().addListener((obs, oldv, newv) -> {
+            try {
+                serverMaxRamSlider.setValue(Integer.parseInt(serverMaxRamField.getText().split(" ")[0]));
 
-            if (serverMinRamSlider.getValue() > serverMaxRamSlider.getValue()) {
-                serverMaxRamSlider.setValue(serverMinRamSlider.getValue());
+                if (serverMinRamSlider.getValue() > serverMaxRamSlider.getValue()) {
+                    serverMaxRamSlider.setValue(serverMinRamSlider.getValue());
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error of string number formation");
             }
         });
 
         serverMinRamField.textProperty().addListener((obs, oldv, newv) -> {
-            serverMinRamSlider.setValue(Integer.parseInt(String.valueOf(serverMinRamField)));
+            try {
+                serverMinRamSlider.setValue(Integer.parseInt(serverMinRamField.getText().split(" ")[0]));
 
-            if (serverMaxRamSlider.getValue() < serverMinRamSlider.getValue()) {
-                serverMinRamSlider.setValue(serverMaxRamSlider.getValue());
+                if (serverMaxRamSlider.getValue() < serverMinRamSlider.getValue()) {
+                    serverMinRamSlider.setValue(serverMaxRamSlider.getValue());
+                }
+            } catch (NumberFormatException e) {
+                System.out.println("Error of string number formation");
             }
-        }); */
+        });
 
         serverMinRamBox.getChildren().addAll(serverMinRam, serverMinRamSlider, serverMinRamField);
 
