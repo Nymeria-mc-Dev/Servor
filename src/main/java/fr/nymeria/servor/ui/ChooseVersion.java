@@ -1,7 +1,7 @@
 package fr.nymeria.servor.ui;
 
 import fr.nymeria.servor.App;
-import fr.nymeria.servor.helpers.Settings;
+import fr.nymeria.servor.helpers.ParameterSceneSettings;
 import fr.nymeria.servor.scenes.MainScene;
 import fr.nymeria.servor.scenes.ParametreScene;
 import fr.nymeria.servor.ui.elements.CustomJarBox;
@@ -39,7 +39,7 @@ public class ChooseVersion {
 		minecraftVersionText.setStyle("-fx-font-size: 20px;");
 
 		versionText = new Text(" Paper 1.19.2");
-		Settings.ServerVersion = " Paper 1.19.2";
+		ParameterSceneSettings.ServerVersion = " Paper 1.19.2";
 
 		versionText.setFill(Color.WHITE);
 		versionText.setStyle("-fx-font-size: 20px; -fx-font-weight: bold;");
@@ -184,7 +184,7 @@ public class ChooseVersion {
 
 	public static void setVersionText(String text) {
 		versionText.setText(text);
-		Settings.ServerVersion = text;
+		ParameterSceneSettings.ServerVersion = text;
 	}
 
 	private void changeServer(HBox switcher, Rectangle blueBar, double posY, Pane newServer) {
