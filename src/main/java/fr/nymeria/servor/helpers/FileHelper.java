@@ -22,7 +22,7 @@ import fr.nymeria.servor.App;
 
 public class FileHelper {
 
-	private static final double CONFIGVERSION = 0.01;
+	private static final double CONFIGVERSION = 0.02;
 	
 	private static boolean startFileExist;
 
@@ -33,13 +33,45 @@ public class FileHelper {
 	private static File servers;
 	private static File config;
 
+	@SuppressWarnings("unchecked")
 	public static void init() {
 		servorFolder = new File(System.getenv("APPDATA") + "\\.Servor");
 		if (!servorFolder.exists()) {
 			servorFolder.mkdir();
 		}
 
-		serversFolder = new File(servorFolder + "\\Servers");
+		config = new File(servorFolder + "\\config.json");
+		if(!config.exists() || JsonHelper.getDoubleValue(read(getConfig()), "version") < CONFIGVERSION) {
+			String fileUrl = App.getResource("/json/config.json").toExternalForm();
+
+			try {
+				URL url = new URL(fileUrl);
+				InputStream inputStream = url.openStream();
+
+				String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
+				Path targetPath = Path.of(servorFolder.toString(), fileName);
+
+				Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
+				
+				String serversPath = JsonHelper.getStringValue(read(config), "Servers Path");
+				
+				if(serversPath != "C:\\Users\\" + System.getProperty("user.name") + "\\AppData\\Roaming\\.Servor\\Servers") {
+					JSONObject object = read(config);
+					
+					object.put("Servers Path", "C:\\Users\\" + System.getProperty("user.name") + "\\AppData\\Roaming\\.Servor\\Servers");
+					
+					write(config, object);
+				}
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
+		
+		String serversPath = JsonHelper.getStringValue(read(config), "Servers Path");
+		
+		
+		
+		serversFolder = new File(serversPath);
 		if(!serversFolder.exists()) {
 			serversFolder.mkdir();
 		}
@@ -63,6 +95,7 @@ public class FileHelper {
 		if(!servers.exists()) {
 			servers.mkdir();
 		}
+		
 		config = new File(servorFolder + "\\config.json");
 		if(!config.exists() || JsonHelper.getDoubleValue(Objects.requireNonNull(read(getConfig())), "version") < CONFIGVERSION) {
 			String fileUrl = App.getResource("/json/config.json").toExternalForm();
@@ -102,6 +135,10 @@ public class FileHelper {
 		return servers;
 	}
 
+	public static File getServorFolder() {
+		return servorFolder;
+	}
+	
 	public static File getConfig() {
 		return config;
 	}

@@ -1,5 +1,6 @@
 {
-  "version": 0.01,
+  "version": 0.02,
   "Docker Path": "C:\\Program Files\\Docker\\Docker",
-  "discordrpc": false
+  "discordrpc": false,
+  "Servers Path": "C:\\Users\\default\\AppData\\Roaming\\.Servor\\Servers"
 }
