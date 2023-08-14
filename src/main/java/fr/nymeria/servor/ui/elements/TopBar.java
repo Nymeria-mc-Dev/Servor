@@ -64,7 +64,7 @@ public class TopBar {
 		Text name = new Text("Servor [ BETA ]");
 		name.setFill(Color.WHITE);
 		name.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
-		name.setTranslateX(1080 / 2 - (name.getLayoutBounds().getWidth() / 2));
+		name.setTranslateX((double) 1080 / 2 - (name.getLayoutBounds().getWidth() / 2));
 		name.setTranslateY(25);
 		
 		ImageView icon = new ImageView(new Image(App.getResource("/icons/logo.png").toExternalForm(), 25, 25, false, false));

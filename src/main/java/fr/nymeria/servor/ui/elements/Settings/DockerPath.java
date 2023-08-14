@@ -10,6 +10,8 @@ import javafx.scene.layout.Pane;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 
+import java.util.Objects;
+
 public class DockerPath {
 
 	private HBox contener;
@@ -24,7 +26,7 @@ public class DockerPath {
 		contener.setStyle("-fx-background-color: #3E3E3E; -fx-background-radius: 20px;");
 		contener.setAlignment(Pos.CENTER);
 		
-		TextField path = createTextField(JsonHelper.getStringValue(FileHelper.read(FileHelper.getConfig()), "Docker Path"), 692d, 76d, 32);
+		TextField path = createTextField(JsonHelper.getStringValue(Objects.requireNonNull(FileHelper.read(FileHelper.getConfig())), "Docker Path"), 692d, 76d, 32);
 		
 		contener.getChildren().add(path);
 		

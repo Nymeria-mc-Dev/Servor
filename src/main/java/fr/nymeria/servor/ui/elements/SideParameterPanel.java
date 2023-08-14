@@ -1,7 +1,6 @@
 package fr.nymeria.servor.ui.elements;
 
 import fr.nymeria.servor.helpers.Settings;
-import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -11,11 +10,11 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class SideParameterPanel {
-    private Text serverNameValue;
-    private Text serverPortValue;
-    private Text serverMaxRamValue;
-    private Text serverMinRamValue;
-    private Text serverDockeValue;
+    private final Text serverNameValue;
+    private final Text serverPortValue;
+    private final Text serverMaxRamValue;
+    private final Text serverMinRamValue;
+    private final Text serverDockerValue;
     public SideParameterPanel(Pane pane) {
         VBox sidePanel = new VBox();
         sidePanel.setStyle("-fx-background-color: #363636; ");
@@ -91,11 +90,11 @@ public class SideParameterPanel {
         serverDoke.setFill(Color.WHITE);
         serverDoke.setFont(Font.font("Poppins", FontWeight.NORMAL, 18));
 
-        serverDockeValue = new Text("No");
-        serverDockeValue.setFill(Color.WHITE);
-        serverDockeValue.setFont(Font.font("Poppins", FontWeight.BOLD, 18));
+        serverDockerValue = new Text("No");
+        serverDockerValue.setFill(Color.WHITE);
+        serverDockerValue.setFont(Font.font("Poppins", FontWeight.BOLD, 18));
 
-        serverDockeBox.getChildren().addAll(serverDoke, serverDockeValue);
+        serverDockeBox.getChildren().addAll(serverDoke, serverDockerValue);
 
         // Server Port
         HBox serverPortBox = new HBox();
@@ -134,6 +133,6 @@ public class SideParameterPanel {
     }
 
     public void setIsServerDocked(String isDocked) {
-        serverDockeValue.setText(isDocked);
+        serverDockerValue.setText(isDocked);
     }
 }
