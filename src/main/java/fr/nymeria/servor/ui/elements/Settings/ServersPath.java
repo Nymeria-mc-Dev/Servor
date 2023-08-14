@@ -22,16 +22,16 @@ import javafx.scene.text.Text;
 import javafx.stage.DirectoryChooser;
 import javafx.util.Duration;
 
-public class DockerPath {
+public class ServersPath {
 
 	private HBox contener;
 	
-	public DockerPath(Pane pane) {
+	public ServersPath(Pane pane) {
 		
 		contener = new HBox();
 		
 		contener.setTranslateX(305);
-		contener.setTranslateY(97);
+		contener.setTranslateY(214);
 		contener.setPrefSize(619, 76);
 		contener.setStyle("-fx-background-color: #3E3E3E; -fx-background-radius: 20px;");
 		contener.setAlignment(Pos.CENTER_LEFT);
@@ -40,7 +40,7 @@ public class DockerPath {
 		
 		save.setPrefSize(76, 76);
 		save.setTranslateX(971);
-		save.setTranslateY(97);
+		save.setTranslateY(214);
 		save.setStyle("-fx-background-color: #3E3E3E; -fx-background-radius: 20px;");
 		save.setAlignment(Pos.CENTER);
 		
@@ -50,13 +50,13 @@ public class DockerPath {
 		
 		save.getChildren().add(saveText);
 		
-		TextField path = createTextField(JsonHelper.getStringValue(FileHelper.read(FileHelper.getConfig()), "Docker Path"), 523d, 76d, 32);
+		TextField path = createTextField(JsonHelper.getStringValue(FileHelper.read(FileHelper.getConfig()), "Servers Path"), 523d, 76d, 32);
 		
 		HBox folder = new HBox();
 		
 		folder.setPrefSize(76, 76);
 		folder.setTranslateX(849);
-		folder.setTranslateY(98);
+		folder.setTranslateY(214);
 		folder.setAlignment(Pos.CENTER);
 		
 		Text folderText = GlyphsDude.createIcon(FontAwesomeIcon.FOLDER, "40px");
@@ -65,7 +65,7 @@ public class DockerPath {
 		
 		DirectoryChooser fileChooser = new DirectoryChooser();
 		
-		fileChooser.setInitialDirectory(new File("C:\\Program Files\\Docker\\Docker"));
+		fileChooser.setInitialDirectory(FileHelper.getServorFolder());
 		
 		folder.setOnMouseClicked(event -> {
 			
@@ -98,10 +98,10 @@ public class DockerPath {
 		
 		textBox.setPrefSize(218, 76);
 		textBox.setTranslateX(50);
-		textBox.setTranslateY(97);
+		textBox.setTranslateY(214);
 		textBox.setAlignment(Pos.CENTER_LEFT);
 		
-		Text text = new Text("Docker Path :");
+		Text text = new Text("Servers Path :");
 		text.setFill(Color.WHITE);
         text.setFont(Font.font("Poppins", FontWeight.BOLD, 32));
 		
@@ -135,7 +135,7 @@ public class DockerPath {
 		
 		JSONObject object = FileHelper.read(config);
 		
-		object.put("Docker Path", path.replace("/", "\\"));
+		object.put("Servers Path", path.replace("/", "\\"));
 		
 		FileHelper.write(config, object);
 	}
