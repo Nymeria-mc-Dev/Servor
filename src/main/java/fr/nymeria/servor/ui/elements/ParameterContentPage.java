@@ -4,7 +4,12 @@ import java.lang.management.ManagementFactory;
 
 import com.sun.management.OperatingSystemMXBean;
 
+import fr.nymeria.servor.helpers.CustomSliderSkin;
 import fr.nymeria.servor.helpers.Settings;
+import fr.nymeria.servor.ui.elements.Parameters.CustomCheckBox;
+import javafx.event.ActionEvent;
+import javafx.event.Event;
+import javafx.event.EventHandler;
 import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
@@ -18,8 +23,9 @@ import javafx.scene.text.Text;
 
 public class ParameterContentPage {
     private TextField serverJavaArgsField;
+
     @SuppressWarnings("deprecation")
-	public ParameterContentPage(Pane pane, SideParameterPanel sideParameterPanel) {
+    public ParameterContentPage(Pane pane, SideParameterPanel sideParameterPanel) {
 
         VBox root = new VBox();
         root.setTranslateY(55.0d);
@@ -27,6 +33,7 @@ public class ParameterContentPage {
 
         // Server Name Text Field
         TextField serverNameField = createTextField(Settings.ServerVersion, 650.0d, 70.0d, 36);
+        sideParameterPanel.setServerName(serverNameField.getText());
         serverNameField.textProperty().addListener((obs, oldValue, newValue) -> sideParameterPanel.setServerName(serverNameField.getText()));
 
         // Server Port Text Field
@@ -39,6 +46,7 @@ public class ParameterContentPage {
         serverPort.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
 
         TextField serverPortField = createTextField("25565", 170.0d, 40.0d, 24);
+        sideParameterPanel.setServerPort(serverPortField.getText());
         serverPortField.textProperty().addListener((obs, oldv, newv) -> sideParameterPanel.setServerPort(serverPortField.getText()));
 
         serverPortBox.getChildren().addAll(serverPort, serverPortField);
@@ -52,8 +60,8 @@ public class ParameterContentPage {
         serverMaxRam.setFill(Color.WHITE);
         serverMaxRam.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
 
-		long ram = ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024 / 1024;
-        
+        long ram = ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024 / 1024;
+
         Slider serverMaxRamSlider = new Slider();
         serverMaxRamSlider.setTranslateY(20.0d);
         serverMaxRamSlider.setMinWidth(410.0d);
@@ -61,11 +69,14 @@ public class ParameterContentPage {
         serverMaxRamSlider.setMax(ram);
         serverMaxRamSlider.getStyleClass().add("slider");
 
+        CustomSliderSkin sliderMaxRamSkin = new CustomSliderSkin(serverMaxRamSlider);
+        serverMaxRamSlider.setSkin(sliderMaxRamSkin);
+
         TextField serverMaxRamField = createTextField("255 Mb", 122.0d, 60.0d, 20);
         serverMaxRamField.setTranslateX(20.0d);
 
         serverMaxRamBox.getChildren().addAll(serverMaxRam, serverMaxRamSlider, serverMaxRamField);
-        
+
         // Server Min Ram Slider
         HBox serverMinRamBox = new HBox();
         serverMinRamBox.setTranslateY(100.0d);
@@ -82,14 +93,14 @@ public class ParameterContentPage {
         serverMinRamSlider.setMax(ram);
         serverMinRamSlider.getStyleClass().add("slider");
 
+        CustomSliderSkin sliderMinRamSkin = new CustomSliderSkin(serverMinRamSlider);
+        serverMinRamSlider.setSkin(sliderMinRamSkin);
+
         TextField serverMinRamField = createTextField("0 Mb", 122.0d, 60.0d, 20);
         serverMinRamField.setTranslateX(20.0d);
 
         serverMaxRamSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             serverMaxRamField.setText((int) serverMaxRamSlider.getValue() + " Mb");
-
-            int percent = (int) (100 *  (serverMaxRamSlider.getValue() - serverMaxRamSlider.getMin()) / (serverMaxRamSlider.getMax() - serverMaxRamSlider.getMin()));
-            serverMaxRamSlider.setStyle("-fx-background-color: linear-gradient(to right, #0066FF " + percent + "%, #363636 " + percent + "%);");
 
             if (serverMaxRamSlider.getValue() < serverMinRamSlider.getValue()) {
                 serverMinRamSlider.setValue(serverMaxRamSlider.getValue());
@@ -103,9 +114,6 @@ public class ParameterContentPage {
 
         serverMinRamSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
             serverMinRamField.setText((int) serverMinRamSlider.getValue() + " Mb");
-
-            int percent = (int) (100 *  (serverMinRamSlider.getValue() - serverMinRamSlider.getMin()) / (serverMinRamSlider.getMax() - serverMinRamSlider.getMin()));
-            serverMinRamSlider.setStyle("-fx-background-color: linear-gradient(to right, #0066FF " + percent + "%, #363636 " + percent + "%);");
 
             if (serverMinRamSlider.getValue() > serverMaxRamSlider.getValue()) {
                 serverMaxRamSlider.setValue(serverMinRamSlider.getValue());
@@ -140,18 +148,26 @@ public class ParameterContentPage {
         serverDockedBox.setTranslateY(120.0d);
 
         Text serverDocked = new Text("Docked : ");
+        serverDocked.setTranslateY(10.0d);
         serverDocked.setFill(Color.WHITE);
         serverDocked.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
 
-        CheckBox serverDockedButton = new CheckBox();
+        CustomCheckBox customCheckBox = new CustomCheckBox(40.0d, 40.0d, false, "#363636");
+        HBox serverDockedButton = customCheckBox.createCheckBox();
         serverDockedButton.setTranslateY(7.0d);
-        serverDockedButton.selectedProperty().addListener((obs, oldv, newv) -> {
-            if (serverDockedButton.isSelected()) {
-                sideParameterPanel.setIsServerDocked("Yes");
-            } else {
-                sideParameterPanel.setIsServerDocked("No");
-            }
-        });
+        serverDockedButton.setPrefSize(40.0d, 40.0d);
+        serverDockedButton.setOnMouseClicked(
+                (EventHandler) event -> {
+                    customCheckBox.setIsSelected(!customCheckBox.isSelected());
+                    if (customCheckBox.isSelected()) {
+                        sideParameterPanel.setIsServerDocked("Yes");
+                        customCheckBox.setChecked();
+                    } else {
+                        sideParameterPanel.setIsServerDocked("No");
+                        customCheckBox.setUnchecked();
+                    }
+                }
+        );
 
         serverDockedBox.getChildren().addAll(serverDocked, serverDockedButton);
 
