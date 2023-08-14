@@ -23,6 +23,8 @@ import javafx.stage.DirectoryChooser;
 import javafx.stage.FileChooser;
 import javafx.util.Duration;
 
+import java.util.Objects;
+
 public class DockerPath {
 
 	private HBox contener;
@@ -68,7 +70,9 @@ public class DockerPath {
 		
 		fileChooser.setInitialDirectory(new File("C:\\Program Files\\Docker\\Docker"));
 		
-		folder.setOnMouseClicked(event -> {
+		TextField path = createTextField(JsonHelper.getStringValue(Objects.requireNonNull(FileHelper.read(FileHelper.getConfig())), "Docker Path"), 692d, 76d, 32);
+		
+    folder.setOnMouseClicked(event -> {
 			
 			File file = fileChooser.showDialog(App.getStage());
 			
