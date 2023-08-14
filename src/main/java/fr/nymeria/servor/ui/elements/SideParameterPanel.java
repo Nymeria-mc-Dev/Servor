@@ -1,6 +1,6 @@
 package fr.nymeria.servor.ui.elements;
 
-import fr.nymeria.servor.helpers.Settings;
+import fr.nymeria.servor.helpers.ParameterSceneSettings;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
@@ -30,7 +30,7 @@ public class SideParameterPanel {
         serverVersion.setFill(Color.WHITE);
         serverVersion.setFont(Font.font("Poppins", FontWeight.NORMAL, 18));
 
-        Text serverVersionValue = new Text(Settings.ServerVersion);
+        Text serverVersionValue = new Text(ParameterSceneSettings.ServerVersion);
         serverVersionValue.setFill(Color.WHITE);
         serverVersionValue.setFont(Font.font("Poppins", FontWeight.BOLD, 18));
 
@@ -118,21 +118,26 @@ public class SideParameterPanel {
 
     public void setServerName(String name) {
         serverNameValue.setText(name);
+        ParameterSceneSettings.ServerName = name;
     }
 
     public void setServerPort(String port) {
         serverPortValue.setText(port);
+        ParameterSceneSettings.ServerPort = port;
     }
 
     public void setServerMaxRamValue(String maxRamValue) {
         serverMaxRamValue.setText(maxRamValue);
+        ParameterSceneSettings.ServerMaxRam = maxRamValue;
     }
 
     public void setServerMinRamValue(String minRamValue) {
         serverMinRamValue.setText(minRamValue);
+        ParameterSceneSettings.ServerMinRam = minRamValue;
     }
 
     public void setIsServerDocked(String isDocked) {
         serverDockerValue.setText(isDocked);
+        ParameterSceneSettings.IsServerDocked = isDocked.equals("Yes");
     }
 }
