@@ -1,17 +1,13 @@
 package fr.nymeria.servor.ui.elements;
 
-import java.io.IOError;
 import java.lang.management.ManagementFactory;
 
 import com.sun.management.OperatingSystemMXBean;
 
 import fr.nymeria.servor.helpers.CustomSliderSkin;
-import fr.nymeria.servor.helpers.Settings;
+import fr.nymeria.servor.helpers.ParameterSceneSettings;
 import fr.nymeria.servor.ui.elements.Parameters.CustomCheckBox;
-import javafx.event.ActionEvent;
-import javafx.event.Event;
 import javafx.event.EventHandler;
-import javafx.scene.control.CheckBox;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -33,7 +29,7 @@ public class ParameterContentPage {
         root.setTranslateX(355.0d);
 
         // Server Name Text Field
-        TextField serverNameField = createTextField(Settings.ServerVersion, 650.0d, 70.0d, 36);
+        TextField serverNameField = createTextField(ParameterSceneSettings.ServerVersion, 650.0d, 70.0d, 36);
         sideParameterPanel.setServerName(serverNameField.getText());
         serverNameField.textProperty().addListener((obs, oldValue, newValue) -> sideParameterPanel.setServerName(serverNameField.getText()));
 
