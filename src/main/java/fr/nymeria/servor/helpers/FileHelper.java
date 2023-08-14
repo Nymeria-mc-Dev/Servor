@@ -12,6 +12,7 @@ import java.nio.file.Path;
 import java.nio.file.StandardCopyOption;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.Objects;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -81,7 +82,7 @@ public class FileHelper {
 			try {
 				starterFile.createNewFile();
 			} catch (IOException e) {
-				e.printStackTrace();
+				e.fillInStackTrace();
 			}
 		}else {
 			startFileExist = true;
@@ -95,8 +96,24 @@ public class FileHelper {
 			servers.mkdir();
 		}
 		
+		config = new File(servorFolder + "\\config.json");
+		if(!config.exists() || JsonHelper.getDoubleValue(Objects.requireNonNull(read(getConfig())), "version") < CONFIGVERSION) {
+			String fileUrl = App.getResource("/json/config.json").toExternalForm();
 
-		File[] files = serversFolder.listFiles();
+			try {
+				URL url = new URL(fileUrl);
+				InputStream inputStream = url.openStream();
+
+				String fileName = fileUrl.substring(fileUrl.lastIndexOf("/") + 1);
+				Path targetPath = Path.of(servorFolder.toString(), fileName);
+
+				Files.copy(inputStream, targetPath, StandardCopyOption.REPLACE_EXISTING);
+			} catch (IOException e) {
+				e.fillInStackTrace();
+			}
+		}
+
+		File[] files = Objects.requireNonNull(serversFolder.listFiles());
 
 		Arrays.sort(files, new Comparator<File>() {
 			@Override
@@ -131,7 +148,7 @@ public class FileHelper {
 			file.write(object.toJSONString());
 			file.flush();
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.fillInStackTrace();
 		}
 	}
 
@@ -142,14 +159,10 @@ public class FileHelper {
 			JSONObject obj = (JSONObject) jsonParser.parse(reader);
 
 			return obj;
-		} catch (FileNotFoundException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		} catch (ParseException e) {
-			e.printStackTrace();
+		} catch (IOException | ParseException e) {
+			e.fillInStackTrace();
 		}
-		return null;
+        return null;
 	}
 
 	@SuppressWarnings("unchecked")
@@ -163,7 +176,7 @@ public class FileHelper {
 			file.write(obj.toJSONString());
 			file.flush();
 		} catch (IOException e) {
-			e.printStackTrace();
+			e.fillInStackTrace();
 		}
 	}
 
@@ -173,21 +186,15 @@ public class FileHelper {
 			JSONParser jsonParser = new JSONParser();
 
 			try (FileReader reader = new FileReader(starterFile)){
-				
-				if(reader != null) {
-					JSONObject obj = (JSONObject) jsonParser.parse(reader);
-					double[] loc = {(double) obj.get("x"), (double) obj.get("y")};
 
-					return loc;
-				}
-			} catch (FileNotFoundException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			} catch (ParseException e) {
-				e.printStackTrace();
+                JSONObject obj = (JSONObject) jsonParser.parse(reader);
+                double[] loc = {(double) obj.get("x"), (double) obj.get("y")};
+
+                return loc;
+            } catch (IOException | ParseException e) {
+				e.fillInStackTrace();
 			}
-		}
+        }
 		
 		double[] loc = {};
 		

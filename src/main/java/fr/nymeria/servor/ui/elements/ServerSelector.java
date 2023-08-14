@@ -10,19 +10,20 @@ import fr.nymeria.servor.enums.ServerVersion;
 import fr.nymeria.servor.ui.ChooseVersion;
 import javafx.scene.layout.Pane;
 
+@SuppressWarnings("unused")
 public class ServerSelector {
 
 	private static VersionCard clickedCard;
 	private static JDKButton clickedJDK;
 
-	private static Map<String, List<VersionCard>> versionCards = new HashMap<>();
+	private static final Map<String, List<VersionCard>> versionCards = new HashMap<>();
 
-	private static Pane paper = new Pane();
-	private static Pane spigot = new Pane();
-	private static Pane bukkit = new Pane();
-	private static Pane mohist = new Pane();
-	private static Pane forge = new Pane();
-	private static Pane magma = new Pane();
+	private static final Pane paper = new Pane();
+	private static final Pane spigot = new Pane();
+	private static final Pane bukkit = new Pane();
+	private static final Pane mohist = new Pane();
+	private static final Pane forge = new Pane();
+	private static final Pane magma = new Pane();
 
 	public static void init() {
 
