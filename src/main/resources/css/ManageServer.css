@@ -9,3 +9,12 @@
 .blueBar {
 	-fx-fill: #0066FF;
 }
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 9px;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}

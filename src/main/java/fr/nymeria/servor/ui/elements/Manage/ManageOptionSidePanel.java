@@ -28,12 +28,12 @@ public class ManageOptionSidePanel {
     private void createSideChoiceButtons(Pane pane) {
         Pane server = new Pane();
 
-        server.setPrefSize(206, 720);
+        server.setPrefSize(189, 720);
         server.getStyleClass().add("menu");
 
         HBox switcher = new HBox();
 
-        switcher.setPrefSize(206, 66);
+        switcher.setPrefSize(189, 66);
         switcher.setTranslateY(35);
         switcher.getStyleClass().add("all");
 
@@ -41,7 +41,7 @@ public class ManageOptionSidePanel {
 
         blueBar.setWidth(4);
         blueBar.setHeight(66);
-        blueBar.setTranslateX(202);
+        blueBar.setTranslateX(185);
         blueBar.getStyleClass().add("blueBar");
 
         switcher.getChildren().add(blueBar);
@@ -70,7 +70,7 @@ public class ManageOptionSidePanel {
             changeServer(switcher, blueBar, 233, explorer);
         });
 
-        server.getChildren().addAll(switcher, consoleButton, configButton, filesButton, explorerButton);
+        server.getChildren().addAll(switcher, console, config, files, explorer, consoleButton, configButton, filesButton, explorerButton);
 
         pane.getChildren().addAll(server);
     }
@@ -79,32 +79,8 @@ public class ManageOptionSidePanel {
         Pane holdServer = selectedServer;
         selectedServer = newServer;
 
+        holdServer.setVisible(false);
         newServer.setVisible(true);
-
-        double initialSwitcherY = switcher.getTranslateY();
-
-        TranslateTransition translationHold = new TranslateTransition(Duration.millis(1000), holdServer);
-        TranslateTransition translationNew = new TranslateTransition(Duration.millis(1000), newServer);
-
-        if (initialSwitcherY - posY > 0) { //le switcher monte
-            newServer.setTranslateX(-1080);
-            translationHold.setByX(1080);
-            translationNew.setToX(0);
-        } else if (initialSwitcherY - posY < 0) { //le switcher dessend
-            newServer.setTranslateX(1080);
-            translationHold.setByX(-1080);
-            translationNew.setToX(0);
-        }
-
-        translationHold.setOnFinished(event -> {
-            holdServer.setVisible(false);
-        });
-
-        translationHold.setCycleCount(1);
-        translationNew.setCycleCount(1);
-
-        translationHold.play();
-        translationNew.play();
 
         ScaleTransition blueBarT = getScaleTransition(switcher, blueBar, posY);
 
@@ -128,6 +104,7 @@ public class ManageOptionSidePanel {
         blueBarT.setOnFinished(e -> {
             transition.play();
         });
+
         return blueBarT;
     }
 
