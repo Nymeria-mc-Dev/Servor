@@ -10,11 +10,15 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class SideParameterPanel {
+	
     private final Text serverNameValue;
     private final Text serverPortValue;
     private final Text serverMaxRamValue;
     private final Text serverMinRamValue;
     private final Text serverDockerValue;
+    
+    private Text serverVersionValue;
+    
     public SideParameterPanel(Pane pane) {
         VBox sidePanel = new VBox();
         sidePanel.setStyle("-fx-background-color: #363636; ");
@@ -30,7 +34,7 @@ public class SideParameterPanel {
         serverVersion.setFill(Color.WHITE);
         serverVersion.setFont(Font.font("Poppins", FontWeight.NORMAL, 18));
 
-        Text serverVersionValue = new Text(ParameterSceneSettings.ServerVersion);
+        serverVersionValue = new Text(ParameterSceneSettings.ServerVersion);
         serverVersionValue.setFill(Color.WHITE);
         serverVersionValue.setFont(Font.font("Poppins", FontWeight.BOLD, 18));
 
@@ -114,6 +118,10 @@ public class SideParameterPanel {
         sidePanel.getChildren().addAll(serverVersionBox, serverNameBox, serverMaxRamBox, serverMinRamBox, serverDockeBox, serverPortBox);
 
         pane.getChildren().add(sidePanel);
+    }
+    
+    public void updateServerVersion() {
+    	serverVersionValue.setText(ParameterSceneSettings.ServerVersion);
     }
 
     public void setServerName(String name) {

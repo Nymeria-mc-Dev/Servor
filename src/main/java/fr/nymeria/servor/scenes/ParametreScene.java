@@ -18,6 +18,8 @@ public class ParametreScene {
 	private static Pane pane = new Pane();
 	private static Scene scene = new Scene(pane, 1080, 720);
 
+	private static SideParameterPanel spp;
+	
 	private static boolean loaded = false;
 
 	public static Scene get() {
@@ -29,6 +31,8 @@ public class ParametreScene {
 		if(!loaded) {
 			addElements();
 			addStyleSheets();
+		}else {
+			spp.updateServerVersion();
 		}
 
 		Discord.setDetail("En configuration d'un serveur");
@@ -46,7 +50,7 @@ public class ParametreScene {
 
 	private static void addElements() {
 		new Parameter(pane);
-		SideParameterPanel spp = new SideParameterPanel(pane);
+		spp = new SideParameterPanel(pane);
 		new TopBar(pane, stage);
 		new ParameterContentPage(pane, spp);
 	}
