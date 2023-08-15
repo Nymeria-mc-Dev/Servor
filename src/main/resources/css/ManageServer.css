@@ -1,0 +1,36 @@
+.menu {
+	-fx-background-color: #363636;
+}
+
+.all {
+	-fx-background-color: #4F4F4F;
+}
+
+.blueBar {
+	-fx-fill: #0066FF;
+}
+
+.scroll-pane > .viewport {
+    -fx-background-color: transparent;
+    -fx-background-radius: 9px;
+}
+
+.scroll-pane {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .scroll-bar {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .corner {
+    -fx-background-color: transparent;
+}
+
+.scroll-pane .thumb {
+    -fx-background-color: #0066FF;
+}
+
+
+/* command field style */
+

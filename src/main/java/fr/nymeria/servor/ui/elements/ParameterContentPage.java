@@ -7,6 +7,8 @@ import com.sun.management.OperatingSystemMXBean;
 import fr.nymeria.servor.helpers.CustomSliderSkin;
 import fr.nymeria.servor.helpers.ParameterSceneSettings;
 import fr.nymeria.servor.ui.elements.Parameters.CustomCheckBox;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.event.EventHandler;
 import javafx.scene.control.Slider;
 import javafx.scene.control.TextField;
@@ -21,7 +23,7 @@ import javafx.scene.text.Text;
 public class ParameterContentPage {
     private TextField serverJavaArgsField;
 
-    @SuppressWarnings("deprecation")
+    @SuppressWarnings({"unchecked", "rawtypes", "deprecation" })
     public ParameterContentPage(Pane pane, SideParameterPanel sideParameterPanel) {
 
         VBox root = new VBox();
@@ -43,6 +45,15 @@ public class ParameterContentPage {
         serverPort.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
 
         TextField serverPortField = createTextField("25565", 170.0d, 40.0d, 24);
+        serverPortField.textProperty().addListener(new ChangeListener<String>() {
+            @Override
+            public void changed(ObservableValue<? extends String> observable, String oldValue, 
+                String newValue) {
+                if (!newValue.matches("\\d*")) {
+                    serverPortField.setText(newValue.replaceAll("[^\\d]", ""));
+                }
+            }
+        });
         sideParameterPanel.setServerPort(serverPortField.getText());
         serverPortField.textProperty().addListener((obs, oldv, newv) -> sideParameterPanel.setServerPort(serverPortField.getText()));
 
