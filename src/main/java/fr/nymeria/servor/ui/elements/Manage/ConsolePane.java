@@ -26,11 +26,12 @@ public class ConsolePane {
         HBox serverUsage = new HBox();
         serverUsage.setAlignment(Pos.CENTER);
 
-        ServerUsageGraphComponent serverCPUUsageGraphComponent = new ServerUsageGraphComponent(330.0d, 175.0d, 0.0d, 115.0d, "CPU Usage");
-        ServerUsageGraphComponent serverRAMUsageGraphComponent = new ServerUsageGraphComponent(330.0d, 175.0d, 100.0d, 115.0d, "RAM Usage");
+        ServerUsageGraphComponent serverCPUUsageGraphComponent = new ServerUsageGraphComponent(330.0d, 175.0d, 0.0d, 0d, "CPU Usage", 10, new float[]{20, 80, 100, 90, 40, 50, 30, 50, 50, 40});
+        ServerUsageGraphComponent serverRAMUsageGraphComponent = new ServerUsageGraphComponent(330.0d, 175.0d, 100.0d, 0d, "RAM Usage", 10, new float[]{20, 40, 50, 80, 90, 60, 70, 50, 70, 60});
 
         serverUsage.getChildren().addAll(serverCPUUsageGraphComponent.get(), serverRAMUsageGraphComponent.get());
         serverUsage.setTranslateX(165.0d);
+        serverUsage.setTranslateY(115.0d);
 
         box.getChildren().addAll(consoleComponent.get(), serverInteruptController.get(), serverUsage);
 
