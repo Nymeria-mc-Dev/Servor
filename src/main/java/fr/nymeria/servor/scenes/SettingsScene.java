@@ -5,6 +5,7 @@ import fr.nymeria.servor.helpers.Discord;
 import fr.nymeria.servor.ui.elements.TopBar;
 import fr.nymeria.servor.ui.elements.Settings.BackButton;
 import fr.nymeria.servor.ui.elements.Settings.DockerPath;
+import fr.nymeria.servor.ui.elements.Settings.RPCSelector;
 import fr.nymeria.servor.ui.elements.Settings.ServersPath;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
@@ -47,5 +48,6 @@ public class SettingsScene {
     	new BackButton(pane, stage);
     	new DockerPath(pane);
     	new ServersPath(pane);
+    	new RPCSelector(pane);
     }
 }

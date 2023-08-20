@@ -1,5 +1,7 @@
 package fr.nymeria.servor.scenes;
 
+import java.util.Objects;
+
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.helpers.Discord;
 import fr.nymeria.servor.ui.Parameter;
@@ -9,8 +11,6 @@ import fr.nymeria.servor.ui.elements.TopBar;
 import javafx.scene.Scene;
 import javafx.scene.layout.Pane;
 import javafx.stage.Stage;
-
-import java.util.Objects;
 
 public class ParametreScene {
 
@@ -34,7 +34,7 @@ public class ParametreScene {
 		}else {
 			spp.updateServerVersion();
 		}
-
+		
 		Discord.setDetail("En configuration d'un serveur");
         Discord.setState("Settings");
         Discord.setSmallImage("settings");
