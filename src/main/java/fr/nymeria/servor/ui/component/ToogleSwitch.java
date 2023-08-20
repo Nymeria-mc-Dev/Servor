@@ -2,6 +2,7 @@ package fr.nymeria.servor.ui.component;
 
 import javafx.animation.TranslateTransition;
 import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
 import javafx.util.Duration;
 
 import java.util.Observable;
@@ -37,6 +38,10 @@ public class ToogleSwitch extends Observable {
 			}
 			
 		});
+	}
+
+	public Pane get() {
+		return back;
 	}
 	
 	public void setBackgroundCss(String css) {
