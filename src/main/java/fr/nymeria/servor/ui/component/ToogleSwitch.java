@@ -4,7 +4,10 @@ import javafx.animation.TranslateTransition;
 import javafx.scene.layout.Pane;
 import javafx.util.Duration;
 
-public class ToogleSwitch {
+import java.util.Observable;
+
+@SuppressWarnings("unused")
+public class ToogleSwitch extends Observable {
 
 	private Pane back;
 	private Pane rectangle;
@@ -67,5 +70,8 @@ public class ToogleSwitch {
 	public void setParent(Pane pane) {
 		pane.getChildren().add(back);
 	}
-	
+
+	public boolean isPowered() {
+		return powered;
+	}
 }
