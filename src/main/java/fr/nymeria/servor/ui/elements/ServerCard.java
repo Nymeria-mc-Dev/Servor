@@ -2,14 +2,13 @@ package fr.nymeria.servor.ui.elements;
 
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.scenes.ManageServerScene;
-import javafx.animation.TranslateTransition;
+import javafx.animation.ScaleTransition;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.Region;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Font;
 import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
@@ -22,19 +21,17 @@ public class ServerCard {
 		if(y < 40) y = 40;
 		if(x < 40) x = 40;
 		
-		Rectangle card = new Rectangle();
+		Pane card = new Pane();
 		card.setTranslateX(x);
 		card.setTranslateY(y);
-		card.setWidth(309);
-		card.setHeight(170);
-		card.setArcHeight(15);
-		card.setArcWidth(15);
+		card.setPrefWidth(309);
+		card.setPrefHeight(170);
 		card.getStyleClass().add("serverCard");
 
 		// Card content
 		VBox cardContent = new VBox();
-		cardContent.setTranslateX(card.getTranslateX() + 15);
-		cardContent.setTranslateY(card.getTranslateY() + 15);
+		cardContent.setTranslateX(15);
+		cardContent.setTranslateY(15);
 		cardContent.setMinHeight(50.0d);
 		cardContent.setMinWidth(50.0d);
 
@@ -52,14 +49,12 @@ public class ServerCard {
 		// Button
 		Region button = new Region();
 		button.setPrefSize(309, 39);
-		button.setTranslateX(x);
-		button.setTranslateY(y + 131);
+		button.setTranslateY(131);
 		button.getStyleClass().add("gestionButton");
 
 		HBox box = new HBox();
 		box.setPrefSize(309, 39);
-		box.setTranslateX(x);
-		box.setTranslateY(y + 131);
+		box.setTranslateY(131);
 		box.setAlignment(Pos.BASELINE_CENTER);
 		
 		Text gestion = new Text("Manage");
@@ -68,23 +63,38 @@ public class ServerCard {
 		
 		box.getChildren().add(gestion);
 
-		gestion.hoverProperty().addListener((observable, oldValue, newValue) -> {
-			TranslateTransition buttonTrans = new TranslateTransition(Duration.millis(200), gestion);
-			TranslateTransition boxTrans = new TranslateTransition(Duration.millis(200), box);
+		box.hoverProperty().addListener((observable, oldValue, newValue) -> {
+			ScaleTransition buttonScale = new ScaleTransition(Duration.millis(200), gestion);
 
 			if (newValue) {
-                buttonTrans.setToX(5);
-                buttonTrans.setToY(5);
+                buttonScale.setToX(1.2);
+                buttonScale.setToY(1.2);
 			} else {
-				buttonTrans.setToX(0);
-				buttonTrans.setToY(0);
+				buttonScale.setToX(1);
+				buttonScale.setToY(1);
 			}
 
-			buttonTrans.play();
+			buttonScale.play();
+		});
+		
+		card.hoverProperty().addListener((observable, oldValue, newValue) -> {
+			ScaleTransition cardScale = new ScaleTransition(Duration.millis(100), card);
+
+			if (newValue) {
+                cardScale.setToX(1.1);
+                cardScale.setToY(1.1);
+			} else {
+				cardScale.setToX(1);
+				cardScale.setToY(1);
+			}
+
+			cardScale.play();
 		});
 
 		gestion.setOnMouseClicked((e) -> App.setScene(ManageServerScene.get())); //.onMouseClickedProperty().addListener((obs, oldv, newv) -> App.setScene(ManageServerScene.get()));
 
-		pane.getChildren().addAll(card, cardContent, button, box);
+		card.getChildren().addAll(cardContent, button, box);
+		
+		pane.getChildren().addAll(card);
 	}
 }
