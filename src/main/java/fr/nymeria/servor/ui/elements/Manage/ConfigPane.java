@@ -6,6 +6,11 @@ public class ConfigPane {
     private static final Pane pane = new Pane();
 
     public Pane get() {
+        this.init();
         return pane;
+    }
+
+    private void init() {
+
     }
 }

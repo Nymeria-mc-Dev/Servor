@@ -41,8 +41,6 @@ public class App extends Application {
 		stage.show();
 
 		Loading.close();
-
-
 	}
 
 	public static void setCursor(Cursor cursor) {

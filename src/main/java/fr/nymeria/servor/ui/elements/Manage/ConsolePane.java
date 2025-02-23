@@ -3,7 +3,9 @@ package fr.nymeria.servor.ui.elements.Manage;
 import fr.nymeria.servor.ui.elements.Manage.components.ConsoleComponent;
 import fr.nymeria.servor.ui.elements.Manage.components.ServerInteruptController;
 import fr.nymeria.servor.ui.elements.Manage.components.ServerUsageGraphComponent;
+import javafx.geometry.Orientation;
 import javafx.geometry.Pos;
+import javafx.scene.control.ScrollBar;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -11,8 +13,10 @@ import javafx.scene.layout.VBox;
 
 public class ConsolePane {
     private static final Pane pane = new Pane();
+    private static final ScrollPane innerScrollPane = new ScrollPane();
     private final static ScrollPane container = new ScrollPane();
     private final static VBox box = new VBox();
+    private final static ScrollBar scrollBar = new ScrollBar(); // 15.0d, 765.0d, 1060.0d, 35.0d, pane
 
     public Pane get() {
         this.init();
@@ -37,10 +41,19 @@ public class ConsolePane {
 
         container.setContent(box);
         container.getStyleClass().add("scroll-pane");
-        container.setMinWidth(1100.0d);
-        container.setMaxWidth(1100.0d);
-        container.setMinHeight(720.0d);
+        container.setMinWidth(1060.0d);
+        container.setMaxWidth(1060.0d);
+        container.setMinHeight(920.0d);
 
-        pane.getChildren().addAll(container);
+        innerScrollPane.setMinWidth(1080.0d);
+        innerScrollPane.setMaxWidth(1080.0d);
+        innerScrollPane.setMinHeight(680.0d);
+        innerScrollPane.setMaxHeight(680.0d);
+        innerScrollPane.setTranslateY(35.0d);
+
+        innerScrollPane.setContent(container);
+
+        pane.getChildren().addAll(innerScrollPane);
+
     }
 }
