@@ -16,7 +16,6 @@ public class ConsolePane {
     private static final ScrollPane innerScrollPane = new ScrollPane();
     private final static ScrollPane container = new ScrollPane();
     private final static VBox box = new VBox();
-    private final static ScrollBar scrollBar = new ScrollBar(); // 15.0d, 765.0d, 1060.0d, 35.0d, pane
 
     public Pane get() {
         this.init();
