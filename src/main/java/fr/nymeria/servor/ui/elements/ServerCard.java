@@ -2,6 +2,7 @@ package fr.nymeria.servor.ui.elements;
 
 import fr.nymeria.servor.App;
 import fr.nymeria.servor.scenes.ManageServerScene;
+import javafx.animation.FadeTransition;
 import javafx.animation.ScaleTransition;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
@@ -90,7 +91,7 @@ public class ServerCard {
 
 			cardScale.play();
 		});
-
+		
 		gestion.setOnMouseClicked((e) -> App.setScene(ManageServerScene.get())); //.onMouseClickedProperty().addListener((obs, oldv, newv) -> App.setScene(ManageServerScene.get()));
 
 		card.getChildren().addAll(cardContent, button, box);
