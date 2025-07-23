@@ -23,7 +23,15 @@ import javafx.scene.text.Text;
 public class ParameterContentPage {
     private TextField serverJavaArgsField;
 
-    @SuppressWarnings({"unchecked", "rawtypes", "deprecation" })
+    private final TextField serverNameField;
+    private final TextField serverPortField;
+    private final Slider serverMaxRamSlider;
+    private final TextField serverMaxRamField;
+    private final Slider serverMinRamSlider;
+    private final TextField serverMinRamField;
+    private final CustomCheckBox customCheckBox;
+
+    @SuppressWarnings({"unchecked", "rawtypes"})
     public ParameterContentPage(Pane pane, SideParameterPanel sideParameterPanel) {
 
         VBox root = new VBox();
@@ -31,7 +39,7 @@ public class ParameterContentPage {
         root.setTranslateX(355.0d);
 
         // Server Name Text Field
-        TextField serverNameField = createTextField(ParameterSceneSettings.ServerVersion, 650.0d, 70.0d, 36);
+        serverNameField = createTextField(ParameterSceneSettings.ServerVersion, 650.0d, 70.0d, 36);
         sideParameterPanel.setServerName(serverNameField.getText());
         serverNameField.textProperty().addListener((obs, oldValue, newValue) -> sideParameterPanel.setServerName(serverNameField.getText()));
 
@@ -44,7 +52,7 @@ public class ParameterContentPage {
         serverPort.setFill(Color.WHITE);
         serverPort.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
 
-        TextField serverPortField = createTextField("25565", 170.0d, 40.0d, 24);
+        serverPortField = createTextField("25565", 170.0d, 40.0d, 24);
         serverPortField.textProperty().addListener(new ChangeListener<String>() {
             @Override
             public void changed(ObservableValue<? extends String> observable, String oldValue, 
@@ -70,7 +78,7 @@ public class ParameterContentPage {
 
         long ram = ((OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean()).getTotalPhysicalMemorySize() / 1024 / 1024;
 
-        Slider serverMaxRamSlider = new Slider();
+        serverMaxRamSlider = new Slider();
         serverMaxRamSlider.setTranslateY(20.0d);
         serverMaxRamSlider.setMinWidth(410.0d);
         serverMaxRamSlider.setMin(255);
@@ -80,7 +88,7 @@ public class ParameterContentPage {
         CustomSliderSkin sliderMaxRamSkin = new CustomSliderSkin(serverMaxRamSlider);
         serverMaxRamSlider.setSkin(sliderMaxRamSkin);
 
-        TextField serverMaxRamField = createTextField("255 Mb", 122.0d, 60.0d, 20);
+        serverMaxRamField = createTextField("255 Mb", 122.0d, 60.0d, 20);
         serverMaxRamField.setTranslateX(20.0d);
 
         serverMaxRamBox.getChildren().addAll(serverMaxRam, serverMaxRamSlider, serverMaxRamField);
@@ -94,7 +102,7 @@ public class ParameterContentPage {
         serverMinRam.setFill(Color.WHITE);
         serverMinRam.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
 
-        Slider serverMinRamSlider = new Slider();
+        serverMinRamSlider = new Slider();
         serverMinRamSlider.setTranslateY(20.0d);
         serverMinRamSlider.setMinWidth(410.0d);
         serverMinRamSlider.setMin(0);
@@ -104,7 +112,7 @@ public class ParameterContentPage {
         CustomSliderSkin sliderMinRamSkin = new CustomSliderSkin(serverMinRamSlider);
         serverMinRamSlider.setSkin(sliderMinRamSkin);
 
-        TextField serverMinRamField = createTextField("0 Mb", 122.0d, 60.0d, 20);
+        serverMinRamField = createTextField("0 Mb", 122.0d, 60.0d, 20);
         serverMinRamField.setTranslateX(20.0d);
 
         serverMaxRamSlider.valueProperty().addListener((observable, oldValue, newValue) -> {
@@ -168,7 +176,7 @@ public class ParameterContentPage {
         serverDocked.setFill(Color.WHITE);
         serverDocked.setFont(Font.font("Poppins", FontWeight.BOLD, 20));
 
-        CustomCheckBox customCheckBox = new CustomCheckBox(40.0d, 40.0d, false, "#363636");
+        customCheckBox = new CustomCheckBox(40.0d, 40.0d, false, "#363636");
         HBox serverDockedButton = customCheckBox.createCheckBox();
         serverDockedButton.setTranslateY(7.0d);
         serverDockedButton.setPrefSize(40.0d, 40.0d);
@@ -215,5 +223,25 @@ public class ParameterContentPage {
         textField.setStyle("-fx-background-color: #363636; -fx-background-radius: 9px; -fx-alignment: center; -fx-text-fill: #fff");
 
         return textField;
+    }
+
+    public String getServerName() {
+        return this.serverNameField.getText();
+    }
+
+    public String getServerPort() {
+        return this.serverPortField.getText();
+    }
+
+    public int getServerMaxRam() {
+        return Integer.parseInt(this.serverMaxRamField.getText());
+    }
+
+    public int getServerMinRam() {
+        return Integer.parseInt(this.serverMinRamField.getText());
+    }
+
+    public boolean isServerDocked() {
+        return this.customCheckBox.isSelected();
     }
 }

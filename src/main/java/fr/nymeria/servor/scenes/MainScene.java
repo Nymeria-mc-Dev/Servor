@@ -46,7 +46,8 @@ public class MainScene {
     private static void addElements() {
     	new SettingsButton(pane, stage);
     	new AddServerButton(pane, stage);
-    	new ServerCard(pane, 178, 56);
+		// Récupérer les serveurs existants dans le fichier config de l'app et les afficher
+		new ServerCard(pane, 178, 56);
     	new ServerCard(pane, 594, 56);
     	new ServerCard(pane, 178, 286);
     	new ServerCard(pane, 594, 286);

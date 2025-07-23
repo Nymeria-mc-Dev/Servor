@@ -19,6 +19,7 @@ public class ParametreScene {
 	private static Scene scene = new Scene(pane, 1080, 720);
 
 	private static SideParameterPanel spp;
+	public static ParameterContentPage pcp;
 	
 	private static boolean loaded = false;
 
@@ -52,7 +53,6 @@ public class ParametreScene {
 		new Parameter(pane);
 		spp = new SideParameterPanel(pane);
 		new TopBar(pane, stage);
-		new ParameterContentPage(pane, spp);
+		pcp = new ParameterContentPage(pane, spp);
 	}
-
 }

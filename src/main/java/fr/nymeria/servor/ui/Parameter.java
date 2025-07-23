@@ -1,8 +1,11 @@
 package fr.nymeria.servor.ui;
 
 import fr.nymeria.servor.App;
+import fr.nymeria.servor.helpers.ServerFileHelper;
 import fr.nymeria.servor.scenes.ChooseVersionScene;
 import fr.nymeria.servor.scenes.MainScene;
+import fr.nymeria.servor.scenes.ParametreScene;
+import fr.nymeria.servor.ui.elements.ParameterContentPage;
 import javafx.geometry.Pos;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -70,9 +73,18 @@ public class Parameter {
 
 		returnButton.getChildren().add(customText);
 		
-		returnButton.setOnMouseClicked(event -> {App.setScene(ChooseVersionScene.get());});
-		cancelButton.setOnMouseClicked(event -> {App.setScene(MainScene.get());});
-		
+		returnButton.setOnMouseClicked(event -> App.setScene(ChooseVersionScene.get()));
+		cancelButton.setOnMouseClicked(event -> App.setScene(MainScene.get()));
+		nextButton.setOnMouseClicked(event -> {
+			ServerFileHelper.createServer(
+					ParametreScene.pcp.getServerName(),
+					ParametreScene.pcp.getServerPort(),
+					ParametreScene.pcp.getServerMaxRam(),
+					ParametreScene.pcp.getServerMinRam(),
+					ParametreScene.pcp.isServerDocked()
+			);
+			App.setScene(MainScene.get());
+		});
 		
 		choiseBar.getChildren().addAll(nextButton, cancelButton, returnButton);
 		
